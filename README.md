@@ -9,6 +9,14 @@ All credit for the original project goes to its author
 This project is a derivative work and is **not** affiliated with or endorsed
 by the original authors.
 
+## Screenshots
+
+![Overview](docs/screenshots/overview.png)
+
+![Nodes](docs/screenshots/nodes.png)
+
+![Settings](docs/screenshots/settings.png)
+
 ## Customizations
 
 - Glassmorphism redesign: stronger frosted-glass blur, improved contrast
