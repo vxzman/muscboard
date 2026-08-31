@@ -161,6 +161,7 @@ export function LogsView() {
               active={paused}
               title={paused ? t("Resume scrolling") : t("Pause scrolling")}
               onClick={togglePause}
+              className={styles.pauseButton}
             >
               <Icon name={paused ? "play_arrow" : "pause"} />
             </IconButton>

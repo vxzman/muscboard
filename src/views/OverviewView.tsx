@@ -67,6 +67,7 @@ export function OverviewView() {
             <IconButton
               title={t("Dashboard Items")}
               onClick={() => setManaging(true)}
+              className={styles.dashboardItemsButton}
             >
               <Icon name="tune" />
             </IconButton>

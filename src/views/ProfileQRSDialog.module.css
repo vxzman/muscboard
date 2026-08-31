@@ -31,24 +31,25 @@
   height: 4px;
   appearance: none;
   cursor: pointer;
-  background: var(--border-strong);
+  background: var(--md-primary-container);
   border-radius: var(--radius-pill);
 }
 
 .slider-input::-webkit-slider-thumb {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   appearance: none;
-  background: var(--bright);
+  background: var(--md-primary);
+  border: 3px solid var(--md-surface-container-lowest);
   border-radius: 50%;
-  box-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+  box-shadow: 0 1px 4px rgb(27 38 52 / 28%);
 }
 
 .slider-input::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  background: var(--bright);
-  border: 0;
+  width: 18px;
+  height: 18px;
+  background: var(--md-primary);
+  border: 3px solid var(--md-surface-container-lowest);
   border-radius: 50%;
-  box-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+  box-shadow: 0 1px 4px rgb(27 38 52 / 28%);
 }

@@ -11,6 +11,7 @@ export function Icon({ name, size = 16 }: IconProps) {
   return (
     <svg
       className="icon"
+      data-icon={name}
       width={size}
       height={size}
       style={{ width: size, height: size, flexShrink: 0 }}

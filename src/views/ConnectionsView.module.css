@@ -8,14 +8,19 @@
   margin-bottom: var(--space-8);
   text-align: start;
   cursor: pointer;
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  transition: border-color var(--transition-fast);
+  box-shadow: var(--shadow-control);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  backdrop-filter: blur(28px) saturate(200%);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
 }
 
 .connection-row:hover {
-  border-color: var(--border-strong);
+  border-color: var(--glass-border-strong);
+  box-shadow: var(--glass-shadow);
+  transform: translateY(-1px);
 }
 
 .head {

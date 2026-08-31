@@ -7,9 +7,11 @@
   padding: var(--space-10) var(--space-12);
   margin-top: var(--space-12);
   overflow-y: auto;
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
 }
 
 .progress-row {

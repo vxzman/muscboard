@@ -13,7 +13,7 @@ export const LANGUAGES: { value: Language; label: string }[] = [
 
 export const TRANSLATIONS = {
   "Overview": { "zh-Hans": "概述", "zh-Hant": "概述", "fa": "نمای کلی", "ru": "Обзор" },
-  "Groups": { "zh-Hans": "组", "zh-Hant": "組", "fa": "گروه‌ها", "ru": "Группы" },
+  "Groups": { "zh-Hans": "节点", "zh-Hant": "節點", "fa": "گروه‌ها", "ru": "Группы" },
   "Connections": { "zh-Hans": "连接", "zh-Hant": "連接", "fa": "اتصال‌ها", "ru": "Подключения" },
   "Logs": { "zh-Hans": "日志", "zh-Hant": "日誌", "fa": "گزارش", "ru": "Журнал" },
   "Tools": { "zh-Hans": "工具", "zh-Hant": "工具", "fa": "ابزارها", "ru": "Инструменты" },
@@ -126,7 +126,7 @@ export const TRANSLATIONS = {
   "Reset": { "zh-Hans": "重置", "zh-Hant": "重置", "fa": "بازنشانی", "ru": "Сброс" },
   "Done": { "zh-Hans": "完成", "zh-Hant": "完成", "fa": "انجام شد", "ru": "Готово" },
 
-  "Empty groups": { "zh-Hans": "无分组", "zh-Hant": "無分組", "fa": "بدون گروه", "ru": "Нет групп" },
+  "Empty groups": { "zh-Hans": "暂无节点", "zh-Hant": "暫無節點", "fa": "بدون گروه", "ru": "Нет групп" },
   "Loading...": { "zh-Hans": "加载中...", "zh-Hant": "加載中...", "fa": "در حال بارگذاری...", "ru": "Загрузка..." },
   "URL test": { "zh-Hans": "URL 测试", "zh-Hant": "URL 測試", "fa": "تست URL", "ru": "URL-тест" },
   "Expand": { "zh-Hans": "展开", "zh-Hant": "展開", "fa": "گسترش", "ru": "Развернуть" },

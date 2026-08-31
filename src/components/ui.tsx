@@ -17,6 +17,7 @@ import { useDismiss } from "../app/hooks";
 import { useI18n, type MessageKey } from "../app/i18n";
 import { useLatestRef } from "../app/useLatest";
 import { cx } from "../lib/cx";
+import { BoxLogo } from "./BoxLogo";
 import { Icon, type IconName } from "./Icon";
 
 export function Card(props: { icon?: IconName; title?: ReactNode; actions?: ReactNode; wide?: boolean; className?: string; children?: ReactNode }) {
@@ -82,6 +83,7 @@ export function Brand(props: { className?: string; product?: string | null }) {
   const product = props.product === undefined ? "dashboard" : props.product;
   return (
     <div className={cx("setup-brand", props.className)}>
+      <BoxLogo size={34} />
       sing-box
       {product !== null && <small>{product}</small>}
     </div>

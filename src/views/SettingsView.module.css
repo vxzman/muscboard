@@ -1,17 +1,39 @@
 .settings-list {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
 }
 
 .settings-list > :global(.settings-row) {
   padding: var(--space-14) var(--space-16);
   border-bottom: 0;
+  border-radius: var(--radius-md);
 }
 
 .settings-list > :global(.settings-row) + :global(.settings-row) {
   border-top: 1px solid var(--border);
+}
+
+.settings-list > :global(.settings-row) > :global(.icon):first-child {
+  flex-shrink: 0;
+  width: 30px !important;
+  height: 30px !important;
+  padding: var(--space-4);
+  color: var(--bright) !important;
+  background: var(--ios-grad-blue);
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgb(13 27 42 / 14%);
+}
+
+.settings-list > :global(.settings-row) > :global(.icon[data-icon="tune"]) {
+  background: var(--ios-grad-purple);
+}
+
+.settings-list > :global(.settings-row) > :global(.icon[data-icon="palette"]) {
+  background: var(--ios-grad-orange);
 }
 
 .theme-editor {
@@ -19,8 +41,13 @@
   height: auto;
   min-height: 260px;
   padding: var(--space-12);
+  font-variant-numeric: tabular-nums;
   line-height: 1.6;
+  color: var(--md-on-surface);
   resize: vertical;
+  background: var(--md-surface-container-lowest);
+  border: 1px solid var(--md-outline-variant);
+  border-radius: var(--radius-md);
 }
 
 .theme-editor-note {

@@ -83,12 +83,18 @@ function GroupCard(props: { group: Group }) {
         actions={
           <>
             <Badge>{group.items.length}</Badge>
-            <IconButton title={t("URL test")} onClick={runURLTest} disabled={testing}>
+            <IconButton
+              title={t("URL test")}
+              onClick={runURLTest}
+              disabled={testing}
+              className={styles.urlTestButton}
+            >
               {testing ? <Spinner /> : <Icon name="speed" />}
             </IconButton>
             <IconButton
               title={expanded ? t("Collapse") : t("Expand")}
               onClick={toggleExpand}
+              className={styles.expandButton}
             >
               <Icon name={expanded ? "expand_less" : "expand_more"} />
             </IconButton>

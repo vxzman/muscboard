@@ -4,7 +4,7 @@
   z-index: var(--z-terminal-overlay);
   display: flex;
   flex-direction: column;
-  background: var(--bg);
+  background: var(--md-surface);
 }
 
 .terminal-overlay :global(.page) {
@@ -62,8 +62,10 @@
   min-height: calc(var(--control-height) + 12px);
   padding: var(--space-6) var(--space-10);
   margin-bottom: 0;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
+  background: var(--glass-bg-strong);
+  border-bottom: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
 }
 
 :global(.terminal-page .page-title) {

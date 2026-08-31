@@ -27,6 +27,7 @@ import {
   type AccentPreference,
   type ThemePreference,
 } from "./app/context";
+import { BoxLogo } from "./components/BoxLogo";
 import {
   DesktopHostContext,
   DesktopLocalContext,
@@ -838,6 +839,7 @@ function ShellContent(props: ShellProps & { onRetry: () => void }) {
     <button
       type="button"
       key={page}
+      data-page={page}
       className={cx(styles.navItem, active && styles.active)}
       onClick={() => {
         setMenuOpen(false);
@@ -939,10 +941,13 @@ function ShellContent(props: ShellProps & { onRetry: () => void }) {
               aria-label={t("Toggle navigation")}
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen(!menuOpen)}
-            >
-              <Icon name={menuOpen ? "close" : "menu"} size={18} />
-            </IconButton>
-            <div className={styles.mobileTopbarBrand}>sing-box</div>
+          >
+            <Icon name={menuOpen ? "close" : "menu"} size={18} />
+          </IconButton>
+            <div className={styles.mobileTopbarBrand}>
+              <BoxLogo size={24} />
+              sing-box
+            </div>
           </header>
         )}
         {menuOpen && (
@@ -957,6 +962,7 @@ function ShellContent(props: ShellProps & { onRetry: () => void }) {
           <nav className={styles.sidebar}>
             <div className={styles.sidebarTitlebar} />
             <div className={styles.sidebarBrand}>
+              <BoxLogo size={38} className={styles.sidebarBrandLogo} />
               sing-box
               {serverInfo && <span className={styles.sidebarBrandVersion}>{serverInfo.version}</span>}
             </div>
@@ -974,6 +980,7 @@ function ShellContent(props: ShellProps & { onRetry: () => void }) {
         ) : (
           <nav className={cx(styles.sidebar, menuOpen && styles.open)}>
             <div className={styles.sidebarBrand}>
+              <BoxLogo size={38} className={styles.sidebarBrandLogo} />
               sing-box
               {serverInfo && <span className={styles.sidebarBrandVersion}>{serverInfo.version}</span>}
             </div>

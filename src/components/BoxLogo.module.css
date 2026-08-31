@@ -1,0 +1,52 @@
+.box-logo {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  overflow: hidden;
+  background: var(--ios-grad-brand);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgb(0 122 255 / 28%);
+}
+
+.box {
+  position: absolute;
+  inset: 12.4% 16.8%;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+}
+
+.face-top {
+  background:
+    linear-gradient(
+      153deg,
+      transparent 38%,
+      rgb(255 255 255 / 95%) 38% 46%,
+      rgb(255 255 255 / 50%) 46% 53%,
+      transparent 53%
+    ),
+    linear-gradient(
+      153deg,
+      transparent 44.2%,
+      rgb(20 30 36 / 32%) 44.2% 46.6%,
+      transparent 46.6%
+    ),
+    linear-gradient(153deg, rgb(244 248 250), rgb(196 210 218));
+  clip-path: polygon(50% 0%, 100% 25.45%, 50% 50.9%, 0% 25.45%);
+}
+
+.face-left {
+  background: linear-gradient(180deg, rgb(183 200 209), rgb(138 160 172));
+  clip-path: polygon(0% 25.45%, 50% 50.9%, 50% 100%, 0% 74.5%);
+}
+
+.face-right {
+  background:
+    linear-gradient(to right, rgb(15 25 32 / 32%), transparent 12%),
+    linear-gradient(180deg, rgb(157 178 189), rgb(120 144 154));
+  clip-path: polygon(100% 25.45%, 50% 50.9%, 50% 100%, 100% 74.5%);
+}

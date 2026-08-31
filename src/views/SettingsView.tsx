@@ -192,14 +192,17 @@ function AppSettingsContent({
           <>
             <div className={styles.settingsList}>
               <div className="settings-row">
+                <Icon name="language" />
                 <span className="settings-row-label">{t("Language")}</span>
                 <LanguageSelect />
               </div>
               <div className="settings-row">
+                <Icon name="tune" />
                 <span className="settings-row-label">{t("Appearance")}</span>
                 <ThemeSelect theme={preferences.theme} onChange={preferences.onThemeChange} />
               </div>
               <div className="settings-row">
+                <Icon name="palette" />
                 <span className="settings-row-label">{t("Theme")}</span>
                 <ThemeMenu accent={preferences.accent} onChange={preferences.onAccentChange} />
               </div>

@@ -14,9 +14,16 @@
   font-size: var(--text-base);
   color: var(--text);
   cursor: pointer;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: var(--md-surface-container-lowest);
+  border: 1px solid var(--md-outline-variant);
   border-radius: var(--radius-control);
+  box-shadow: var(--shadow-control);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.profile-selector:hover {
+  border-color: var(--md-outline);
+  box-shadow: var(--glass-shadow);
 }
 
 .profile-selector-name {
@@ -73,10 +80,12 @@
   gap: var(--space-8);
   align-items: center;
   padding: var(--space-6) var(--space-10);
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  backdrop-filter: blur(24px) saturate(190%);
 }
 
 .profile-row.dragging {
@@ -175,8 +184,10 @@
   padding: var(--space-6) var(--space-10);
   overflow: auto hidden;
   scrollbar-width: none;
-  background: var(--surface);
+  background: var(--glass-bg-strong);
   border-top: 1px solid var(--border);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
 }
 
 .editor-toolbar::-webkit-scrollbar {
