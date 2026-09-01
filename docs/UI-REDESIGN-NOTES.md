@@ -267,3 +267,84 @@ gh release create vX.Y.Z <zip> --title "muscboard vX.Y.Z" --notes-file RELEASE_N
    `pnpm dev --port 5174` + `MOCK_PORT=8100`，设置页 URL 同步填 `localhost:8100`
 4. **验证工具页**：截图前确认路由带 tag（见 6.1 表格）；NavLine 图标用
    `getComputedStyle(icon).backgroundImage` 校验是否变色
+
+---
+
+## 7. 设计规范（配色 / 图标 / 动画怎么保持一致）
+
+### 7.1 配色怎么配
+
+**原则：语义优先、全局统一、只在 `globals.css` 定义值。**
+
+1. 所有颜色都从 iOS 系统色板取，色板与渐变定义在 `src/styles/globals.css`：
+   - 单色：`--ios-blue/green/orange/purple/indigo/gray/red/teal/yellow`
+   - 渐变：`--ios-grad-blue/purple/green/orange/indigo/red/teal/gray/brand`
+   - 深色主题在 `[data-theme="dark"]` 覆盖单色（渐变不变）
+2. **语义映射表**（同一个功能全局同一个色，别换）：
+
+   | 功能 | 色 | 渐变 |
+   | --- | --- | --- |
+   | 上传 / 下载文件、Taildrop | 绿 / 蓝 | `--ios-grad-green` / `--ios-grad-blue` |
+   | 测速、网络质量、警告 | 橙 | `--ios-grad-orange` |
+   | 连接、USB/IP、二维码 | 紫 | `--ios-grad-purple` |
+   | 路由 / 模式 / 展开 | 靛 | `--ios-grad-indigo` |
+   | 终端、Tailscale peer、分享 | 青 | `--ios-grad-teal` |
+   | 删除、停止、退出登录 | 红 | `--ios-grad-red` |
+   | 中性信息（power/状态、code、edit） | 灰 | `--ios-grad-gray` |
+   | 品牌（Logo、主按钮） | 蓝→靛 | `--ios-grad-brand` |
+
+3. 新配色时：先查 `data-icon` 是否已有映射；没有就给 `globals.css` 加渐变令牌
+   （别写死 hex），再按 7.2 的三处选择器补映射。
+4. stylelint 强制：除 `globals.css` 外**禁止 hex**，用 `rgb(0 122 255 / 35%)` 或
+   `color-mix(in srgb, var(--ios-blue), transparent 60%)`。
+5. 文字在渐变块上必须用 `var(--bright)`（白），副文本用半透明白 `rgb(255 255 255 / 78%)`，
+   别用 `--text-faint`（在彩色底上看不清）。
+
+### 7.2 图标怎么重绘
+
+**统一做成“彩色渐变圆角块 + 白色图标”，尺寸按位置分级：**
+
+| 位置 | 尺寸 | 圆角 | 内边距 |
+| --- | --- | --- | --- |
+| 侧栏导航图标 | 32px | 10px | `--space-8` |
+| 概述卡片头部图标 | 30px | 10px | `--space-4` |
+| nav-row / nav-line 行图标 | 26px | 8px | `--space-4` |
+| 卡片头部小图标 | 26px | 8px | `--space-4` |
+| 空状态图标 | 56px | 16px | `--space-14` |
+
+重绘步骤：
+1. 图标名要存在于 `src/components/iconPaths.ts`（没有就加）
+2. `Icon.tsx` 已自动带 `data-icon={name}` 属性，样式按它选择
+3. **三处选择器同步补色**，漏一处就有一处不变：
+   ```css
+   .card-header > .icon[data-icon="xxx"],
+   .nav-row > .icon:first-child[data-icon="xxx"],
+   .nav-line > .icon:first-child[data-icon="xxx"] { background: var(--ios-grad-xxx); }
+   ```
+4. 尺寸/圆角写在基础规则里（`.nav-row > .icon:first-child, .nav-line > .icon:first-child`），
+   颜色写在 `[data-icon]` 规则里，两者分开
+5. 小操作图标（按钮里的 13–16px 图标）**不要**套块：保持 `currentColor` 跟随按钮文字色
+6. 空状态图标 width/height 必须 `!important`（Icon 组件有内联尺寸）
+
+### 7.3 动画怎么保持一致
+
+**缓动曲线只有两套，别发明第三种：**
+
+| 场景 | 曲线 | 时长 |
+| --- | --- | --- |
+| 悬停放大 / 按钮弹跳 | `cubic-bezier(0.34, 1.56, 0.64, 1)`（带回弹） | 0.22–0.3s |
+| 页面切换 | `cubic-bezier(0.22, 1, 0.36, 1)`（先快后慢） | 0.36s |
+| 普通颜色过渡 | `var(--transition-fast)` = 0.12s ease | — |
+
+**放大程度（克制）**：按钮 1.06–1.08、节点卡片 1.05、概述卡片 1.025、整卡 1.012；
+按下统一 0.93–0.97。超过 1.1 就太浮夸。
+
+**一致性检查清单**：
+- 动效只动 `transform` / `opacity`，**别动布局属性**（margin/width/top）
+- 悬停放大的元素记得加 `z-index: var(--z-hover-pop)`（=5，低于 sticky 头部 10），
+  并给上方/头部留足间距，否则会被盖住
+- keyframe 统一放 `src/styles/globals.css`（`page-in` / `nav-pop` / `icon-pop` /
+  `url-test-pulse` / `menu-in` / `fade-in`…），新动画也加这里
+- 页面动画里**禁止 `filter: blur()`**（会破坏毛玻璃），只用 transform/opacity
+- 尊重 `prefers-reduced-motion`：`shared.css` 已有 reduce 分支，新控件沿用
+- 组件级 hover 用 `transition`，切换型动画（激活/进页）用 `animation` + keyframes
