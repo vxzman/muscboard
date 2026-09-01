@@ -1,5 +1,6 @@
 node_modules/
 dist/
+/latest/
 src/gen/
 src/lib/terminalThemes.generated.ts
 *.local

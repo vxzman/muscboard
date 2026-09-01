@@ -309,13 +309,22 @@ a.menu-item {
   border-radius: 50%;
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   backdrop-filter: blur(20px) saturate(180%);
-  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .back-button:hover {
   color: var(--text);
   background: var(--hover);
-  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--ios-blue), transparent 58%);
+  transform: translateY(-1px) scale(1.08);
+}
+
+.back-button:active {
+  transform: scale(0.94);
 }
 
 /* ---------- Cards ---------- */
@@ -418,7 +427,9 @@ a.menu-item {
   background: var(--hover);
 }
 
-.nav-row > .icon:first-child {
+.nav-row > .icon:first-child,
+.nav-line > .icon:first-child {
+  flex-shrink: 0;
   width: 26px !important;
   height: 26px !important;
   padding: var(--space-4);
@@ -429,82 +440,140 @@ a.menu-item {
 
 /* iOS icon color map — scoped to card headers and nav rows */
 .card-header > .icon[data-icon="upload"],
-.nav-row > .icon:first-child[data-icon="upload"] {
+.nav-row > .icon:first-child[data-icon="upload"],
+.nav-line > .icon:first-child[data-icon="upload"] {
   background: var(--ios-grad-green);
 }
 
 .card-header > .icon[data-icon="download"],
-.nav-row > .icon:first-child[data-icon="download"] {
+.nav-row > .icon:first-child[data-icon="download"],
+.nav-line > .icon:first-child[data-icon="download"] {
   background: var(--ios-grad-blue);
 }
 
 .card-header > .icon[data-icon="bug_report"],
-.nav-row > .icon:first-child[data-icon="bug_report"] {
+.nav-row > .icon:first-child[data-icon="bug_report"],
+.nav-line > .icon:first-child[data-icon="bug_report"] {
   background: var(--ios-grad-orange);
 }
 
 .card-header > .icon[data-icon="cable"],
-.nav-row > .icon:first-child[data-icon="cable"] {
+.nav-row > .icon:first-child[data-icon="cable"],
+.nav-line > .icon:first-child[data-icon="cable"] {
   background: var(--ios-grad-purple);
 }
 
 .card-header > .icon[data-icon="route"],
-.nav-row > .icon:first-child[data-icon="route"] {
+.nav-row > .icon:first-child[data-icon="route"],
+.nav-line > .icon:first-child[data-icon="route"] {
   background: var(--ios-grad-indigo);
 }
 
 .card-header > .icon[data-icon="router"],
-.nav-row > .icon:first-child[data-icon="router"] {
+.nav-row > .icon:first-child[data-icon="router"],
+.nav-line > .icon:first-child[data-icon="router"] {
   background: var(--ios-grad-teal);
 }
 
 .card-header > .icon[data-icon="folder"],
-.nav-row > .icon:first-child[data-icon="folder"] {
+.nav-row > .icon:first-child[data-icon="folder"],
+.nav-line > .icon:first-child[data-icon="folder"] {
   background: var(--ios-grad-blue);
 }
 
-.nav-row > .icon:first-child[data-icon="network_check"] {
+.nav-row > .icon:first-child[data-icon="network_check"],
+.nav-line > .icon:first-child[data-icon="network_check"] {
   background: var(--ios-grad-green);
 }
 
-.nav-row > .icon:first-child[data-icon="swap_horiz"] {
+.nav-row > .icon:first-child[data-icon="swap_horiz"],
+.nav-line > .icon:first-child[data-icon="swap_horiz"] {
   background: var(--ios-grad-blue);
 }
 
-.nav-row > .icon:first-child[data-icon="memory"] {
+.nav-row > .icon:first-child[data-icon="memory"],
+.nav-line > .icon:first-child[data-icon="memory"] {
   background: var(--ios-grad-purple);
 }
 
-.nav-row > .icon:first-child[data-icon="dns"] {
+.nav-row > .icon:first-child[data-icon="dns"],
+.nav-line > .icon:first-child[data-icon="dns"] {
   background: var(--ios-grad-orange);
 }
 
-.nav-row > .icon:first-child[data-icon="description"] {
+.nav-row > .icon:first-child[data-icon="description"],
+.nav-line > .icon:first-child[data-icon="description"] {
   background: var(--ios-grad-indigo);
 }
 
-.nav-row > .icon:first-child[data-icon="code"] {
+.nav-row > .icon:first-child[data-icon="code"],
+.nav-line > .icon:first-child[data-icon="code"] {
   background: var(--ios-grad-gray);
 }
 
-.nav-row > .icon:first-child[data-icon="tune"] {
+.nav-row > .icon:first-child[data-icon="tune"],
+.nav-line > .icon:first-child[data-icon="tune"] {
   background: var(--ios-grad-purple);
 }
 
-.nav-row > .icon:first-child[data-icon="info"] {
+.nav-row > .icon:first-child[data-icon="info"],
+.nav-line > .icon:first-child[data-icon="info"] {
   background: var(--ios-grad-blue);
 }
 
-.nav-row > .icon:first-child[data-icon="bolt"] {
+.nav-row > .icon:first-child[data-icon="bolt"],
+.nav-line > .icon:first-child[data-icon="bolt"] {
   background: var(--ios-grad-orange);
 }
 
-.nav-row > .icon:first-child[data-icon="hub"] {
+.nav-row > .icon:first-child[data-icon="hub"],
+.nav-line > .icon:first-child[data-icon="hub"] {
   background: var(--ios-grad-teal);
 }
 
-.nav-row > .icon:first-child[data-icon="usb"] {
+.nav-row > .icon:first-child[data-icon="usb"],
+.nav-line > .icon:first-child[data-icon="usb"] {
   background: var(--ios-grad-purple);
+}
+
+.nav-row > .icon:first-child[data-icon="power_settings_new"],
+.nav-line > .icon:first-child[data-icon="power_settings_new"] {
+  background: var(--ios-grad-gray);
+}
+
+.nav-row > .icon:first-child[data-icon="qr_code"],
+.nav-line > .icon:first-child[data-icon="qr_code"] {
+  background: var(--ios-grad-purple);
+}
+
+.nav-row > .icon:first-child[data-icon="terminal"],
+.nav-line > .icon:first-child[data-icon="terminal"] {
+  background: var(--ios-grad-teal);
+}
+
+.nav-row > .icon:first-child[data-icon="computer"],
+.nav-line > .icon:first-child[data-icon="computer"] {
+  background: var(--ios-grad-blue);
+}
+
+.nav-row > .icon:first-child[data-icon="share"],
+.nav-line > .icon:first-child[data-icon="share"] {
+  background: var(--ios-grad-teal);
+}
+
+.nav-row > .icon:first-child[data-icon="delete"],
+.nav-line > .icon:first-child[data-icon="delete"] {
+  background: var(--ios-grad-red);
+}
+
+.nav-row > .icon:first-child[data-icon="open_in_new"],
+.nav-line > .icon:first-child[data-icon="open_in_new"] {
+  background: var(--ios-grad-blue);
+}
+
+.nav-row > .icon:first-child[data-icon="more_horiz"],
+.nav-line > .icon:first-child[data-icon="more_horiz"] {
+  background: var(--ios-grad-gray);
 }
 
 .nav-row > span {
@@ -567,11 +636,6 @@ a.nav-line {
 
 .nav-line:hover:not(.static) {
   background: var(--hover);
-}
-
-.nav-line > .icon:first-child {
-  flex-shrink: 0;
-  color: var(--text-secondary);
 }
 
 .nav-line-label {
@@ -1372,8 +1436,41 @@ button.settings-row:focus-visible {
 
 .empty-state .icon {
   display: block;
+  width: 56px !important;
+  height: 56px !important;
+  padding: var(--space-14);
   margin: 0 auto var(--space-10);
-  color: var(--md-outline-variant);
+  color: var(--bright) !important;
+  background: var(--ios-grad-indigo);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgb(13 27 42 / 14%);
+}
+
+.empty-state .icon[data-icon="hub"],
+.empty-state .icon[data-icon="router"] {
+  background: var(--ios-grad-teal);
+}
+
+.empty-state .icon[data-icon="usb"],
+.empty-state .icon[data-icon="cable"] {
+  background: var(--ios-grad-purple);
+}
+
+.empty-state .icon[data-icon="route"] {
+  background: var(--ios-grad-indigo);
+}
+
+.empty-state .icon[data-icon="folder"],
+.empty-state .icon[data-icon="dashboard"] {
+  background: var(--ios-grad-blue);
+}
+
+.empty-state .icon[data-icon="text_snippet"] {
+  background: var(--ios-grad-gray);
+}
+
+.empty-state .icon[data-icon="warning_amber"] {
+  background: var(--ios-grad-orange);
 }
 
 .empty-state .spinner {

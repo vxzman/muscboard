@@ -1,0 +1,10 @@
+{
+  "name": "sing-box-dashboard-mock-backend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-transform-types server.ts",
+    "verify": "node --experimental-transform-types verify.ts",
+    "generate": "buf generate"
+  }
+}

@@ -70,6 +70,17 @@
 
 - `shared.css` `.menu-anchor > .icon-button`：玻璃圆钮 + 描边，打开时蓝渐变填充
 
+### 2.10 工具二级页面图标（Tailscale / OpenConnect / OpenVPN / USB/IP 等）
+
+- `shared.css` `.nav-line > .icon:first-child`：详情卡片行图标统一为 26px 彩色渐变块
+  （默认靛蓝，按 `data-icon` 映射：power=灰、qr_code=紫、terminal=青、computer=蓝、
+  share=青、delete=红、open_in_new=蓝、more_horiz=灰……）
+- `.empty-state .icon`：空状态图标升级为 56px 渐变圆角块（hub=青、usb=紫、route=靛、
+  folder/dashboard=蓝、text_snippet=灰、warning=橙）
+- `.back-button`（二级页返回）：毛玻璃圆钮，悬停弹性放大 + 蓝描边
+- **改图标配色时，映射要同时覆盖三处选择器**：`.card-header > .icon[data-icon="..."]`、
+  `.nav-row > .icon:first-child[data-icon="..."]`、`.nav-line > .icon:first-child[data-icon="..."]`
+
 ### 2.7 日志暂停按钮（LogsView.module.css）
 
 - `.pause-button`：空闲=玻璃圆钮；`active`（暂停中）=橙渐变填充 + 白图标 + 光晕
@@ -165,9 +176,12 @@ corepack pnpm lint:css && corepack pnpm lint && corepack pnpm build
 ### 4.2 本地预览（需要两个服务）
 
 ```sh
-node scripts/mock-daemon.mjs          # 模拟后端 :8099（未提交仓库，改数据后要还原）
+MOCK_PORT=8099 node --experimental-transform-types mock-backend/server.ts
+                                      # 新版自包含模拟后端 :8099（支持终端/Taildrop/USB-IP 流）
 corepack pnpm dev --port 5173         # Vite :5173
 ```
+
+> 旧的单文件模拟器在 `mock-backend/legacy/mock-daemon.mjs`（仅基础状态/节点/日志）。
 
 注入本地服务器配置后即可登录：
 
@@ -203,3 +217,4 @@ gh release create vX.Y.Z <zip> --title "muscboard vX.Y.Z" --notes-file RELEASE_N
 - 仓库是 GPL-3.0-or-later fork，README 保留原作者版权与“非官方”声明，LICENSE 别动
 - `origin` 是上游（gh-proxy 镜像），`github` 是 muscboard（SSH 443）；上游大改时
   `git fetch origin && git merge origin/main`，定制集中在少数 CSS 文件，冲突好定位
+- `latest/` 文件夹已加入 `.gitignore`，**永远不会被推送**；它是上游最新版的对照参考
