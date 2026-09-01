@@ -145,22 +145,29 @@
   gap: var(--space-10);
   align-items: center;
   width: 100%;
-  padding: var(--space-8) var(--space-12);
-  font-size: var(--text-base);
-  font-weight: var(--weight-medium);
-  color: var(--text);
+  padding: var(--space-10) var(--space-14);
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  color: var(--bright);
   cursor: pointer;
-  background: linear-gradient(135deg, rgb(0 122 255 / 14%), rgb(88 86 214 / 14%));
-  border: 1px solid rgb(0 122 255 / 26%);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-control);
-  transition: background var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  background: var(--ios-grad-brand);
+  border: 0;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--ios-blue), transparent 70%);
+  transition:
+    filter var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .server-picker-button:hover {
-  background: linear-gradient(135deg, rgb(0 122 255 / 22%), rgb(88 86 214 / 22%));
-  box-shadow: var(--glass-shadow);
-  transform: translateY(-1px);
+  box-shadow: 0 7px 20px color-mix(in srgb, var(--ios-blue), transparent 60%);
+  filter: saturate(1.15) brightness(1.05);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.server-picker-button:active {
+  transform: scale(0.97);
 }
 
 .server-picker-text {
@@ -195,6 +202,10 @@
   white-space: nowrap;
 }
 
+.server-picker-button .server-uptime {
+  color: rgb(255 255 255 / 78%);
+}
+
 .server-uptime {
   composes: text-mono-caption from global;
   display: inline-flex;
@@ -205,7 +216,7 @@
 }
 
 .server-picker-button > :global(.icon):last-child {
-  color: var(--ios-blue);
+  color: rgb(255 255 255 / 90%);
 }
 
 .content {
