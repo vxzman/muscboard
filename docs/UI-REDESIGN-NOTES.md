@@ -218,3 +218,52 @@ gh release create vX.Y.Z <zip> --title "muscboard vX.Y.Z" --notes-file RELEASE_N
 - `origin` 是上游（gh-proxy 镜像），`github` 是 muscboard（SSH 443）；上游大改时
   `git fetch origin && git merge origin/main`，定制集中在少数 CSS 文件，冲突好定位
 - `latest/` 文件夹已加入 `.gitignore`，**永远不会被推送**；它是上游最新版的对照参考
+
+---
+
+## 6. 追加记录（2026-09-02）：模拟后端 / 工具二级页 / 环境坑
+
+### 6.1 模拟后端结构（已重组）
+
+- 自包含 TS 模拟后端在仓库根目录 `mock-backend/`（`server.ts` + `verify.ts` + `gen/` + `proto/`），
+  依赖根项目的 `@bufbuild/protobuf`，**从项目根目录运行**即可：
+  ```sh
+  MOCK_PORT=8100 node --experimental-transform-types mock-backend/server.ts
+  ```
+- 旧单文件模拟器保留在 `mock-backend/legacy/mock-daemon.mjs`（仅基础状态/节点/日志）
+- mock 的 API 版本是 4（usbip / openVpnAndOpenConnect / taildrop 全部支持）
+- **工具详情页必须带端点 tag**，否则显示“未找到端点”（详情页按 `props.tag` 精确查找）：
+  | 工具 | 路由 | mock 端点 tag |
+  | --- | --- | --- |
+  | Tailscale | `#/tools/tailscale/tailscale0` | `tailscale0` |
+  | OpenConnect | `#/tools/openconnect/oc0` | `oc0` |
+  | OpenVPN | `#/tools/openvpn/ovpn0` | `ovpn0` |
+  | USB/IP | `#/tools/usbip/usbip0` | `usbip0` |
+
+### 6.2 工具二级页面图标重绘（要点）
+
+- `.nav-line > .icon:first-child`：详情行图标统一 26px 彩色渐变块（默认靛蓝）
+- **改图标配色要同时覆盖三处选择器**：
+  `.card-header > .icon[data-icon="..."]`、
+  `.nav-row > .icon:first-child[data-icon="..."]`、
+  `.nav-line > .icon:first-child[data-icon="..."]`，漏一处就有一处不变色
+- 工具页新增图标语义配色：`power_settings_new`=灰、`qr_code`=紫、`terminal`=青、
+  `computer`=蓝、`share`=青、`delete`=红、`open_in_new`=蓝、`more_horiz`=灰
+- `.empty-state .icon`：空状态图标升级为 56px 渐变圆角块；
+  **width/height 必须带 `!important`**（否则盖不过 Icon 组件的内联 style）
+- `.back-button`（二级页返回）：毛玻璃 + 悬停弹性放大 + 蓝描边
+
+### 6.3 环境与流程坑（本轮实际踩到）
+
+1. **vite 跑久了会返回旧缓存 CSS**：症状是源码改了、stylelint 也过了，但浏览器里
+   样式不生效（计算样式和文件内容不一致）。排查：
+   ```sh
+   curl -s "http://127.0.0.1:5174/src/styles/shared.css" | grep -o "empty-state \.icon[^}]*}"
+   ```
+   如果内容还是旧的 → **重启 vite**（kill 进程重新 `pnpm dev`），不要浪费时间找 CSS 问题
+2. **corepack 会联网下载 pnpm**：沙箱/离线环境下 `corepack pnpm` 报 `EAI_AGAIN`；
+   需要提权运行，或确认 `COREPACK_HOME` 缓存存在
+3. **端口冲突**：本机已有实例时换端口——
+   `pnpm dev --port 5174` + `MOCK_PORT=8100`，设置页 URL 同步填 `localhost:8100`
+4. **验证工具页**：截图前确认路由带 tag（见 6.1 表格）；NavLine 图标用
+   `getComputedStyle(icon).backgroundImage` 校验是否变色
