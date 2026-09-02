@@ -1,6 +1,7 @@
 node_modules/
 dist/
 /latest/
+/dash.tar.gz
 src/gen/
 src/lib/terminalThemes.generated.ts
 *.local
