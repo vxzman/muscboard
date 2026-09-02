@@ -286,7 +286,21 @@ function methodKind(method: string): string {
 function parseRequest(method: string, body: Buffer) {
   const schema = methodInputSchema(method);
   if (body.length === 0) return create(schema, {});
-  return fromBinary(schema, body);
+
+  // gRPC-Web unary requests are framed as [flags][len:u32][payload].
+  // The frontend sends these frames, so we must strip the 5-byte gRPC-Web
+  // header before decoding the protobuf request body.
+  let payload = body;
+  if (body.length >= 5) {
+    const flags = body[0];
+    const length = body.readUInt32BE(1);
+    const expectedLength = 5 + length;
+    if ((flags === 0x00 || flags === 0x80 || flags === 0x01 || flags === 0x81) && body.length === expectedLength) {
+      payload = body.subarray(5, expectedLength);
+    }
+  }
+
+  return fromBinary(schema, payload);
 }
 
 // ---------------------------------------------------------------------------
