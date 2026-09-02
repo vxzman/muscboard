@@ -114,15 +114,15 @@
   --terminal-bg: #101418;
 
   /* ---------- Glassmorphism ---------- */
-  --glass-bg: rgb(255 255 255 / 60%);
-  --glass-bg-strong: rgb(250 252 255 / 86%);
-  --glass-bg-soft: rgb(255 255 255 / 46%);
-  --glass-border: rgb(255 255 255 / 72%);
-  --glass-border-strong: rgb(255 255 255 / 92%);
-  --glass-blur: 34px;
-  --glass-saturate: 200%;
-  --glass-shadow: 0 4px 14px rgb(47 74 97 / 10%), 0 16px 40px rgb(47 74 97 / 18%);
-  --glass-shadow-overlay: 0 18px 56px rgb(26 44 60 / 28%);
+  --glass-bg: rgb(255 255 255 / 72%);
+  --glass-bg-strong: rgb(250 252 255 / 94%);
+  --glass-bg-soft: rgb(255 255 255 / 56%);
+  --glass-border: rgb(255 255 255 / 84%);
+  --glass-border-strong: rgb(255 255 255 / 96%);
+  --glass-blur: 42px;
+  --glass-saturate: 220%;
+  --glass-shadow: 0 12px 28px rgb(36 60 97 / 12%), 0 36px 72px rgb(36 60 97 / 18%);
+  --glass-shadow-overlay: 0 26px 72px rgb(26 44 60 / 32%);
 
   --scrollbar-size: 7px;
   --scrollbar-thumb: rgb(27 38 52 / 22%);

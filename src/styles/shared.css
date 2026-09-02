@@ -138,9 +138,16 @@
   left: 0;
   z-index: var(--z-menu);
   padding: var(--space-6);
-  border: 1px solid var(--glass-border);
+  border: 1px solid rgb(255 255 255 / 90%);
   border-radius: var(--radius-lg);
-  box-shadow: inset 0 1px 0 0 var(--glass-border), var(--shadow-overlay);
+  background:
+    radial-gradient(140% 120% at 0% 0%, rgb(255 255 255 / 80%) 0%, transparent 42%),
+    linear-gradient(180deg, rgb(255 255 255 / 32%), rgb(255 255 255 / 12%)),
+    var(--glass-bg-strong);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 90%),
+    0 28px 70px rgb(9 22 42 / 18%),
+    0 8px 18px rgb(59 98 180 / 12%);
   animation: menu-in 0.14s ease;
 }
 
@@ -265,7 +272,13 @@ a.menu-item {
 /* ---------- Page layout ---------- */
 
 .page {
+  position: relative;
   padding: var(--space-32) var(--space-36) var(--space-56);
+  background:
+    radial-gradient(1200px 500px at 15% 0%, rgb(116 180 255 / 18%) 0%, transparent 52%),
+    radial-gradient(900px 450px at 85% 8%, rgb(181 117 255 / 16%) 0%, transparent 48%),
+    transparent;
+  border-radius: var(--radius-xl);
   animation: page-in 0.36s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -330,11 +343,35 @@ a.menu-item {
 /* ---------- Cards ---------- */
 
 .card {
+  position: relative;
+  overflow: hidden;
   padding: var(--space-20);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-card);
-  box-shadow: inset 0 1px 0 0 var(--glass-border), var(--glass-shadow);
-  transition: border-color var(--transition-medium), transform var(--transition-medium);
+  background:
+    radial-gradient(120% 120% at 0% 0%, rgb(255 255 255 / 96%) 0%, rgb(255 255 255 / 30%) 35%, transparent 70%),
+    linear-gradient(180deg, rgb(255 255 255 / 86%), rgb(233 241 255 / 72%)),
+    var(--glass-bg);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 96%),
+    0 18px 36px rgb(27 45 78 / 12%),
+    0 30px 60px rgb(27 45 78 / 12%),
+    var(--glass-shadow);
+  transition:
+    border-color var(--transition-medium),
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.28s ease;
+}
+
+.card:hover {
+  transform: translate3d(0, -3px, 0) scale(1.005);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 100%),
+    0 22px 42px rgb(27 45 78 / 15%),
+    0 40px 80px rgb(27 45 78 / 14%),
+    var(--glass-shadow);
+  filter: saturate(1.08);
 }
 
 .card-header {
@@ -399,7 +436,15 @@ a.menu-item {
   overflow: hidden;
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--glass-shadow);
+  background:
+    radial-gradient(140% 120% at 0% 0%, rgb(255 255 255 / 58%) 0%, transparent 52%),
+    linear-gradient(180deg, rgb(255 255 255 / 18%), rgb(255 255 255 / 8%)),
+    var(--glass-bg);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 26%),
+    0 16px 32px rgb(44 66 92 / 12%),
+    0 30px 60px rgb(44 66 92 / 10%),
+    var(--glass-shadow);
 }
 
 .nav-row {
@@ -676,15 +721,28 @@ a.nav-line {
   white-space: nowrap;
   text-decoration: none;
   cursor: pointer;
-  background: var(--ios-gray-fill);
-  border: 0;
+  background: linear-gradient(180deg, rgb(255 255 255 / 84%), rgb(235 240 248 / 78%));
+  border: 1px solid rgb(255 255 255 / 82%);
   border-radius: var(--radius-md);
-  box-shadow: none;
-  transition: background var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 92%),
+    0 10px 20px rgb(24 40 66 / 8%),
+    0 0 0 1px rgb(255 255 255 / 20%);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.22s ease;
 }
 
 .button:hover {
-  background: color-mix(in srgb, var(--ios-gray-fill), var(--ios-gray) 16%);
+  background: linear-gradient(180deg, rgb(255 255 255 / 94%), rgb(235 240 248 / 88%));
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 100%),
+    0 14px 24px rgb(24 40 66 / 12%),
+    0 0 0 1px rgb(255 255 255 / 28%);
+  transform: translateY(-1px);
 }
 
 .button:disabled {
@@ -694,14 +752,22 @@ a.nav-line {
 
 .button.primary {
   color: var(--bright);
-  background: var(--ios-blue);
+  background: linear-gradient(135deg, #0084ff 0%, #5e5ce6 100%);
+  border: 0;
   border-radius: var(--radius-pill);
-  box-shadow: 0 2px 8px rgb(0 122 255 / 25%);
+  box-shadow:
+    0 8px 20px rgb(0 122 255 / 28%),
+    0 0 0 1px rgb(255 255 255 / 16%),
+    inset 0 1px 0 rgb(255 255 255 / 26%);
 }
 
 .button.primary:hover {
-  background: color-mix(in srgb, var(--ios-blue), black 12%);
-  box-shadow: 0 4px 14px rgb(0 122 255 / 30%);
+  background: linear-gradient(135deg, #0b8cff 0%, #6a64ff 100%);
+  box-shadow:
+    0 12px 26px rgb(0 122 255 / 34%),
+    0 0 0 1px rgb(255 255 255 / 20%),
+    inset 0 1px 0 rgb(255 255 255 / 30%);
+  transform: translateY(-1px);
 }
 
 .button.danger {
@@ -753,12 +819,14 @@ a.nav-line {
   background: transparent;
   border: 0;
   border-radius: 50%;
-  transition: background var(--transition-fast), color var(--transition-fast);
+  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .icon-button:hover {
   color: var(--text);
   background: var(--ios-gray-fill);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgb(0 0 0 / 8%);
 }
 
 .icon-button.active {
@@ -868,9 +936,10 @@ a.nav-line {
   font-variant-numeric: tabular-nums;
   color: var(--bright);
   white-space: nowrap;
-  background: var(--ios-grad-blue);
+  background: linear-gradient(135deg, rgb(0 132 255 / 88%), rgb(152 104 255 / 82%));
+  border: 1px solid rgb(255 255 255 / 32%);
   border-radius: var(--radius-pill);
-  box-shadow: 0 2px 6px color-mix(in srgb, var(--ios-blue), transparent 78%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 36%), 0 6px 16px rgb(47 96 204 / 18%);
 }
 
 .badge.good {
@@ -1022,10 +1091,11 @@ button.select:disabled {
   width: 40px;
   height: 24px;
   cursor: pointer;
-  background: var(--md-surface-container-highest);
-  border: 2px solid var(--md-outline);
+  background: linear-gradient(180deg, rgb(166 180 201 / 42%), rgb(115 132 161 / 32%));
+  border: 1px solid rgb(255 255 255 / 34%);
   border-radius: var(--radius-pill);
-  transition: background var(--transition-medium), border-color var(--transition-medium);
+  box-shadow: inset 0 2px 6px rgb(15 23 42 / 16%);
+  transition: background var(--transition-medium), border-color var(--transition-medium), box-shadow var(--transition-medium);
 }
 
 .switch::after {
@@ -1035,15 +1105,16 @@ button.select:disabled {
   width: 16px;
   height: 16px;
   content: "";
-  background: var(--md-outline);
+  background: linear-gradient(180deg, #fff, #ebf2ff);
   border-radius: 50%;
-  box-shadow: 0 1px 3px rgb(0 0 0 / 22%);
+  box-shadow: 0 3px 8px rgb(30 56 92 / 18%);
   transition: transform var(--transition-medium), background var(--transition-medium);
 }
 
 .switch.on {
-  background: var(--ios-green);
-  border-color: var(--ios-green);
+  background: linear-gradient(135deg, #29c77d 0%, #47b5ff 100%);
+  border-color: rgb(255 255 255 / 40%);
+  box-shadow: 0 10px 18px rgb(41 199 125 / 18%);
 }
 
 .switch:disabled {
@@ -1099,6 +1170,11 @@ button.select:disabled {
   padding: var(--space-14) 0;
   font-size: var(--text-base);
   border-bottom: 1px solid var(--border);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.settings-row:hover {
+  background: linear-gradient(90deg, rgb(255 255 255 / 12%), transparent);
 }
 
 .settings-row-label {
@@ -1312,9 +1388,16 @@ button.settings-row:focus-visible {
   width: 400px;
   max-width: 100%;
   padding: var(--space-32) var(--space-32) var(--space-28);
-  border: 1px solid var(--glass-border);
+  border: 1px solid rgb(255 255 255 / 92%);
   border-radius: var(--radius-xl);
-  box-shadow: inset 0 1px 0 0 var(--glass-border), var(--shadow-overlay);
+  background:
+    radial-gradient(140% 120% at 0% 0%, rgb(255 255 255 / 88%) 0%, transparent 38%),
+    linear-gradient(180deg, rgb(255 255 255 / 28%), rgb(255 255 255 / 10%)),
+    var(--glass-bg-strong);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 92%),
+    0 30px 80px rgb(18 34 54 / 20%),
+    0 12px 28px rgb(82 111 180 / 10%);
   animation: page-in 0.3s ease-out;
 }
 
@@ -1345,8 +1428,15 @@ button.settings-row:focus-visible {
   color: inherit;
   outline: none;
   border: 0;
-  border-inline-start: 1px solid var(--glass-border);
-  box-shadow: inset 0 1px 0 0 var(--glass-border), var(--shadow-overlay);
+  border-inline-start: 1px solid rgb(255 255 255 / 90%);
+  background:
+    radial-gradient(140% 100% at 0% 0%, rgb(255 255 255 / 90%) 0%, transparent 38%),
+    linear-gradient(180deg, rgb(255 255 255 / 26%), rgb(255 255 255 / 10%)),
+    var(--glass-bg-strong);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 92%),
+    0 28px 80px rgb(16 29 46 / 18%),
+    0 12px 30px rgb(79 112 187 / 10%);
   animation: slide-in 0.18s ease;
 }
 
@@ -1395,9 +1485,16 @@ button.settings-row:focus-visible {
   overflow-y: auto;
   overscroll-behavior: none;
   color: inherit;
-  border: 1px solid var(--glass-border);
+  border: 1px solid rgb(255 255 255 / 94%);
   border-radius: var(--radius-xl);
-  box-shadow: inset 0 1px 0 0 var(--glass-border), var(--shadow-overlay);
+  background:
+    radial-gradient(140% 120% at 0% 0%, rgb(255 255 255 / 90%) 0%, transparent 38%),
+    linear-gradient(180deg, rgb(255 255 255 / 30%), rgb(255 255 255 / 12%)),
+    var(--glass-bg-strong);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 94%),
+    0 34px 90px rgb(17 31 54 / 22%),
+    0 16px 32px rgb(80 121 205 / 10%);
   animation: dialog-in 0.18s ease-out;
 }
 
