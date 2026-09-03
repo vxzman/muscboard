@@ -326,6 +326,19 @@ gh release create vX.Y.Z <zip> --title "muscboard vX.Y.Z" --notes-file RELEASE_N
 5. 小操作图标（按钮里的 13–16px 图标）**不要**套块：保持 `currentColor` 跟随按钮文字色
 6. 空状态图标 width/height 必须 `!important`（Icon 组件有内联尺寸）
 
+### 7.2.1 品牌图标也要遵循统一抽象
+
+工具页中的 Tailscale、OpenConnect、OpenVPN 等品牌标志，不直接嵌入官方完整 SVG，也不为每个品牌单独创建一套渲染组件。品牌识别与界面风格需要分层处理：
+
+1. **保留品牌特征，统一绘制方式**：将官方标志提炼为 24×24 的简化路径，放入 `src/components/iconPaths.ts`，继续由 `Icon.tsx` 统一渲染。
+2. **统一颜色模型**：路径使用 `currentColor`，不要在图标路径中写入品牌多色；品牌色仅通过导航容器的 `--ios-grad-*` 渐变表达。
+3. **统一组件接口**：工具页只传 `icon="tailscale"`、`icon="openconnect"` 或 `icon="openvpn"`，不要扩展 `NavRow` 的自定义 leading/品牌组件接口。
+4. **优先保证小尺寸可识别**：导航行图标实际只有 26px，复杂细节、文字和多色装饰在该尺寸下会糊成噪点，应保留轮廓、核心负形和最具识别度的结构。
+5. **同步补充颜色映射**：新增品牌图标后，同时在 `shared.css` 中补齐 `.card-header`、`.nav-row`、`.nav-line` 三处选择器，确保工具列表、详情行和卡片头部风格一致。
+6. **避免重复抽象**：如果图标已经能由 `Icon` + `iconPaths` + CSS 映射完成，不要再增加单独的 SVG 组件、硬编码尺寸或内联背景色。
+
+本次实践结论：官方素材用于确认品牌结构和关键形状，最终交付物应是符合本项目图标网格、颜色令牌、尺寸层级和 `currentColor` 约定的简化图标，而不是原始 Logo 的缩小版。
+
 ### 7.3 动画怎么保持一致
 
 **缓动曲线只有两套，别发明第三种：**

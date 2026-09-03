@@ -206,7 +206,7 @@ function EndpointsSection(props: { rows: ReactNode[] }) {
 function OpenConnectEndpointRow(props: { tag: string; showTag: boolean }) {
   return (
     <NavRow
-      icon="route"
+      icon="openconnect"
       title={props.showTag && props.tag !== "" ? `OpenConnect: ${props.tag}` : "OpenConnect"}
       onClick={() => navigate(`tools/openconnect/${encodeURIComponent(props.tag)}`)}
     />
@@ -216,7 +216,7 @@ function OpenConnectEndpointRow(props: { tag: string; showTag: boolean }) {
 function OpenVPNEndpointRow(props: { tag: string; showTag: boolean }) {
   return (
     <NavRow
-      icon="route"
+      icon="openvpn"
       title={props.showTag && props.tag !== "" ? `OpenVPN: ${props.tag}` : "OpenVPN"}
       onClick={() => navigate(`tools/openvpn/${encodeURIComponent(props.tag)}`)}
     />
@@ -257,7 +257,7 @@ function TailscaleEndpointRow(props: { endpoint: TailscaleEndpointStatus; title:
   return (
     <>
       <NavRow
-        icon="hub"
+        icon="tailscale"
         title={props.title}
         detail={
           hasFailedSend ? (
