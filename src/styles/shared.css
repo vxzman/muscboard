@@ -574,6 +574,24 @@ a.menu-item {
   background: var(--ios-grad-teal);
 }
 
+.card-header > .icon[data-icon="tailscale"],
+.nav-row > .icon:first-child[data-icon="tailscale"],
+.nav-line > .icon:first-child[data-icon="tailscale"] {
+  background: var(--ios-grad-teal);
+}
+
+.card-header > .icon[data-icon="openconnect"],
+.nav-row > .icon:first-child[data-icon="openconnect"],
+.nav-line > .icon:first-child[data-icon="openconnect"] {
+  background: var(--ios-grad-indigo);
+}
+
+.card-header > .icon[data-icon="openvpn"],
+.nav-row > .icon:first-child[data-icon="openvpn"],
+.nav-line > .icon:first-child[data-icon="openvpn"] {
+  background: var(--ios-grad-purple);
+}
+
 .nav-row > .icon:first-child[data-icon="usb"],
 .nav-line > .icon:first-child[data-icon="usb"] {
   background: var(--ios-grad-purple);
