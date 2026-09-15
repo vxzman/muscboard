@@ -8,15 +8,22 @@
   margin-bottom: var(--space-8);
   text-align: start;
   cursor: pointer;
-  background: var(--card);
-  border: 0;
+  background: var(--glass-bg);
+  border: 0.5px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
-  transition: background var(--transition-fast);
+  box-shadow: var(--glass-highlight), var(--glass-shadow);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  transition:
+    background 0.22s ease,
+    transform 0.28s var(--ease-out),
+    box-shadow 0.28s var(--ease-out);
 }
 
 .connection-row:hover {
-  background: color-mix(in srgb, var(--card), var(--fill-tertiary) 55%);
+  background: var(--glass-bg-strong);
+  box-shadow: var(--glass-highlight), var(--glass-shadow-hover);
+  transform: translateY(-2px);
 }
 
 .head {

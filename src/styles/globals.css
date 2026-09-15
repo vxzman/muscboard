@@ -63,10 +63,10 @@
   --md-tertiary-container: #e6e6ff;
   --md-on-tertiary-container: #1c1c4d;
 
-  --md-surface: #f2f2f7;
-  --md-surface-container-lowest: #fff;
-  --md-surface-container-low: #fff;
-  --md-surface-container: #f2f2f7;
+  --md-surface: #e8edf5;
+  --md-surface-container-lowest: rgb(255 255 255 / 78%);
+  --md-surface-container-low: rgb(255 255 255 / 62%);
+  --md-surface-container: #e8edf5;
   --md-surface-container-high: #e5e5ea;
   --md-surface-container-highest: #d1d1d6;
   --md-on-surface: #000;
@@ -80,10 +80,14 @@
   --md-on-error-container: #5c0000;
 
   /* ---------- App semantic tokens ---------- */
-  --bg: #f2f2f7;
-  --surface: #fff;
-  --card: #fff;
-  --inset: #e5e5ea;
+  --bg: #e8edf5;
+  --surface: rgb(255 255 255 / 72%);
+  --card: rgb(255 255 255 / 56%);
+  --inset: #dfe5ee;
+  --canvas-a: rgb(120 176 255 / 42%);
+  --canvas-b: rgb(186 160 255 / 30%);
+  --canvas-c: rgb(120 210 190 / 26%);
+  --noise-opacity: 0.045;
   --text: #000;
   --text-secondary: rgb(60 60 67 / 68%);
   --text-faint: rgb(60 60 67 / 36%);
@@ -119,17 +123,19 @@
   --bright: #fff;
   --terminal-bg: #1c1c1e;
 
-  /* Liquid Glass — chrome only (sidebar, menus, dialogs), not content cards */
-  --glass-bg: rgb(255 255 255 / 72%);
-  --glass-bg-strong: rgb(255 255 255 / 86%);
-  --glass-bg-soft: rgb(255 255 255 / 48%);
-  --glass-border: rgb(255 255 255 / 62%);
-  --glass-border-strong: rgb(255 255 255 / 82%);
-  --glass-blur: 40px;
-  --glass-saturate: 180%;
-  --glass-shadow: 0 0 0 0.5px rgb(0 0 0 / 6%), 0 8px 28px rgb(0 0 0 / 10%);
-  --glass-shadow-overlay: 0 16px 48px rgb(0 0 0 / 22%);
-  --glass-highlight: inset 0 0.5px 0 rgb(255 255 255 / 80%);
+  /* Glass — used on both chrome and content; atmosphere behind it does the work */
+  --glass-bg: rgb(255 255 255 / 52%);
+  --glass-bg-strong: rgb(255 255 255 / 74%);
+  --glass-bg-soft: rgb(255 255 255 / 36%);
+  --glass-border: rgb(255 255 255 / 70%);
+  --glass-border-strong: rgb(255 255 255 / 88%);
+  --glass-blur: 28px;
+  --glass-saturate: 165%;
+  --glass-shadow: 0 1px 2px rgb(30 50 80 / 5%), 0 10px 28px rgb(30 50 80 / 10%);
+  --glass-shadow-hover: 0 4px 8px rgb(30 50 80 / 7%), 0 18px 40px rgb(30 50 80 / 14%);
+  --glass-shadow-overlay: 0 16px 48px rgb(20 32 54 / 22%);
+  --glass-highlight: inset 0 1px 0 rgb(255 255 255 / 78%);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
   --scrollbar-size: 6px;
   --scrollbar-thumb: rgb(60 60 67 / 28%);
@@ -140,8 +146,8 @@
   --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23757a82' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 
   /* ---------- Elevation & shape ---------- */
-  --shadow-card: 0 0 0 0.5px rgb(0 0 0 / 4%), 0 1px 2px rgb(0 0 0 / 4%);
-  --shadow-control: 0 0.5px 1px rgb(0 0 0 / 6%);
+  --shadow-card: var(--glass-shadow);
+  --shadow-control: 0 1px 2px rgb(30 50 80 / 6%);
   --shadow-overlay: var(--glass-shadow-overlay);
   --radius-xs: 6px;
   --radius-sm: 8px;
@@ -243,10 +249,10 @@
   --md-tertiary-container: #2c2c4d;
   --md-on-tertiary-container: #e6e6ff;
 
-  --md-surface: #000;
-  --md-surface-container-lowest: #1c1c1e;
-  --md-surface-container-low: #1c1c1e;
-  --md-surface-container: #2c2c2e;
+  --md-surface: #0b0d12;
+  --md-surface-container-lowest: rgb(28 32 42 / 78%);
+  --md-surface-container-low: rgb(28 32 42 / 62%);
+  --md-surface-container: #141820;
   --md-surface-container-high: #3a3a3c;
   --md-surface-container-highest: #48484a;
   --md-on-surface: #fff;
@@ -259,10 +265,14 @@
   --md-error-container: #5c0000;
   --md-on-error-container: #ffd4d1;
 
-  --bg: #000;
-  --surface: #1c1c1e;
-  --card: #1c1c1e;
-  --inset: #2c2c2e;
+  --bg: #0b0d12;
+  --surface: rgb(32 36 46 / 70%);
+  --card: rgb(32 36 46 / 52%);
+  --inset: #1c222c;
+  --canvas-a: rgb(50 120 255 / 28%);
+  --canvas-b: rgb(140 90 255 / 20%);
+  --canvas-c: rgb(40 180 160 / 16%);
+  --noise-opacity: 0.07;
   --text: #fff;
   --text-secondary: rgb(235 235 245 / 60%);
   --text-faint: rgb(235 235 245 / 30%);
@@ -294,19 +304,20 @@
   --highlight: rgb(10 132 255 / 28%);
   --scrim: rgb(0 0 0 / 52%);
 
-  --glass-bg: rgb(28 28 30 / 72%);
-  --glass-bg-strong: rgb(44 44 46 / 88%);
-  --glass-bg-soft: rgb(255 255 255 / 8%);
-  --glass-border: rgb(255 255 255 / 14%);
-  --glass-border-strong: rgb(255 255 255 / 22%);
-  --glass-shadow: 0 0 0 0.5px rgb(255 255 255 / 8%), 0 8px 28px rgb(0 0 0 / 45%);
+  --glass-bg: rgb(28 32 42 / 52%);
+  --glass-bg-strong: rgb(40 46 58 / 72%);
+  --glass-bg-soft: rgb(255 255 255 / 6%);
+  --glass-border: rgb(255 255 255 / 12%);
+  --glass-border-strong: rgb(255 255 255 / 20%);
+  --glass-shadow: 0 1px 2px rgb(0 0 0 / 28%), 0 12px 32px rgb(0 0 0 / 36%);
+  --glass-shadow-hover: 0 6px 16px rgb(0 0 0 / 32%), 0 22px 48px rgb(0 0 0 / 44%);
   --glass-shadow-overlay: 0 16px 48px rgb(0 0 0 / 55%);
-  --glass-highlight: inset 0 0.5px 0 rgb(255 255 255 / 18%);
+  --glass-highlight: inset 0 1px 0 rgb(255 255 255 / 14%);
 
   --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23838991' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 
-  --shadow-card: 0 0 0 0.5px rgb(255 255 255 / 6%);
-  --shadow-control: 0 0.5px 1px rgb(0 0 0 / 40%);
+  --shadow-card: var(--glass-shadow);
+  --shadow-control: 0 1px 2px rgb(0 0 0 / 40%);
 
   --scrollbar-thumb: var(--scrollbar-thumb-on-dark);
   --scrollbar-thumb-hover: var(--scrollbar-thumb-hover-on-dark);
@@ -501,6 +512,11 @@ html, body, #root {
   height: 100%;
 }
 
+#root {
+  position: relative;
+  z-index: 1;
+}
+
 html, body {
   overscroll-behavior: none;
 
@@ -530,8 +546,24 @@ body {
   line-height: 1.47;
   color: var(--text);
   letter-spacing: -0.015em;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(980px 720px at 0% -8%, var(--canvas-a) 0%, transparent 58%),
+    radial-gradient(860px 640px at 108% 4%, var(--canvas-b) 0%, transparent 54%),
+    radial-gradient(780px 600px at 48% 112%, var(--canvas-c) 0%, transparent 56%);
+  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: overlay;
+  opacity: var(--noise-opacity);
 }
 
 button {
@@ -601,19 +633,19 @@ a:hover {
 @keyframes page-in {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(12px) scale(0.992);
   }
 }
 
 @keyframes nav-pop {
   from {
-    opacity: 0.7;
+    transform: scale(0.98);
   }
 }
 
 @keyframes icon-pop {
   from {
-    transform: scale(0.92);
+    transform: scale(0.88);
   }
 }
 

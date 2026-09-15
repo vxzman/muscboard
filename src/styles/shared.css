@@ -98,30 +98,34 @@
 
 /* ---------- Surfaces ---------- */
 
-/* Content (cards, lists) is opaque grouped material.
-   Liquid Glass is reserved for chrome: menus, dialogs, drawers. */
-
 .card,
 .nav-list,
-.detail-card {
-  background: var(--card);
-}
-
+.detail-card,
 .menu,
 .drawer,
 .dialog,
 .setup-panel {
-  background: var(--glass-bg-strong);
+  background: var(--glass-bg);
 }
 
 @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .card,
+  .nav-list,
+  .detail-card,
+  .menu,
+  .drawer,
+  .dialog,
+  .setup-panel {
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  }
+
   .menu,
   .drawer,
   .dialog,
   .setup-panel {
     background: var(--glass-bg-strong);
-    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   }
 }
 
@@ -263,7 +267,7 @@ a.menu-item {
 .page {
   position: relative;
   padding: var(--space-28) var(--space-32) var(--space-48);
-  animation: page-in 0.32s ease;
+  animation: page-in 0.36s var(--ease-out);
 }
 
 .page-full {
@@ -301,18 +305,25 @@ a.menu-item {
   height: 32px;
   color: var(--accent);
   cursor: pointer;
-  background: var(--fill-tertiary);
-  border: 0;
+  background: var(--glass-bg-strong);
+  border: 0.5px solid var(--glass-border);
   border-radius: 50%;
-  transition: background var(--transition-fast), opacity var(--transition-fast);
+  box-shadow: var(--glass-highlight);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .back-button:hover {
-  background: var(--fill-secondary);
+  background: var(--glass-bg);
+  transform: translateY(-1px);
 }
 
 .back-button:active {
-  opacity: 0.7;
+  transform: scale(0.96);
 }
 
 /* ---------- Cards ---------- */
@@ -321,10 +332,22 @@ a.menu-item {
   position: relative;
   padding: var(--space-20);
   overflow: hidden;
-  background: var(--card);
-  border: 0;
+  background: var(--glass-bg);
+  border: 0.5px solid var(--glass-border);
   border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--glass-highlight), var(--glass-shadow);
+  transition:
+    transform 0.32s var(--ease-out),
+    box-shadow 0.32s var(--ease-out),
+    background 0.32s ease,
+    border-color 0.32s ease;
+}
+
+.card:hover {
+  background: var(--glass-bg-strong);
+  border-color: var(--glass-border-strong);
+  box-shadow: var(--glass-highlight), var(--glass-shadow-hover);
+  transform: translateY(-3px);
 }
 
 .card-header {
@@ -387,10 +410,10 @@ a.menu-item {
 
 .nav-list {
   overflow: hidden;
-  background: var(--card);
-  border: 0;
+  background: var(--glass-bg);
+  border: 0.5px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--glass-highlight), var(--glass-shadow);
 }
 
 .nav-row {
@@ -729,7 +752,8 @@ a.nav-line {
 }
 
 .button:active {
-  opacity: 0.7;
+  opacity: 0.78;
+  transform: scale(0.97);
 }
 
 .button.primary:active {
@@ -766,6 +790,7 @@ a.nav-line {
 .icon-button:hover {
   color: var(--text);
   background: var(--fill-tertiary);
+  transform: translateY(-1px);
 }
 
 .icon-button.active {
@@ -1303,7 +1328,7 @@ button.settings-row:focus-visible {
   justify-content: center;
   min-height: 100%;
   padding: var(--space-32);
-  background: var(--bg);
+  background: transparent;
 }
 
 .setup-panel {
@@ -1658,7 +1683,11 @@ button.settings-row:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .button,
   .back-button,
-  .card {
+  .card,
+  .page,
+  .page-full {
+    transform: none;
     transition: none;
+    animation: none;
   }
 }

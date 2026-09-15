@@ -80,10 +80,12 @@
   gap: var(--space-8);
   align-items: center;
   padding: var(--space-6) var(--space-10);
-  background: var(--card);
-  border: 0;
+  background: var(--glass-bg);
+  border: 0.5px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--glass-highlight), var(--glass-shadow);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
 }
 
 .profile-row.dragging {

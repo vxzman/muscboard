@@ -6,33 +6,47 @@
 
 :global(.icon-button).dashboard-items-button {
   color: var(--accent);
-  background: var(--fill-tertiary);
+  background: var(--glass-bg-strong);
+  border: 0.5px solid var(--glass-border);
   border-radius: var(--radius-pill);
+  box-shadow: var(--glass-highlight);
+  transition: transform 0.22s var(--ease-out), background var(--transition-fast);
 }
 
 :global(.icon-button).dashboard-items-button:hover {
   color: var(--accent);
-  background: var(--fill-secondary);
+  background: var(--glass-bg);
+  transform: translateY(-1px);
 }
 
 .card-grid :global(.card):has(.icon[data-icon="upload"]) {
-  background: color-mix(in srgb, var(--ios-green), var(--card) 96%);
+  background:
+    radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--ios-green), transparent 82%), transparent 58%),
+    var(--glass-bg);
 }
 
 .card-grid :global(.card):has(.icon[data-icon="download"]) {
-  background: color-mix(in srgb, var(--ios-blue), var(--card) 96%);
+  background:
+    radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--ios-blue), transparent 82%), transparent 58%),
+    var(--glass-bg);
 }
 
 .card-grid :global(.card):has(.icon[data-icon="bug_report"]) {
-  background: color-mix(in srgb, var(--ios-orange), var(--card) 96%);
+  background:
+    radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--ios-orange), transparent 82%), transparent 58%),
+    var(--glass-bg);
 }
 
 .card-grid :global(.card):has(.icon[data-icon="cable"]) {
-  background: color-mix(in srgb, var(--ios-purple), var(--card) 96%);
+  background:
+    radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--ios-purple), transparent 82%), transparent 58%),
+    var(--glass-bg);
 }
 
 .card-grid :global(.card):has(.icon[data-icon="route"]) {
-  background: color-mix(in srgb, var(--ios-indigo), var(--card) 96%);
+  background:
+    radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--ios-indigo), transparent 82%), transparent 58%),
+    var(--glass-bg);
 }
 
 .card-grid :global(.card-header > .icon) {

@@ -19,9 +19,9 @@ by the original authors.
 
 ## Customizations
 
-- Apple HIG / Liquid Glass restyle: grouped `#F2F2F7` / `#000` canvas,
-  opaque content cards, and translucent glass reserved for the sidebar,
-  menus and dialogs (not the content layer).
+- Frosted-glass dashboard on a quiet atmospheric canvas: sidebar and
+  content cards share the same material, with page-in and hover lift
+  (no Dock magnification, no candy gradients).
 - System Blue as the default accent; Settings-style solid icon tiles
   (upload green, download blue, speed-test orange) instead of candy
   gradients. Switches, segmented controls and capsules follow iOS.

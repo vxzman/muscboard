@@ -1,7 +1,7 @@
 .app {
   display: flex;
   height: 100%;
-  background: var(--bg);
+  background: transparent;
 }
 
 .mobile-topbar, .sidebar-scrim {
@@ -89,7 +89,7 @@
   border: 0;
   border-radius: 10px;
   box-shadow: none;
-  transition: background var(--transition-fast);
+  transition: background 0.2s ease, transform 0.2s var(--ease-out);
 }
 
 .nav-item:hover {
@@ -100,6 +100,7 @@
   font-weight: var(--weight-semibold);
   color: var(--text);
   background: var(--fill-tertiary);
+  animation: nav-pop 0.28s var(--ease-out);
 }
 
 .nav-item :global(.icon) {
@@ -110,10 +111,16 @@
   color: var(--bright) !important;
   background: var(--nav-grad, var(--ios-gray));
   border-radius: 7px;
+  transition: transform 0.28s var(--ease-out);
+}
+
+.nav-item.active :global(.icon) {
+  animation: icon-pop 0.32s var(--ease-out);
 }
 
 .nav-item:active {
   background: var(--fill-secondary);
+  transform: scale(0.98);
 }
 
 .nav-item :global(.badge) {
@@ -137,19 +144,21 @@
   font-weight: var(--weight-semibold);
   color: var(--text);
   cursor: pointer;
-  background: var(--fill-tertiary);
-  border: 0;
+  background: var(--glass-bg-soft);
+  border: 0.5px solid var(--glass-border);
   border-radius: 12px;
-  box-shadow: none;
-  transition: background var(--transition-fast);
+  box-shadow: var(--glass-highlight);
+  transition: background 0.2s ease, transform 0.22s var(--ease-out), box-shadow 0.22s ease;
 }
 
 .server-picker-button:hover {
-  background: var(--fill-secondary);
+  background: var(--glass-bg);
+  box-shadow: var(--glass-highlight), var(--glass-shadow);
+  transform: translateY(-1px);
 }
 
 .server-picker-button:active {
-  background: var(--fill);
+  transform: scale(0.98);
 }
 
 .server-picker-text {
@@ -216,7 +225,7 @@
   align-items: center;
   justify-content: center;
   min-height: 100%;
-  background: var(--bg);
+  background: transparent;
 }
 
 .connecting-view > * {
@@ -238,7 +247,7 @@
   flex: 1;
   align-items: center;
   justify-content: center;
-  background: var(--bg);
+  background: transparent;
 }
 
 .desktop-root {

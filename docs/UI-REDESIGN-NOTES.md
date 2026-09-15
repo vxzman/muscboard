@@ -7,18 +7,18 @@
 
 ## 1. 设计语言与设计令牌
 
-风格定位：**Apple HIG + Liquid Glass（iOS 26 / macOS Tahoe）**。
-玻璃只给功能层（侧栏、菜单、对话框）；内容层用不透明 grouped 表面。令牌全在 `src/styles/globals.css`。
+风格定位：**宽屏磨砂玻璃仪表盘**（系统色 + 景深，不是 iOS 设置页克隆）。
+画布有克制的氛围光和噪点；侧栏和内容卡都是玻璃。切页/悬停有位移，不做 Dock 放大。
 
 | 令牌 | 值 | 用途 |
 | --- | --- | --- |
-| `--bg` | `#F2F2F7` / `#000` | grouped 背景 |
-| `--card` | `#FFF` / `#1C1C1E` | 内容卡片、设置列表 |
+| `--bg` / `--canvas-a/b/c` | 浅冷灰 + 蓝/紫/薄荷光斑 | 大面积留白的空气，让 blur 能看见 |
+| `--glass-bg` | 半透明白 / 深色 | 卡片和 chrome 的玻璃底 |
+| `--glass-blur` | 28px | 侧栏、卡片、菜单共用 |
 | `--accent` | 系统蓝 `#007AFF` / `#0A84FF` | 唯一强调色（可换预设） |
-| `--glass-blur` | 40px | 仅 chrome：侧栏 / 菜单 / 对话框 |
-| `--ios-blue/green/orange/...` | iOS 系统色 | 语义色与 Settings 图标块 |
-| `--ios-grad-*` | **纯色**（不是渐变） | 图标砖，映射到系统色 |
-| `--fill-tertiary` | 系统 tertiary fill | 选中行、灰按钮、输入底 |
+| `--ios-blue/green/orange/...` | iOS 系统色 | 语义色与图标砖 |
+| `--ios-grad-*` | **纯色**（不是渐变） | 图标砖 |
+| `--ease-out` | `cubic-bezier(0.22, 1, 0.36, 1)` | 切页、悬停上浮 |
 
 **配色约定**：
 

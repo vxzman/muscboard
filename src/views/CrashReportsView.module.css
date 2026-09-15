@@ -70,7 +70,9 @@
   color: var(--text);
   overflow-wrap: anywhere;
   white-space: pre-wrap;
-  background: var(--card);
-  border: 0;
+  background: var(--glass-bg);
+  border: 0.5px solid var(--glass-border);
   border-radius: var(--radius-card);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
 }

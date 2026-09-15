@@ -9,21 +9,25 @@
   color: var(--text);
   overflow-wrap: anywhere;
   white-space: pre-wrap;
-  background: var(--card);
-  border: 0;
+  background: var(--glass-bg);
+  border: 0.5px solid var(--glass-border);
   border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--glass-highlight), var(--glass-shadow);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
 }
 
 :global(.icon-button).pause-button {
   color: var(--text-secondary);
-  background: var(--fill-tertiary);
-  border: 0;
+  background: var(--glass-bg-strong);
+  border: 0.5px solid var(--glass-border);
+  transition: transform 0.22s var(--ease-out), background var(--transition-fast);
 }
 
 :global(.icon-button).pause-button:hover {
   color: var(--text);
-  background: var(--fill-secondary);
+  background: var(--glass-bg);
+  transform: translateY(-1px);
 }
 
 :global(.icon-button).pause-button:global(.active) {
