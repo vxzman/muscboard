@@ -12,20 +12,21 @@
 }
 
 .group-card :global(.card) {
-  background: linear-gradient(180deg, rgb(255 255 255 / 84%), rgb(245 248 255 / 72%));
+  background: linear-gradient(160deg, rgb(255 255 255 / 28%) 0%, rgb(220 236 255 / 18%) 100%);
+  border-color: rgb(110 150 220 / 24%);
   box-shadow:
-    inset 0 1px 0 0 rgb(255 255 255 / 90%),
-    0 16px 34px rgb(24 40 66 / 12%);
+    inset 0 1px 0 0 rgb(255 255 255 / 70%),
+    0 4px 16px rgb(24 40 80 / 9%);
 }
 
 .group-card :global(.card-header) {
   padding: var(--space-20) var(--space-20) var(--space-12);
   margin: calc(-1 * var(--space-20)) calc(-1 * var(--space-20)) 0;
-  background: linear-gradient(180deg, rgb(255 255 255 / 82%), rgb(239 245 255 / 72%));
+  background: linear-gradient(160deg, rgb(255 255 255 / 36%) 0%, rgb(215 232 255 / 24%) 100%);
   border-radius: var(--radius-card) var(--radius-card) 0 0;
-  -webkit-backdrop-filter: blur(26px) saturate(210%);
-  backdrop-filter: blur(26px) saturate(210%);
-  border-bottom: 1px solid rgb(255 255 255 / 60%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  border-bottom: 1px solid rgb(100 140 220 / 22%);
 }
 
 :global(.icon-button).url-test-button {
@@ -133,12 +134,14 @@
   cursor: pointer;
   -webkit-user-select: none;
   user-select: none;
-  background: linear-gradient(180deg, rgb(255 255 255 / 84%), rgb(240 245 255 / 76%));
-  border: 1px solid rgb(255 255 255 / 72%);
+  background: linear-gradient(160deg, rgb(255 255 255 / 36%) 0%, rgb(220 236 255 / 24%) 100%);
+  border: 1px solid rgb(100 140 210 / 30%);
   border-radius: var(--radius-lg);
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 70%),
-    0 6px 18px rgb(26 44 60 / 10%);
+    inset 0 1px 0 rgb(255 255 255 / 60%),
+    0 2px 6px rgb(26 44 80 / 7%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   transition:
     border-color var(--transition-fast),
     background var(--transition-fast),
@@ -148,20 +151,20 @@
 }
 
 .group-item:hover {
-  border-color: rgb(112 154 255 / 80%);
+  border-color: rgb(80 130 255 / 55%);
   box-shadow:
-    0 12px 26px rgb(13 27 42 / 18%),
-    0 0 0 1px rgb(128 176 255 / 32%);
+    0 8px 20px rgb(13 27 60 / 14%),
+    0 0 0 1px rgb(100 160 255 / 28%);
   transform: translateY(-3px) scale(1.04);
 }
 
 .group-item.selected {
   z-index: 1;
-  background: linear-gradient(180deg, rgb(228 240 255 / 92%), rgb(242 247 255 / 82%));
-  border-color: var(--accent);
+  background: linear-gradient(160deg, rgb(210 230 255 / 60%) 0%, rgb(200 220 255 / 45%) 100%);
+  border-color: rgb(60 110 230 / 45%);
   box-shadow:
-    0 8px 22px rgb(61 122 229 / 18%),
-    0 0 0 1px rgb(61 122 229 / 14%);
+    0 4px 14px rgb(40 90 200 / 16%),
+    0 0 0 1px rgb(70 130 240 / 20%);
 }
 
 .item-tag {
@@ -204,7 +207,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-4);
-  margin-top: 0;
+  margin-top: var(--space-12);
 }
 
 .group-dot {

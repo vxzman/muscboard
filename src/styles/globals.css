@@ -113,16 +113,16 @@
   --bright: #fff;
   --terminal-bg: #101418;
 
-  /* ---------- Glassmorphism ---------- */
-  --glass-bg: rgb(255 255 255 / 72%);
-  --glass-bg-strong: rgb(250 252 255 / 94%);
-  --glass-bg-soft: rgb(255 255 255 / 56%);
-  --glass-border: rgb(255 255 255 / 84%);
-  --glass-border-strong: rgb(255 255 255 / 96%);
-  --glass-blur: 42px;
-  --glass-saturate: 220%;
-  --glass-shadow: 0 12px 28px rgb(36 60 97 / 12%), 0 36px 72px rgb(36 60 97 / 18%);
-  --glass-shadow-overlay: 0 26px 72px rgb(26 44 60 / 32%);
+  /* ---------- Glassmorphism — iOS 7–17 style: clean, airy, not oily ---------- */
+  --glass-bg: rgb(255 255 255 / 58%);
+  --glass-bg-strong: rgb(252 254 255 / 88%);
+  --glass-bg-soft: rgb(255 255 255 / 42%);
+  --glass-border: rgb(255 255 255 / 78%);
+  --glass-border-strong: rgb(255 255 255 / 92%);
+  --glass-blur: 18px;
+  --glass-saturate: 170%;
+  --glass-shadow: 0 4px 16px rgb(36 60 97 / 8%), 0 12px 32px rgb(36 60 97 / 10%);
+  --glass-shadow-overlay: 0 16px 48px rgb(26 44 60 / 22%);
 
   --scrollbar-size: 7px;
   --scrollbar-thumb: rgb(27 38 52 / 22%);
@@ -275,13 +275,13 @@
   --highlight: color-mix(in srgb, var(--md-primary), transparent 74%);
   --scrim: rgb(0 0 0 / 48%);
 
-  --glass-bg: rgb(34 44 58 / 74%);
-  --glass-bg-strong: rgb(40 51 66 / 90%);
-  --glass-bg-soft: rgb(255 255 255 / 10%);
-  --glass-border: rgb(255 255 255 / 20%);
-  --glass-border-strong: rgb(255 255 255 / 36%);
-  --glass-shadow: 0 4px 14px rgb(0 0 0 / 30%), 0 18px 44px rgb(0 0 0 / 42%);
-  --glass-shadow-overlay: 0 20px 64px rgb(0 0 0 / 60%);
+  --glass-bg: rgb(28 38 52 / 62%);
+  --glass-bg-strong: rgb(36 48 64 / 84%);
+  --glass-bg-soft: rgb(255 255 255 / 8%);
+  --glass-border: rgb(255 255 255 / 16%);
+  --glass-border-strong: rgb(255 255 255 / 28%);
+  --glass-shadow: 0 2px 8px rgb(0 0 0 / 20%), 0 8px 24px rgb(0 0 0 / 28%);
+  --glass-shadow-overlay: 0 12px 40px rgb(0 0 0 / 48%);
 
   --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23838991' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 
@@ -523,9 +523,9 @@ body {
   color: var(--text);
   background-color: var(--md-surface);
   background-image:
-    radial-gradient(1100px 760px at 12% -8%, color-mix(in srgb, var(--md-primary-container), transparent 4%) 0%, transparent 62%),
-    radial-gradient(980px 700px at 106% 6%, color-mix(in srgb, var(--md-tertiary-container), transparent 2%) 0%, transparent 58%),
-    radial-gradient(920px 840px at 52% 116%, color-mix(in srgb, var(--md-secondary-container), transparent 10%) 0%, transparent 62%);
+    radial-gradient(900px 600px at 0% 0%, rgb(96 168 255 / 48%) 0%, transparent 55%),
+    radial-gradient(700px 500px at 100% 0%, rgb(196 140 255 / 40%) 0%, transparent 50%),
+    radial-gradient(600px 500px at 50% 110%, rgb(80 210 160 / 34%) 0%, transparent 55%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
 }
