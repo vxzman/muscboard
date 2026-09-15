@@ -1,6 +1,6 @@
 node_modules/
 dist/
-/latest/
+/ignore/
 /dash.tar.gz
 src/gen/
 src/lib/terminalThemes.generated.ts
@@ -9,3 +9,6 @@ src/lib/terminalThemes.generated.ts
 .DS_Store
 /CLAUDE.md
 /.claude/
+run/*.log
+run/*.pid
+claude-resume.txt

@@ -12,10 +12,10 @@
 
 | 令牌 | 值 | 用途 |
 | --- | --- | --- |
-| `--glass-blur` | 34px | 全局毛玻璃模糊强度（卡片 24–26px） |
+| `--glass-blur` | 18px | 全局毛玻璃模糊强度 |
 | `--glass-bg` / `--glass-bg-strong` | 深浅两套 | 玻璃底色（随主题切换） |
 | `--glass-border` | — | 玻璃描边 |
-| `--glass-saturate` | 200% | 玻璃饱和度 |
+| `--glass-saturate` | 170% | 玻璃饱和度 |
 | `--ios-blue/green/orange/purple/indigo/gray` | iOS 系统色 | 语义色 |
 | `--ios-grad-*` | `linear-gradient(...)` | 渐变（按钮/图标/徽章主用） |
 | `--ios-grad-brand` | 蓝→靛 | Logo / 主品牌渐变 |
@@ -176,12 +176,13 @@ corepack pnpm lint:css && corepack pnpm lint && corepack pnpm build
 ### 4.2 本地预览（需要两个服务）
 
 ```sh
-MOCK_PORT=8099 node --experimental-transform-types mock-backend/server.ts
-                                      # 新版自包含模拟后端 :8099（支持终端/Taildrop/USB-IP 流）
-corepack pnpm dev --port 5173         # Vite :5173
+./run/start.sh                        # mock backend :8090 + Vite :5173
+# 或分开启动：
+MOCK_PORT=8099 node --experimental-transform-types run/server.ts
+corepack pnpm dev --port 5173
 ```
 
-> 旧的单文件模拟器在 `mock-backend/legacy/mock-daemon.mjs`（仅基础状态/节点/日志）。
+> 旧的单文件模拟器在 `run/legacy/mock-daemon.mjs`（仅基础状态/节点/日志）。
 
 注入本地服务器配置后即可登录：
 
@@ -217,7 +218,7 @@ gh release create vX.Y.Z <zip> --title "muscboard vX.Y.Z" --notes-file RELEASE_N
 - 仓库是 GPL-3.0-or-later fork，README 保留原作者版权与“非官方”声明，LICENSE 别动
 - `origin` 是上游（gh-proxy 镜像），`github` 是 muscboard（SSH 443）；上游大改时
   `git fetch origin && git merge origin/main`，定制集中在少数 CSS 文件，冲突好定位
-- `latest/` 文件夹已加入 `.gitignore`，**永远不会被推送**；它是上游最新版的对照参考
+- `ignore/` 文件夹已加入 `.gitignore`，**永远不会被推送**；它是上游最新版的对照参考
 
 ---
 
@@ -225,12 +226,12 @@ gh release create vX.Y.Z <zip> --title "muscboard vX.Y.Z" --notes-file RELEASE_N
 
 ### 6.1 模拟后端结构（已重组）
 
-- 自包含 TS 模拟后端在仓库根目录 `mock-backend/`（`server.ts` + `verify.ts` + `gen/` + `proto/`），
-  依赖根项目的 `@bufbuild/protobuf`，**从项目根目录运行**即可：
+- 自包含 TS 模拟后端在 `run/`（`server.ts` + `verify.ts` + `gen/` + `proto/`），
+  依赖根项目的 `@bufbuild/protobuf`。一键启动：`./run/start.sh`；也可单独跑：
   ```sh
-  MOCK_PORT=8100 node --experimental-transform-types mock-backend/server.ts
+  MOCK_PORT=8100 node --experimental-transform-types run/server.ts
   ```
-- 旧单文件模拟器保留在 `mock-backend/legacy/mock-daemon.mjs`（仅基础状态/节点/日志）
+- 旧单文件模拟器保留在 `run/legacy/mock-daemon.mjs`（仅基础状态/节点/日志）
 - mock 的 API 版本是 4（usbip / openVpnAndOpenConnect / taildrop 全部支持）
 - **工具详情页必须带端点 tag**，否则显示“未找到端点”（详情页按 `props.tag` 精确查找）：
   | 工具 | 路由 | mock 端点 tag |

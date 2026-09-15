@@ -6,7 +6,9 @@
 ## 目录结构
 
 ```text
-mock-backend/
+run/
+├── start.sh       # 同时启动 mock backend + Vite 前端
+├── stop.sh        # 按进程组停止上述服务
 ├── server.ts      # 模拟 daemon 主程序：gRPC-Web (HTTP) + grpc-websockets (WS) 双向流
 ├── verify.ts      # 端到端冒烟测试：逐接口解码校验
 ├── package.json   # 快捷脚本 start / verify / generate
@@ -18,16 +20,16 @@ mock-backend/
 ## 快速开始
 
 ```sh
-# 1.（可选）重新生成 protobuf 代码；gen/ 已生成可跳过
-cd mock-backend
-BUF_CACHE_DIR=/tmp/buf-cache pnpm exec buf generate
+# 一键启动 mock backend (:8090) + Vite (:5173)
+./run/start.sh
+./run/stop.sh
 
-# 2. 启动模拟后端（默认监听 8090）
-pnpm start          # 等价于 node --experimental-transform-types server.ts
-
-# 3. 另开终端，在项目根目录启动前端
+# 或分开启动：
+cd run
+BUF_CACHE_DIR=/tmp/buf-cache pnpm exec buf generate   # 可选；gen/ 已生成可跳过
+pnpm start                                            # node --experimental-transform-types server.ts
 cd ..
-pnpm dev            # http://localhost:5173
+pnpm dev                                              # http://localhost:5173
 ```
 
 浏览器打开 http://localhost:5173，在设置页 **URL** 输入框填 `http://127.0.0.1:8090`（密钥留空），点 **Connect**。
