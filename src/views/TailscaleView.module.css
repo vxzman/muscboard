@@ -8,12 +8,10 @@
 
 .peer-list {
   overflow: hidden;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  background: var(--card);
+  border: 0;
   border-radius: var(--radius-lg);
-  box-shadow: var(--glass-shadow);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  box-shadow: var(--shadow-card);
 }
 
 .peer-item {
@@ -68,18 +66,15 @@
   font-size: var(--text-sm);
   color: var(--text-secondary);
   cursor: pointer;
-  background: var(--glass-bg-soft);
-  border: 1px dashed var(--md-outline-variant);
+  background: var(--fill-quaternary);
+  border: 1px dashed var(--border-strong);
   border-radius: var(--radius-card);
   box-shadow: none;
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  backdrop-filter: blur(20px) saturate(180%);
-  transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
 }
 
 .drop-zone:hover {
-  background: var(--glass-bg);
-  transform: translateY(-1px);
+  background: var(--fill-tertiary);
 }
 
 .drop-zone-active {

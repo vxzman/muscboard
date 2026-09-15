@@ -11,159 +11,166 @@
      toolbars) from this plus the canvas background, not from theme-color. */
   color-scheme: light;
 
-  /* ---------- Typography ---------- */
-  --font-sans: "Schibsted Grotesk Variable", "Apple Color Emoji", "Noto Color Emoji", -apple-system, blinkmacsystemfont, "Segoe UI", sans-serif;
-  --font-serif: "Schibsted Grotesk Variable", "Apple Color Emoji", "Noto Color Emoji", -apple-system, blinkmacsystemfont, "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", "Apple Color Emoji", "Noto Color Emoji", ui-monospace, "SF Mono", menlo, consolas, monospace;
+  /* ---------- Typography (SF on Apple, Grotesk elsewhere) ---------- */
+  --font-sans: -apple-system, blinkmacsystemfont, "SF Pro Text", "SF Pro Display", "Schibsted Grotesk Variable", "Apple Color Emoji", "Noto Color Emoji", "Segoe UI", sans-serif;
+  --font-serif: -apple-system, blinkmacsystemfont, "Schibsted Grotesk Variable", "Apple Color Emoji", "Noto Color Emoji", "Segoe UI", sans-serif;
+  --font-mono: "SF Mono", "IBM Plex Mono", ui-monospace, menlo, consolas, monospace;
 
-  /* ---------- Material You color roles (light, seed: slate blue) ---------- */
-  --md-primary: #46647a;
-  --md-on-primary: #fff;
-  --md-primary-container: #d2e4f4;
-  --md-on-primary-container: #0e2b3e;
-  --md-secondary: #5b6472;
-  --md-on-secondary: #fff;
-  --md-secondary-container: #dfe4ed;
-  --md-on-secondary-container: #1b2430;
-  --md-tertiary: #3f6b63;
-  --md-on-tertiary: #fff;
-  --md-tertiary-container: #c8ebe1;
-  --md-on-tertiary-container: #0a2c25;
-
-  --md-surface: #f7f9fc;
-  --md-surface-container-lowest: #fff;
-  --md-surface-container-low: #f1f4f8;
-  --md-surface-container: #ebeff4;
-  --md-surface-container-high: #e4e9ef;
-  --md-surface-container-highest: #dde3ea;
-  --md-on-surface: #1b1f24;
-  --md-on-surface-variant: #3d4149;
-  --md-outline: #6d727a;
-  --md-outline-variant: #c5c9d0;
-
-  --md-error: #ba1a1a;
-  --md-on-error: #fff;
-  --md-error-container: #ffdad6;
-  --md-on-error-container: #410002;
-
-  /* ---------- iOS 7–18 system palette ---------- */
+  /* ---------- Apple system colors (light) ---------- */
   --ios-blue: #007aff;
   --ios-green: #34c759;
   --ios-orange: #ff9500;
   --ios-pink: #ff2d55;
   --ios-purple: #af52de;
-  --ios-teal: #5ac8fa;
+  --ios-teal: #64d2ff;
   --ios-red: #ff3b30;
   --ios-yellow: #fc0;
   --ios-indigo: #5856d6;
   --ios-mint: #00c7be;
-  --ios-coral: #ff6b6b;
+  --ios-coral: #ff6961;
   --ios-gray: #8e8e93;
-  --ios-gray-fill: #e5e5ea;
-  --ios-separator: rgb(60 60 67 / 10%);
-  --ios-grad-blue: linear-gradient(135deg, #007aff, #5ac8fa);
-  --ios-grad-purple: linear-gradient(135deg, #af52de, #7c4dff);
-  --ios-grad-green: linear-gradient(135deg, #34c759, #30d158);
-  --ios-grad-orange: linear-gradient(135deg, #ff9500, #fc0);
-  --ios-grad-indigo: linear-gradient(135deg, #5856d6, #5ac8fa);
-  --ios-grad-red: linear-gradient(135deg, #ff3b30, #ff6b6b);
-  --ios-grad-teal: linear-gradient(135deg, #5ac8fa, #00c7be);
-  --ios-grad-gray: linear-gradient(135deg, #8e8e93, #aeaeb2);
-  --ios-grad-brand: linear-gradient(135deg, #007aff, #5856d6);
+  --ios-gray-fill: rgb(118 118 128 / 12%);
+  --ios-separator: rgb(60 60 67 / 12%);
   --ios-blue-deep: #007aff;
   --ios-purple-deep: #af52de;
-  --ios-green-deep: #1f9c45;
-  --ios-orange-deep: #e07f00;
-  --ios-indigo-deep: #4f4dd0;
-  --ios-gray-deep: #5a5a60;
+  --ios-green-deep: #248a3d;
+  --ios-orange-deep: #c93400;
+  --ios-indigo-deep: #3634a3;
+  --ios-gray-deep: #6c6c70;
+
+  /* Settings-style icon tiles: solid system color, not candy gradients */
+  --ios-grad-blue: var(--ios-blue);
+  --ios-grad-purple: var(--ios-purple);
+  --ios-grad-green: var(--ios-green);
+  --ios-grad-orange: var(--ios-orange);
+  --ios-grad-indigo: var(--ios-indigo);
+  --ios-grad-red: var(--ios-red);
+  --ios-grad-teal: #30b0c7;
+  --ios-grad-gray: #8e8e93;
+  --ios-grad-brand: linear-gradient(180deg, #3d9bff 0%, #007aff 100%);
+
+  /* Grouped surfaces — aliases keep existing --md-* call sites working */
+  --md-primary: var(--ios-blue);
+  --md-on-primary: #fff;
+  --md-primary-container: #d6e9ff;
+  --md-on-primary-container: #003a75;
+  --md-secondary: #6c6c70;
+  --md-on-secondary: #fff;
+  --md-secondary-container: #e5e5ea;
+  --md-on-secondary-container: #1c1c1e;
+  --md-tertiary: var(--ios-indigo);
+  --md-on-tertiary: #fff;
+  --md-tertiary-container: #e6e6ff;
+  --md-on-tertiary-container: #1c1c4d;
+
+  --md-surface: #f2f2f7;
+  --md-surface-container-lowest: #fff;
+  --md-surface-container-low: #fff;
+  --md-surface-container: #f2f2f7;
+  --md-surface-container-high: #e5e5ea;
+  --md-surface-container-highest: #d1d1d6;
+  --md-on-surface: #000;
+  --md-on-surface-variant: rgb(60 60 67 / 68%);
+  --md-outline: rgb(60 60 67 / 30%);
+  --md-outline-variant: rgb(60 60 67 / 16%);
+
+  --md-error: var(--ios-red);
+  --md-on-error: #fff;
+  --md-error-container: #ffd4d1;
+  --md-on-error-container: #5c0000;
 
   /* ---------- App semantic tokens ---------- */
-  --bg: var(--md-surface);
-  --surface: var(--md-surface-container-low);
-  --card: rgb(255 255 255 / 62%);
-  --inset: var(--md-surface-container-high);
-  --text: var(--md-on-surface);
-  --text-secondary: var(--md-on-surface-variant);
-  --text-faint: var(--md-outline);
-  --border: rgb(27 38 52 / 11%);
-  --border-strong: rgb(27 38 52 / 22%);
-  --hover: color-mix(in srgb, var(--md-on-surface), transparent 92%);
+  --bg: #f2f2f7;
+  --surface: #fff;
+  --card: #fff;
+  --inset: #e5e5ea;
+  --text: #000;
+  --text-secondary: rgb(60 60 67 / 68%);
+  --text-faint: rgb(60 60 67 / 36%);
+  --border: rgb(60 60 67 / 12%);
+  --border-strong: rgb(60 60 67 / 24%);
+  --hover: rgb(120 120 128 / 10%);
+  --fill: rgb(120 120 128 / 20%);
+  --fill-secondary: rgb(120 120 128 / 16%);
+  --fill-tertiary: rgb(118 118 128 / 12%);
+  --fill-quaternary: rgb(116 116 128 / 8%);
 
-  --accent: #46647a;
-  --accent-strong: #3a5468;
-  --accent-soft: rgb(70 100 122 / 14%);
+  --accent: var(--ios-blue);
+  --accent-strong: #0066d6;
+  --accent-soft: rgb(0 122 255 / 12%);
   --on-accent: #fff;
 
-  --good: #2f8f64;
-  --good-soft: rgb(47 143 100 / 15%);
-  --medium: #a8732e;
-  --medium-soft: rgb(168 115 46 / 16%);
-  --bad: #d2603a;
-  --bad-soft: rgb(210 96 58 / 16%);
-  --danger: var(--md-error);
-  --danger-soft: rgb(186 26 26 / 12%);
-  --info: #3b7da8;
-  --info-soft: rgb(59 125 168 / 15%);
-  --neutral-soft: rgb(27 31 36 / 7%);
+  --good: var(--ios-green);
+  --good-soft: rgb(52 199 89 / 14%);
+  --medium: var(--ios-orange);
+  --medium-soft: rgb(255 149 0 / 14%);
+  --bad: var(--ios-red);
+  --bad-soft: rgb(255 59 48 / 12%);
+  --danger: var(--ios-red);
+  --danger-soft: rgb(255 59 48 / 12%);
+  --info: var(--ios-blue);
+  --info-soft: rgb(0 122 255 / 12%);
+  --neutral-soft: rgb(120 120 128 / 10%);
 
-  --highlight: color-mix(in srgb, var(--md-primary), transparent 82%);
-  --scrim: rgb(23 33 43 / 38%);
+  --highlight: rgb(0 122 255 / 18%);
+  --scrim: rgb(0 0 0 / 32%);
   --window-controls-surface: var(--surface);
   --window-controls-text: var(--text);
   --bright: #fff;
-  --terminal-bg: #101418;
+  --terminal-bg: #1c1c1e;
 
-  /* ---------- Glassmorphism — iOS 7–17 style: clean, airy, not oily ---------- */
-  --glass-bg: rgb(255 255 255 / 58%);
-  --glass-bg-strong: rgb(252 254 255 / 88%);
-  --glass-bg-soft: rgb(255 255 255 / 42%);
-  --glass-border: rgb(255 255 255 / 78%);
-  --glass-border-strong: rgb(255 255 255 / 92%);
-  --glass-blur: 18px;
-  --glass-saturate: 170%;
-  --glass-shadow: 0 4px 16px rgb(36 60 97 / 8%), 0 12px 32px rgb(36 60 97 / 10%);
-  --glass-shadow-overlay: 0 16px 48px rgb(26 44 60 / 22%);
+  /* Liquid Glass — chrome only (sidebar, menus, dialogs), not content cards */
+  --glass-bg: rgb(255 255 255 / 72%);
+  --glass-bg-strong: rgb(255 255 255 / 86%);
+  --glass-bg-soft: rgb(255 255 255 / 48%);
+  --glass-border: rgb(255 255 255 / 62%);
+  --glass-border-strong: rgb(255 255 255 / 82%);
+  --glass-blur: 40px;
+  --glass-saturate: 180%;
+  --glass-shadow: 0 0 0 0.5px rgb(0 0 0 / 6%), 0 8px 28px rgb(0 0 0 / 10%);
+  --glass-shadow-overlay: 0 16px 48px rgb(0 0 0 / 22%);
+  --glass-highlight: inset 0 0.5px 0 rgb(255 255 255 / 80%);
 
-  --scrollbar-size: 7px;
-  --scrollbar-thumb: rgb(27 38 52 / 22%);
-  --scrollbar-thumb-hover: rgb(27 38 52 / 38%);
+  --scrollbar-size: 6px;
+  --scrollbar-thumb: rgb(60 60 67 / 28%);
+  --scrollbar-thumb-hover: rgb(60 60 67 / 44%);
   --scrollbar-thumb-on-dark: rgb(255 255 255 / 22%);
   --scrollbar-thumb-hover-on-dark: rgb(255 255 255 / 38%);
 
   --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23757a82' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 
-  /* ---------- Elevation & shape (M3 scale) ---------- */
-  --shadow-card: 0 1px 3px rgb(27 38 52 / 5%), 0 6px 20px rgb(27 38 52 / 8%);
-  --shadow-control: 0 1px 2px rgb(27 38 52 / 7%);
+  /* ---------- Elevation & shape ---------- */
+  --shadow-card: 0 0 0 0.5px rgb(0 0 0 / 4%), 0 1px 2px rgb(0 0 0 / 4%);
+  --shadow-control: 0 0.5px 1px rgb(0 0 0 / 6%);
   --shadow-overlay: var(--glass-shadow-overlay);
-  --radius-xs: 8px;
-  --radius-sm: 10px;
-  --radius-md: 12px;
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
   --radius-control: 999px;
-  --radius-lg: 16px;
-  --radius-card: 18px;
-  --radius-xl: 28px;
+  --radius-lg: 12px;
+  --radius-card: 16px;
+  --radius-xl: 22px;
   --radius-pill: 999px;
   --control-height: 34px;
-  --sidebar-width: 240px;
-  --transition-fast: 0.12s ease;
-  --transition-medium: 0.18s ease;
+  --sidebar-width: 220px;
+  --transition-fast: 0.15s ease;
+  --transition-medium: 0.22s ease;
 
-  --text-2xs: 10px;
-  --text-xs: 11px;
-  --text-sm: 12px;
-  --text-base: 13px;
-  --text-md: 14px;
-  --text-lg: 16px;
+  --text-2xs: 11px;
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-base: 15px;
+  --text-md: 15px;
+  --text-lg: 17px;
   --text-15: 15px;
-  --text-xl: 19px;
-  --text-2xl: 23px;
-  --text-3xl: 28px;
+  --text-xl: 20px;
+  --text-2xl: 28px;
+  --text-3xl: 34px;
 
   --weight-normal: 400;
-  --weight-medium: 500;
-  --weight-semibold: 600;
-  --weight-bold: 650;
+  --weight-medium: 510;
+  --weight-semibold: 590;
+  --weight-bold: 700;
   --weight-heavy: 800;
 
   --space-px: 1px;
@@ -200,35 +207,6 @@
 [data-theme="dark"] {
   color-scheme: dark;
 
-  --md-primary: #b4cbe0;
-  --md-on-primary: #1a3345;
-  --md-primary-container: #324b5e;
-  --md-on-primary-container: #d0e7f8;
-  --md-secondary: #c1c8d5;
-  --md-on-secondary: #2a323d;
-  --md-secondary-container: #444d5a;
-  --md-on-secondary-container: #dde4f0;
-  --md-tertiary: #97cdc0;
-  --md-on-tertiary: #0b3a32;
-  --md-tertiary-container: #2c554c;
-  --md-on-tertiary-container: #b2e8da;
-
-  --md-surface: #111519;
-  --md-surface-container-lowest: #0c0f12;
-  --md-surface-container-low: #191d22;
-  --md-surface-container: #1d2227;
-  --md-surface-container-high: #282d33;
-  --md-surface-container-highest: #33383f;
-  --md-on-surface: #dfe3e8;
-  --md-on-surface-variant: #c2c7cf;
-  --md-outline: #8c929b;
-  --md-outline-variant: #3f444c;
-
-  --md-error: #ffb4ab;
-  --md-on-error: #690005;
-  --md-error-container: #93000a;
-  --md-on-error-container: #ffdad6;
-
   --ios-blue: #0a84ff;
   --ios-green: #30d158;
   --ios-orange: #ff9f0a;
@@ -238,55 +216,97 @@
   --ios-red: #ff453a;
   --ios-yellow: #ffd60a;
   --ios-indigo: #5e5ce6;
-  --ios-mint: #66d4cf;
-  --ios-coral: #ff6b6b;
-  --ios-gray: #98989e;
-  --ios-gray-fill: #2c2c2e;
-  --ios-separator: rgb(84 84 88 / 32%);
+  --ios-mint: #63e6e2;
+  --ios-coral: #ff6961;
+  --ios-gray: #98989d;
+  --ios-gray-fill: rgb(118 118 128 / 24%);
+  --ios-separator: rgb(84 84 88 / 65%);
+  --ios-blue-deep: #0a84ff;
+  --ios-purple-deep: #bf5af2;
+  --ios-green-deep: #30d158;
+  --ios-orange-deep: #ff9f0a;
+  --ios-indigo-deep: #5e5ce6;
+  --ios-gray-deep: #8e8e93;
+  --ios-grad-teal: #40c8e0;
+  --ios-grad-brand: linear-gradient(180deg, #4da3ff 0%, #0a84ff 100%);
 
-  --bg: var(--md-surface);
-  --surface: var(--md-surface-container-low);
-  --card: rgb(31 40 51 / 58%);
-  --inset: var(--md-surface-container-high);
-  --text: var(--md-on-surface);
-  --text-secondary: var(--md-on-surface-variant);
-  --text-faint: var(--md-outline);
-  --border: rgb(255 255 255 / 11%);
+  --md-primary: var(--ios-blue);
+  --md-on-primary: #fff;
+  --md-primary-container: #003a75;
+  --md-on-primary-container: #d6e9ff;
+  --md-secondary: #98989d;
+  --md-on-secondary: #1c1c1e;
+  --md-secondary-container: #2c2c2e;
+  --md-on-secondary-container: #f2f2f7;
+  --md-tertiary: var(--ios-indigo);
+  --md-on-tertiary: #fff;
+  --md-tertiary-container: #2c2c4d;
+  --md-on-tertiary-container: #e6e6ff;
+
+  --md-surface: #000;
+  --md-surface-container-lowest: #1c1c1e;
+  --md-surface-container-low: #1c1c1e;
+  --md-surface-container: #2c2c2e;
+  --md-surface-container-high: #3a3a3c;
+  --md-surface-container-highest: #48484a;
+  --md-on-surface: #fff;
+  --md-on-surface-variant: rgb(235 235 245 / 60%);
+  --md-outline: rgb(235 235 245 / 30%);
+  --md-outline-variant: rgb(84 84 88 / 65%);
+
+  --md-error: var(--ios-red);
+  --md-on-error: #fff;
+  --md-error-container: #5c0000;
+  --md-on-error-container: #ffd4d1;
+
+  --bg: #000;
+  --surface: #1c1c1e;
+  --card: #1c1c1e;
+  --inset: #2c2c2e;
+  --text: #fff;
+  --text-secondary: rgb(235 235 245 / 60%);
+  --text-faint: rgb(235 235 245 / 30%);
+  --border: rgb(84 84 88 / 65%);
   --border-strong: rgb(255 255 255 / 22%);
-  --hover: color-mix(in srgb, var(--md-on-surface), transparent 91%);
+  --hover: rgb(118 118 128 / 24%);
+  --fill: rgb(120 120 128 / 36%);
+  --fill-secondary: rgb(120 120 128 / 32%);
+  --fill-tertiary: rgb(118 118 128 / 24%);
+  --fill-quaternary: rgb(116 116 128 / 18%);
 
-  --accent: #b4cbe0;
-  --accent-strong: #cfe2f2;
-  --accent-soft: rgb(180 203 224 / 16%);
-  --on-accent: #1a3345;
+  --accent: var(--ios-blue);
+  --accent-strong: #409cff;
+  --accent-soft: rgb(10 132 255 / 22%);
+  --on-accent: #fff;
 
-  --good: #7bd5a8;
-  --good-soft: rgb(123 213 168 / 16%);
-  --medium: #e0b05f;
-  --medium-soft: rgb(224 176 95 / 16%);
-  --bad: #f2a98c;
-  --bad-soft: rgb(242 169 140 / 16%);
-  --danger: #ffb4ab;
-  --danger-soft: rgb(255 180 171 / 14%);
-  --info: #8fc9ec;
-  --info-soft: rgb(143 201 236 / 16%);
-  --neutral-soft: rgb(223 227 232 / 8%);
+  --good: var(--ios-green);
+  --good-soft: rgb(48 209 88 / 18%);
+  --medium: var(--ios-orange);
+  --medium-soft: rgb(255 159 10 / 18%);
+  --bad: var(--ios-red);
+  --bad-soft: rgb(255 69 58 / 18%);
+  --danger: var(--ios-red);
+  --danger-soft: rgb(255 69 58 / 18%);
+  --info: var(--ios-blue);
+  --info-soft: rgb(10 132 255 / 18%);
+  --neutral-soft: rgb(118 118 128 / 18%);
 
-  --highlight: color-mix(in srgb, var(--md-primary), transparent 74%);
-  --scrim: rgb(0 0 0 / 48%);
+  --highlight: rgb(10 132 255 / 28%);
+  --scrim: rgb(0 0 0 / 52%);
 
-  --glass-bg: rgb(28 38 52 / 62%);
-  --glass-bg-strong: rgb(36 48 64 / 84%);
+  --glass-bg: rgb(28 28 30 / 72%);
+  --glass-bg-strong: rgb(44 44 46 / 88%);
   --glass-bg-soft: rgb(255 255 255 / 8%);
-  --glass-border: rgb(255 255 255 / 16%);
-  --glass-border-strong: rgb(255 255 255 / 28%);
-  --glass-shadow: 0 2px 8px rgb(0 0 0 / 20%), 0 8px 24px rgb(0 0 0 / 28%);
-  --glass-shadow-overlay: 0 12px 40px rgb(0 0 0 / 48%);
+  --glass-border: rgb(255 255 255 / 14%);
+  --glass-border-strong: rgb(255 255 255 / 22%);
+  --glass-shadow: 0 0 0 0.5px rgb(255 255 255 / 8%), 0 8px 28px rgb(0 0 0 / 45%);
+  --glass-shadow-overlay: 0 16px 48px rgb(0 0 0 / 55%);
+  --glass-highlight: inset 0 0.5px 0 rgb(255 255 255 / 18%);
 
   --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23838991' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 
-  --shadow-card: 0 1px 3px rgb(0 0 0 / 20%), 0 8px 24px rgb(0 0 0 / 26%);
-  --shadow-control: 0 1px 2px rgb(0 0 0 / 22%);
+  --shadow-card: 0 0 0 0.5px rgb(255 255 255 / 6%);
+  --shadow-control: 0 0.5px 1px rgb(0 0 0 / 40%);
 
   --scrollbar-thumb: var(--scrollbar-thumb-on-dark);
   --scrollbar-thumb-hover: var(--scrollbar-thumb-hover-on-dark);
@@ -295,19 +315,19 @@
 /* Backdrop-filter fallback: keep surfaces readable without blur support. */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   :root {
-    --glass-bg: rgb(248 250 252 / 96%);
-    --glass-bg-strong: rgb(250 252 254 / 99%);
-    --glass-bg-soft: rgb(255 255 255 / 80%);
-    --glass-border: rgb(27 38 52 / 8%);
-    --glass-border-strong: rgb(27 38 52 / 16%);
+    --glass-bg: rgb(255 255 255 / 96%);
+    --glass-bg-strong: #fff;
+    --glass-bg-soft: rgb(255 255 255 / 86%);
+    --glass-border: rgb(60 60 67 / 12%);
+    --glass-border-strong: rgb(60 60 67 / 20%);
   }
 
   [data-theme="dark"] {
-    --glass-bg: rgb(23 29 36 / 97%);
-    --glass-bg-strong: rgb(20 26 33 / 99%);
-    --glass-bg-soft: rgb(255 255 255 / 7%);
-    --glass-border: rgb(255 255 255 / 12%);
-    --glass-border-strong: rgb(255 255 255 / 20%);
+    --glass-bg: rgb(28 28 30 / 97%);
+    --glass-bg-strong: #1c1c1e;
+    --glass-bg-soft: rgb(44 44 46 / 92%);
+    --glass-border: rgb(255 255 255 / 10%);
+    --glass-border-strong: rgb(255 255 255 / 16%);
   }
 }
 
@@ -337,140 +357,128 @@
   --window-controls-text: var(--text);
 }
 
-/* Accent presets (M3-harmonized). */
-[data-accent="default"] {
-  --accent: #46647a;
-  --accent-strong: #3a5468;
-  --accent-soft: rgb(70 100 122 / 14%);
-  --on-accent: #fff;
-}
-
+/* Accent presets — Apple system colors. */
+[data-accent="default"],
 [data-accent="blue"] {
-  --accent: #3b7ddb;
-  --accent-strong: #2f66bd;
-  --accent-soft: rgb(59 125 219 / 15%);
+  --accent: var(--ios-blue);
+  --accent-strong: color-mix(in srgb, var(--ios-blue), #000 12%);
+  --accent-soft: color-mix(in srgb, var(--ios-blue), transparent 88%);
   --on-accent: #fff;
 }
 
 [data-accent="purple"] {
-  --accent: #8a63c7;
-  --accent-strong: #6f48ab;
-  --accent-soft: rgb(138 99 199 / 15%);
+  --accent: var(--ios-purple);
+  --accent-strong: color-mix(in srgb, var(--ios-purple), #000 10%);
+  --accent-soft: color-mix(in srgb, var(--ios-purple), transparent 86%);
   --on-accent: #fff;
 }
 
 [data-accent="pink"] {
-  --accent: #e2559e;
-  --accent-strong: #c53682;
-  --accent-soft: rgb(226 85 158 / 15%);
+  --accent: var(--ios-pink);
+  --accent-strong: color-mix(in srgb, var(--ios-pink), #000 8%);
+  --accent-soft: color-mix(in srgb, var(--ios-pink), transparent 86%);
   --on-accent: #fff;
 }
 
 [data-accent="red"] {
-  --accent: #d64545;
-  --accent-strong: #b32f2f;
-  --accent-soft: rgb(214 69 69 / 14%);
+  --accent: var(--ios-red);
+  --accent-strong: color-mix(in srgb, var(--ios-red), #000 8%);
+  --accent-soft: color-mix(in srgb, var(--ios-red), transparent 86%);
   --on-accent: #fff;
 }
 
 [data-accent="orange"] {
-  --accent: #e07b2a;
-  --accent-strong: #bd6219;
-  --accent-soft: rgb(224 123 42 / 16%);
+  --accent: var(--ios-orange);
+  --accent-strong: color-mix(in srgb, var(--ios-orange), #000 10%);
+  --accent-soft: color-mix(in srgb, var(--ios-orange), transparent 86%);
   --on-accent: #fff;
 }
 
 [data-accent="yellow"] {
-  --accent: #c9960c;
-  --accent-strong: #a67a05;
-  --accent-soft: rgb(201 150 12 / 17%);
-  --on-accent: #1a1a1a;
+  --accent: var(--ios-yellow);
+  --accent-strong: color-mix(in srgb, var(--ios-yellow), #000 12%);
+  --accent-soft: color-mix(in srgb, var(--ios-yellow), transparent 82%);
+  --on-accent: #1c1c1e;
 }
 
 [data-accent="green"] {
-  --accent: #3fa06b;
-  --accent-strong: #2e8455;
-  --accent-soft: rgb(63 160 107 / 16%);
+  --accent: var(--ios-green);
+  --accent-strong: color-mix(in srgb, var(--ios-green), #000 12%);
+  --accent-soft: color-mix(in srgb, var(--ios-green), transparent 86%);
   --on-accent: #fff;
 }
 
 [data-accent="graphite"] {
-  --accent: #6e6e76;
-  --accent-strong: #56565e;
-  --accent-soft: rgb(110 110 118 / 15%);
+  --accent: var(--ios-gray);
+  --accent-strong: var(--ios-gray-deep);
+  --accent-soft: rgb(142 142 147 / 16%);
   --on-accent: #fff;
 }
 
 [data-theme="dark"][data-accent="default"],
-[data-theme="dark"] [data-accent="default"] {
-  --accent: #b4cbe0;
-  --accent-strong: #cfe2f2;
-  --accent-soft: rgb(180 203 224 / 16%);
-  --on-accent: #1a3345;
-}
-
+[data-theme="dark"] [data-accent="default"],
 [data-theme="dark"][data-accent="blue"],
 [data-theme="dark"] [data-accent="blue"] {
-  --accent: #8fc1f5;
-  --accent-strong: #b0d3fa;
-  --accent-soft: rgb(143 193 245 / 18%);
-  --on-accent: #0f2a44;
+  --accent: var(--ios-blue);
+  --accent-strong: #409cff;
+  --accent-soft: rgb(10 132 255 / 22%);
+  --on-accent: #fff;
 }
 
 [data-theme="dark"][data-accent="purple"],
 [data-theme="dark"] [data-accent="purple"] {
-  --accent: #c5a8f0;
-  --accent-strong: #d8c2f5;
-  --accent-soft: rgb(197 168 240 / 18%);
-  --on-accent: #31165c;
+  --accent: var(--ios-purple);
+  --accent-strong: #d08fff;
+  --accent-soft: rgb(191 90 242 / 22%);
+  --on-accent: #fff;
 }
 
 [data-theme="dark"][data-accent="pink"],
 [data-theme="dark"] [data-accent="pink"] {
-  --accent: #f2a0cb;
-  --accent-strong: #f6bcd9;
-  --accent-soft: rgb(242 160 203 / 18%);
-  --on-accent: #591d3d;
+  --accent: var(--ios-pink);
+  --accent-strong: #ff6482;
+  --accent-soft: rgb(255 55 95 / 22%);
+  --on-accent: #fff;
 }
 
 [data-theme="dark"][data-accent="red"],
 [data-theme="dark"] [data-accent="red"] {
-  --accent: #f39a9a;
-  --accent-strong: #f7b8b8;
-  --accent-soft: rgb(243 154 154 / 18%);
-  --on-accent: #5c1212;
+  --accent: var(--ios-red);
+  --accent-strong: #ff6961;
+  --accent-soft: rgb(255 69 58 / 22%);
+  --on-accent: #fff;
 }
 
 [data-theme="dark"][data-accent="orange"],
 [data-theme="dark"] [data-accent="orange"] {
-  --accent: #f2b179;
-  --accent-strong: #f6c79d;
-  --accent-soft: rgb(242 177 121 / 18%);
-  --on-accent: #5c2c08;
+  --accent: var(--ios-orange);
+  --accent-strong: #ffb340;
+  --accent-soft: rgb(255 159 10 / 22%);
+  --on-accent: #1c1c1e;
 }
 
 [data-theme="dark"][data-accent="yellow"],
 [data-theme="dark"] [data-accent="yellow"] {
-  --accent: #e8c96a;
-  --accent-strong: #efd992;
-  --accent-soft: rgb(232 201 106 / 18%);
-  --on-accent: #3a2e04;
+  --accent: var(--ios-yellow);
+  --accent-strong: #ffe03d;
+  --accent-soft: rgb(255 214 10 / 22%);
+  --on-accent: #1c1c1e;
 }
 
 [data-theme="dark"][data-accent="green"],
 [data-theme="dark"] [data-accent="green"] {
-  --accent: #8fd4ae;
-  --accent-strong: #aee2c7;
-  --accent-soft: rgb(143 212 174 / 18%);
-  --on-accent: #0d3a23;
+  --accent: var(--ios-green);
+  --accent-strong: #64de7a;
+  --accent-soft: rgb(48 209 88 / 22%);
+  --on-accent: #1c1c1e;
 }
 
 [data-theme="dark"][data-accent="graphite"],
 [data-theme="dark"] [data-accent="graphite"] {
-  --accent: #a8a8b0;
-  --accent-strong: #c2c2c9;
-  --accent-soft: rgb(168 168 176 / 18%);
-  --on-accent: #27272d;
+  --accent: #98989d;
+  --accent-strong: #c7c7cc;
+  --accent-soft: rgb(152 152 157 / 22%);
+  --on-accent: #1c1c1e;
 }
 
 [data-accent="custom"] {
@@ -502,7 +510,7 @@ html, body {
 }
 
 html {
-  background: var(--md-surface);
+  background: var(--bg);
 
   /* Android Chrome paints the tap flash as a rectangle that ignores
      border-radius, squaring off rounded controls on press; turn it off and
@@ -519,14 +527,10 @@ body {
   margin: 0;
   font-family: var(--font-sans);
   font-size: var(--text-md);
-  line-height: 1.5;
+  line-height: 1.47;
   color: var(--text);
-  background-color: var(--md-surface);
-  background-image:
-    radial-gradient(900px 600px at 0% 0%, rgb(96 168 255 / 48%) 0%, transparent 55%),
-    radial-gradient(700px 500px at 100% 0%, rgb(196 140 255 / 40%) 0%, transparent 50%),
-    radial-gradient(600px 500px at 50% 110%, rgb(80 210 160 / 34%) 0%, transparent 55%);
-  background-attachment: fixed;
+  letter-spacing: -0.015em;
+  background: var(--bg);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -595,31 +599,21 @@ a:hover {
 }
 
 @keyframes page-in {
-  0% {
+  from {
     opacity: 0;
-    transform: translateY(16px) scale(0.985);
-  }
-
-  60% {
-    opacity: 1;
-    transform: translateY(-2px) scale(0.998);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(8px);
   }
 }
 
 @keyframes nav-pop {
   from {
-    transform: scale(0.96);
+    opacity: 0.7;
   }
 }
 
 @keyframes icon-pop {
   from {
-    transform: scale(0.72) rotate(-6deg);
+    transform: scale(0.92);
   }
 }
 

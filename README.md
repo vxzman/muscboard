@@ -19,22 +19,18 @@ by the original authors.
 
 ## Customizations
 
-- Glassmorphism redesign: stronger frosted-glass blur, improved contrast
-  between elements and background, glass panels with layered depth.
-- iOS-style colorful theme: gradient buttons, badges, segmented controls,
-  speed-test / expand / menu / pause buttons, and icon chips tinted per
-  feature (green upload, blue download, orange speed test, etc.).
-- A pure-CSS hand-drawn cardboard-box logo replaces the original "S" mark
+- Apple HIG / Liquid Glass restyle: grouped `#F2F2F7` / `#000` canvas,
+  opaque content cards, and translucent glass reserved for the sidebar,
+  menus and dialogs (not the content layer).
+- System Blue as the default accent; Settings-style solid icon tiles
+  (upload green, download blue, speed-test orange) instead of candy
+  gradients. Switches, segmented controls and capsules follow iOS.
+- A pure-CSS isometric cardboard-box logo replaces the original "S" mark
   in the sidebar, mobile top bar and setup screen.
-- macOS Dock-like hover magnification on overview cards and proxy group
-  nodes, with springy easing and pop-out (no clipping) behavior.
-- Larger sidebar navigation items and richer page-switch animations
-  (rise + settle, active item pop, icon pop).
-- Proxy "Groups" page renamed to "节点 / 節點" in Simplified/Traditional
-  Chinese so every sidebar entry is exactly two characters.
-- Overview dashboard-item button, connection/logs "three-dot" menus,
-  logs pause button and Settings → Preferences rows redrawn to match the
-  new visual language.
+- Floating inset sidebar with a single fill for the selected row; server
+  picker is a quiet account-style cell rather than a gradient CTA.
+- Large-title metrics on Overview; proxy "Groups" renamed to
+  "节点 / 節點" in Simplified/Traditional Chinese.
 
 ## Keeping in sync with upstream
 

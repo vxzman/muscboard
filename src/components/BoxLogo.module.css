@@ -6,8 +6,7 @@
   height: 38px;
   overflow: hidden;
   background: var(--ios-grad-brand);
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgb(0 122 255 / 28%);
+  border-radius: 9px;
 }
 
 .box {

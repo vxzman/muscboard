@@ -7,25 +7,24 @@
 
 ## 1. 设计语言与设计令牌
 
-风格定位：**毛玻璃（frosted glass）打底 + iOS 多彩渐变控件 + Dock 式弹性动效**。
-所有颜色/间距/圆角/模糊都在 `src/styles/globals.css` 定义，改 UI 先改令牌，不要到处写死。
+风格定位：**Apple HIG + Liquid Glass（iOS 26 / macOS Tahoe）**。
+玻璃只给功能层（侧栏、菜单、对话框）；内容层用不透明 grouped 表面。令牌全在 `src/styles/globals.css`。
 
 | 令牌 | 值 | 用途 |
 | --- | --- | --- |
-| `--glass-blur` | 18px | 全局毛玻璃模糊强度 |
-| `--glass-bg` / `--glass-bg-strong` | 深浅两套 | 玻璃底色（随主题切换） |
-| `--glass-border` | — | 玻璃描边 |
-| `--glass-saturate` | 170% | 玻璃饱和度 |
-| `--ios-blue/green/orange/purple/indigo/gray` | iOS 系统色 | 语义色 |
-| `--ios-grad-*` | `linear-gradient(...)` | 渐变（按钮/图标/徽章主用） |
-| `--ios-grad-brand` | 蓝→靛 | Logo / 主品牌渐变 |
-| `--z-sticky-header` | 10 | 组卡片 sticky 头部 |
-| `--z-hover-pop` | 5 | 悬停放大元素的层级（低于 sticky 头） |
+| `--bg` | `#F2F2F7` / `#000` | grouped 背景 |
+| `--card` | `#FFF` / `#1C1C1E` | 内容卡片、设置列表 |
+| `--accent` | 系统蓝 `#007AFF` / `#0A84FF` | 唯一强调色（可换预设） |
+| `--glass-blur` | 40px | 仅 chrome：侧栏 / 菜单 / 对话框 |
+| `--ios-blue/green/orange/...` | iOS 系统色 | 语义色与 Settings 图标块 |
+| `--ios-grad-*` | **纯色**（不是渐变） | 图标砖，映射到系统色 |
+| `--fill-tertiary` | 系统 tertiary fill | 选中行、灰按钮、输入底 |
 
-**主渐变配色约定**（按语义，别乱换）：
+**配色约定**：
 
-- 上传=绿、下载=蓝、状态/测速=橙、连接/组=紫/靛、设置=灰、品牌=蓝→靛
-- 徽章默认=蓝渐变白字；测速按钮=橙渐变胶囊；展开按钮=靛渐变胶囊
+- 一个强调色管按钮/选中/链接；图标砖可以按功能着色（上传绿、下载蓝、测速橙）
+- 测速按钮=系统橙实心胶囊；展开=灰色 fill；徽章=tertiary fill + secondary 字
+- 不要把 Liquid Glass 铺到卡片上（HIG：Don’t use Liquid Glass in the content layer）
 
 ---
 

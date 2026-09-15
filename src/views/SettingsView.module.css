@@ -1,10 +1,8 @@
 .settings-list {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  background: var(--card);
+  border: 0;
   border-radius: var(--radius-lg);
-  box-shadow: var(--glass-shadow);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  box-shadow: var(--shadow-card);
 }
 
 .settings-list > :global(.settings-row) {
@@ -19,13 +17,12 @@
 
 .settings-list > :global(.settings-row) > :global(.icon):first-child {
   flex-shrink: 0;
-  width: 30px !important;
-  height: 30px !important;
-  padding: var(--space-4);
+  width: 28px !important;
+  height: 28px !important;
+  padding: var(--space-6);
   color: var(--bright) !important;
   background: var(--ios-grad-blue);
-  border-radius: 10px;
-  box-shadow: 0 3px 8px rgb(13 27 42 / 14%);
+  border-radius: 7px;
 }
 
 .settings-list > :global(.settings-row) > :global(.icon[data-icon="tune"]) {

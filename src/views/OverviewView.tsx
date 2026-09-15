@@ -121,7 +121,7 @@ function OverviewCards(props: { config: DashboardCardsConfig; host: DesktopHost 
             <div className={styles.metricSub}>
               {trafficAvailable ? formatBytes(Number(current?.uplinkTotal ?? 0)) : "..."}
             </div>
-            <Sparkline data={status.data.uplinkHistory} />
+            <Sparkline data={status.data.uplinkHistory} color="var(--ios-green)" />
           </Card>
         );
       case "downloadTraffic":
@@ -133,7 +133,7 @@ function OverviewCards(props: { config: DashboardCardsConfig; host: DesktopHost 
             <div className={styles.metricSub}>
               {trafficAvailable ? formatBytes(Number(current?.downlinkTotal ?? 0)) : "..."}
             </div>
-            <Sparkline data={status.data.downlinkHistory} />
+            <Sparkline data={status.data.downlinkHistory} color="var(--ios-blue)" />
           </Card>
         );
       case "status":

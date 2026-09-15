@@ -8,19 +8,15 @@
   margin-bottom: var(--space-8);
   text-align: start;
   cursor: pointer;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  background: var(--card);
+  border: 0;
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-control);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  box-shadow: var(--shadow-card);
+  transition: background var(--transition-fast);
 }
 
 .connection-row:hover {
-  border-color: var(--glass-border-strong);
-  box-shadow: var(--glass-shadow);
-  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--card), var(--fill-tertiary) 55%);
 }
 
 .head {
