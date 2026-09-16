@@ -2,6 +2,7 @@ node_modules/
 dist/
 /ignore/
 /dash.tar.gz
+*.zip
 src/gen/
 src/lib/terminalThemes.generated.ts
 *.local
@@ -12,3 +13,4 @@ src/lib/terminalThemes.generated.ts
 run/*.log
 run/*.pid
 claude-resume.txt
+grok.txt

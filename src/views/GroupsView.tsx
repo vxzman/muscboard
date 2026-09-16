@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState, type PointerEvent } from "react";
 
 import { proxyDisplayType, urlTestDelayTone } from "../api/format";
 import { useStream } from "../api/stream";
@@ -102,16 +102,11 @@ function GroupCard(props: { group: Group }) {
         }
       >
         {expanded ? (
-          <div className={styles.groupItems}>
-            {group.items.map((item) => (
-              <GroupItemCard
-                key={item.tag}
-                item={item}
-                selected={item.tag === selected}
-                onSelect={() => selectItem(item)}
-              />
-            ))}
-          </div>
+          <GroupItemsDock
+            items={group.items}
+            selected={selected}
+            onSelect={selectItem}
+          />
         ) : (
           <div className={styles.groupDots}>
             {group.items.map((item) => {
@@ -131,7 +126,143 @@ function GroupCard(props: { group: Group }) {
   );
 }
 
-function GroupItemCard(props: { item: GroupItem; selected: boolean; onSelect: () => void }) {
+const DOCK_RADIUS_X = 380;
+const DOCK_RADIUS_Y = 85;
+const DOCK_PEAK_SCALE = 1.24;
+const DOCK_PEAK_LIFT = -14;
+
+type NodeCenter = { x: number; y: number };
+
+function dockEnabled(): boolean {
+  return typeof window !== "undefined" && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function measureDockCenters(grid: HTMLElement): Map<string, NodeCenter> {
+  const centers = new Map<string, NodeCenter>();
+  const nodes = grid.querySelectorAll<HTMLElement>("[data-node]");
+  nodes.forEach((node) => {
+    const tag = node.dataset.node;
+    if (!tag) {
+      return;
+    }
+    // offsetLeft / offsetTop are relative to grid (position: relative)
+    // and completely immune to any active CSS transforms.
+    centers.set(tag, {
+      x: node.offsetLeft + node.offsetWidth / 2,
+      y: node.offsetTop + node.offsetHeight / 2,
+    });
+  });
+  return centers;
+}
+
+function GroupItemsDock(props: {
+  items: GroupItem[];
+  selected: string;
+  onSelect: (item: GroupItem) => void;
+}) {
+  const gridRef = useRef<HTMLDivElement>(null);
+  const centersRef = useRef<Map<string, NodeCenter>>(new Map());
+  const [magnify, setMagnify] = useState<Record<string, number>>({});
+  const [docking, setDocking] = useState(false);
+  const [pressed, setPressed] = useState<string | null>(null);
+  const rafRef = useRef(0);
+  const pendingCursor = useRef<{ clientX: number; clientY: number } | null>(null);
+
+  const applyCursor = () => {
+    const cursor = pendingCursor.current;
+    if (!cursor || !gridRef.current) {
+      setMagnify({});
+      return;
+    }
+    const gRect = gridRef.current.getBoundingClientRect();
+    const relX = cursor.clientX - gRect.left;
+    const relY = cursor.clientY - gRect.top;
+
+    const next: Record<string, number> = {};
+    centersRef.current.forEach((center, tag) => {
+      const dx = Math.abs(relX - center.x);
+      const dy = Math.abs(relY - center.y);
+      const dNorm = Math.hypot(dx / DOCK_RADIUS_X, dy / DOCK_RADIUS_Y);
+      if (dNorm < 1) {
+        const cos = Math.cos((dNorm * Math.PI) / 2);
+        const mag = cos * cos;
+        if (mag > 0.005) {
+          next[tag] = mag;
+        }
+      }
+    });
+    setMagnify(next);
+  };
+
+  const onPointerEnter = () => {
+    if (gridRef.current && dockEnabled()) {
+      centersRef.current = measureDockCenters(gridRef.current);
+      setDocking(true);
+    }
+  };
+
+  const onPointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    if (!dockEnabled()) {
+      return;
+    }
+    if (centersRef.current.size === 0 && gridRef.current) {
+      centersRef.current = measureDockCenters(gridRef.current);
+    }
+    if (!docking) {
+      setDocking(true);
+    }
+    pendingCursor.current = { clientX: event.clientX, clientY: event.clientY };
+    if (rafRef.current !== 0) {
+      return;
+    }
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = 0;
+      applyCursor();
+    });
+  };
+
+  const onPointerLeave = () => {
+    if (rafRef.current !== 0) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = 0;
+    }
+    pendingCursor.current = null;
+    setMagnify({});
+    setDocking(false);
+    setPressed(null);
+  };
+
+  return (
+    <div
+      ref={gridRef}
+      className={cx(styles.groupItems, docking && styles.docking)}
+      onPointerEnter={onPointerEnter}
+      onPointerMove={onPointerMove}
+      onPointerLeave={onPointerLeave}
+    >
+      {props.items.map((item) => (
+        <GroupItemCard
+          key={item.tag}
+          item={item}
+          selected={item.tag === props.selected}
+          pressed={pressed === item.tag}
+          magnitude={magnify[item.tag] ?? 0}
+          onSelect={() => props.onSelect(item)}
+          onPressChange={(isPressed) => setPressed(isPressed ? item.tag : null)}
+        />
+      ))}
+    </div>
+  );
+}
+
+function GroupItemCard(props: {
+  item: GroupItem;
+  selected: boolean;
+  pressed: boolean;
+  magnitude: number;
+  onSelect: () => void;
+  onPressChange: (pressed: boolean) => void;
+}) {
   const api = useApi();
   const { t } = useI18n();
   const item = props.item;
@@ -141,15 +272,55 @@ function GroupItemCard(props: { item: GroupItem; selected: boolean; onSelect: ()
     </MenuItem>,
   );
 
+  let dockStyle: { transform?: string; zIndex?: number } | undefined;
+  const mag = props.magnitude;
+  if (mag > 0.005) {
+    const baseScale = 1 + (DOCK_PEAK_SCALE - 1) * mag;
+    const scale = props.pressed ? baseScale * 0.93 : baseScale;
+    const lift = DOCK_PEAK_LIFT * mag;
+    dockStyle = {
+      transform: `translateY(${lift}px) scale(${scale})`,
+      zIndex: Math.round(1 + mag * 30),
+    };
+  } else if (props.pressed) {
+    dockStyle = {
+      transform: "scale(0.94)",
+      zIndex: 2,
+    };
+  }
+
   return (
     <>
       <button
         type="button"
-        className={cx(styles.groupItem, props.selected && styles.selected)}
+        data-node={item.tag}
+        className={cx(
+          styles.groupItem,
+          props.selected && styles.selected,
+          props.pressed && styles.pressed,
+        )}
+        style={dockStyle}
         onClick={props.onSelect}
         {...menu.triggerProps}
+        onPointerDown={(event) => {
+          menu.triggerProps.onPointerDown?.(event);
+          if (event.button === 0) {
+            props.onPressChange(true);
+          }
+        }}
+        onPointerUp={() => {
+          menu.triggerProps.onPointerUp();
+          props.onPressChange(false);
+        }}
+        onPointerCancel={() => {
+          menu.triggerProps.onPointerCancel();
+          props.onPressChange(false);
+        }}
       >
-        <span className={styles.itemTag}>{item.tag}</span>
+        <span className={styles.itemTag}>
+          {props.selected && <span className={styles.selectedDot} />}
+          {item.tag}
+        </span>
         <span className={styles.itemMeta}>
           <span>{proxyDisplayType(item.type)}</span>
           {item.urlTestDelay > 0 && (
