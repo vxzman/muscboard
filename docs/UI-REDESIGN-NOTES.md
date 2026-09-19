@@ -200,12 +200,20 @@ localStorage.setItem("sing-box-dashboard.theme", "dark"); // 或 "light"
 - 节点多的情况：临时给 mock 加 30 个节点测网格换行 + 末行悬停，测完**还原**
 - 深色/浅色都要看；移动端顶栏用 390px 视口
 
-### 4.4 发布（已配置好 gh + SSH 443）
+### 4.4 发布（标签用日期，资源不带版本号）
 
 ```sh
+DATE=$(date +%Y-%m-%d)
 corepack pnpm build
-git tag -a vX.Y.Z -m "..." && git push github vX.Y.Z
-gh release create vX.Y.Z <zip> --title "muscboard vX.Y.Z" --notes-file RELEASE_NOTES.md --repo vxzman/muscboard
+(cd dist && zip -qr /tmp/muscboard.zip .)
+tar -czf /tmp/muscboard.tar.gz -C dist .
+git tag -a "$DATE" -m "muscboard $DATE"
+git push https://github.com/vxzman/muscboard.git HEAD:main
+git push https://github.com/vxzman/muscboard.git "$DATE"
+gh release create "$DATE" /tmp/muscboard.zip /tmp/muscboard.tar.gz \
+  --title "muscboard $DATE" \
+  --notes "Frontend build for muscboard $DATE." \
+  --repo vxzman/muscboard
 ```
 
 ---
