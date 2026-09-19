@@ -202,8 +202,15 @@ localStorage.setItem("sing-box-dashboard.theme", "dark"); // 或 "light"
 
 ### 4.4 发布（标签用日期，资源不带版本号）
 
+标签是 `YYYYMMDD`，同一天再发就加序号：`20260919`、`202609192`、`202609193`。附件始终叫 `muscboard.zip` / `muscboard.tar.gz`。
+
 ```sh
-DATE=$(date +%Y-%m-%d)
+DATE=$(date +%Y%m%d)
+if git rev-parse -q --verify "refs/tags/$DATE" >/dev/null; then
+  n=2
+  while git rev-parse -q --verify "refs/tags/${DATE}$n" >/dev/null; do n=$((n + 1)); done
+  DATE="${DATE}$n"
+fi
 corepack pnpm build
 (cd dist && zip -qr /tmp/muscboard.zip .)
 tar -czf /tmp/muscboard.tar.gz -C dist .
