@@ -415,6 +415,8 @@ export class DaemonApi {
     this.outbounds.reconnectNow();
     this.tailscale.reconnectNow();
     this.usbip.reconnectNow();
+    this.openConnect.reconnectNow();
+    this.openVPN.reconnectNow();
   }
 
   async urlTest(outboundTag: string): Promise<void> {

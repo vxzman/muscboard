@@ -167,9 +167,13 @@ export function ConnectionsView() {
           {t("Connection tracking requires the Clash API to be configured in the running instance.")}
         </div>
       )}
-      {rows.slice(0, 500).map((row) => (
-        <ConnectionRowView key={row.connection.id} row={row} onOpen={setDetailId} />
-      ))}
+      {rows.length > 0 && (
+        <div className={styles.connectionList}>
+          {rows.slice(0, 500).map((row) => (
+            <ConnectionRowView key={row.connection.id} row={row} onOpen={setDetailId} />
+          ))}
+        </div>
+      )}
       {rows.length > 500 && (
         <div className="hint" style={{ textAlign: "center", padding: 8 }}>
           {t("Showing first {limit} of {count} connections", { limit: 500, count: rows.length })}

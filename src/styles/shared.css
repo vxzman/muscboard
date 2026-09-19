@@ -1088,6 +1088,7 @@ button.select:disabled {
   position: relative;
   display: flex;
   align-items: center;
+  max-width: 1120px;
 }
 
 .search-input .icon {
@@ -1099,6 +1100,11 @@ button.select:disabled {
 
 .search-input input {
   padding-inline-start: var(--space-32);
+  background: var(--glass-bg);
+  border: 0.5px solid var(--glass-border);
+  box-shadow: var(--glass-highlight);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
 }
 
 .secret-input {

@@ -38,8 +38,8 @@ function useLogBackground(): Rgb {
 }
 
 function resolveBackground(): Rgb {
-  const value = getComputedStyle(document.documentElement).getPropertyValue("--card");
-  return parseCssColor(value) ?? [255, 255, 255];
+  const value = getComputedStyle(document.documentElement).getPropertyValue("--terminal-bg");
+  return parseCssColor(value) ?? [28, 28, 30];
 }
 
 function logFileName(): string {

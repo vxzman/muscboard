@@ -162,43 +162,71 @@ function GroupItemsDock(props: {
 }) {
   const gridRef = useRef<HTMLDivElement>(null);
   const centersRef = useRef<Map<string, NodeCenter>>(new Map());
-  const [magnify, setMagnify] = useState<Record<string, number>>({});
-  const [docking, setDocking] = useState(false);
-  const [pressed, setPressed] = useState<string | null>(null);
+  const pressedRef = useRef<string | null>(null);
   const rafRef = useRef(0);
   const pendingCursor = useRef<{ clientX: number; clientY: number } | null>(null);
 
   const applyCursor = () => {
-    const cursor = pendingCursor.current;
-    if (!cursor || !gridRef.current) {
-      setMagnify({});
+    const grid = gridRef.current;
+    if (!grid) {
       return;
     }
-    const gRect = gridRef.current.getBoundingClientRect();
+    const nodes = grid.querySelectorAll<HTMLElement>("[data-node]");
+    const cursor = pendingCursor.current;
+    if (!cursor) {
+      nodes.forEach((node) => {
+        node.style.transform = "";
+        node.style.zIndex = "";
+      });
+      return;
+    }
+    const gRect = grid.getBoundingClientRect();
     const relX = cursor.clientX - gRect.left;
     const relY = cursor.clientY - gRect.top;
-
-    const next: Record<string, number> = {};
-    centersRef.current.forEach((center, tag) => {
-      const dx = Math.abs(relX - center.x);
-      const dy = Math.abs(relY - center.y);
-      const dNorm = Math.hypot(dx / DOCK_RADIUS_X, dy / DOCK_RADIUS_Y);
+    const pressed = pressedRef.current;
+    nodes.forEach((node) => {
+      const tag = node.dataset.node;
+      if (!tag) {
+        return;
+      }
+      const center = centersRef.current.get(tag);
+      if (!center) {
+        node.style.transform = "";
+        node.style.zIndex = "";
+        return;
+      }
+      const dNorm = Math.hypot(
+        Math.abs(relX - center.x) / DOCK_RADIUS_X,
+        Math.abs(relY - center.y) / DOCK_RADIUS_Y,
+      );
+      let mag = 0;
       if (dNorm < 1) {
         const cos = Math.cos((dNorm * Math.PI) / 2);
-        const mag = cos * cos;
-        if (mag > 0.005) {
-          next[tag] = mag;
-        }
+        mag = cos * cos;
+      }
+      if (mag > 0.005) {
+        const baseScale = 1 + (DOCK_PEAK_SCALE - 1) * mag;
+        const scale = pressed === tag ? baseScale * 0.93 : baseScale;
+        node.style.transform = `translateY(${DOCK_PEAK_LIFT * mag}px) scale(${scale})`;
+        node.style.zIndex = String(Math.round(1 + mag * 30));
+      } else if (pressed === tag) {
+        node.style.transform = "scale(0.94)";
+        node.style.zIndex = "2";
+      } else {
+        node.style.transform = "";
+        node.style.zIndex = "";
       }
     });
-    setMagnify(next);
   };
 
-  const onPointerEnter = () => {
-    if (gridRef.current && dockEnabled()) {
-      centersRef.current = measureDockCenters(gridRef.current);
-      setDocking(true);
+  const onPointerEnter = (event: PointerEvent<HTMLDivElement>) => {
+    if (!gridRef.current || !dockEnabled()) {
+      return;
     }
+    centersRef.current = measureDockCenters(gridRef.current);
+    gridRef.current.classList.add(styles.docking);
+    pendingCursor.current = { clientX: event.clientX, clientY: event.clientY };
+    applyCursor();
   };
 
   const onPointerMove = (event: PointerEvent<HTMLDivElement>) => {
@@ -207,9 +235,7 @@ function GroupItemsDock(props: {
     }
     if (centersRef.current.size === 0 && gridRef.current) {
       centersRef.current = measureDockCenters(gridRef.current);
-    }
-    if (!docking) {
-      setDocking(true);
+      gridRef.current.classList.add(styles.docking);
     }
     pendingCursor.current = { clientX: event.clientX, clientY: event.clientY };
     if (rafRef.current !== 0) {
@@ -227,15 +253,15 @@ function GroupItemsDock(props: {
       rafRef.current = 0;
     }
     pendingCursor.current = null;
-    setMagnify({});
-    setDocking(false);
-    setPressed(null);
+    pressedRef.current = null;
+    gridRef.current?.classList.remove(styles.docking);
+    applyCursor();
   };
 
   return (
     <div
       ref={gridRef}
-      className={cx(styles.groupItems, docking && styles.docking)}
+      className={styles.groupItems}
       onPointerEnter={onPointerEnter}
       onPointerMove={onPointerMove}
       onPointerLeave={onPointerLeave}
@@ -245,10 +271,15 @@ function GroupItemsDock(props: {
           key={item.tag}
           item={item}
           selected={item.tag === props.selected}
-          pressed={pressed === item.tag}
-          magnitude={magnify[item.tag] ?? 0}
           onSelect={() => props.onSelect(item)}
-          onPressChange={(isPressed) => setPressed(isPressed ? item.tag : null)}
+          onPressChange={(isPressed) => {
+            pressedRef.current = isPressed ? item.tag : null;
+            const node = gridRef.current?.querySelector<HTMLElement>(
+              `[data-node="${CSS.escape(item.tag)}"]`,
+            );
+            node?.classList.toggle(styles.pressed, isPressed);
+            applyCursor();
+          }}
         />
       ))}
     </div>
@@ -258,8 +289,6 @@ function GroupItemsDock(props: {
 function GroupItemCard(props: {
   item: GroupItem;
   selected: boolean;
-  pressed: boolean;
-  magnitude: number;
   onSelect: () => void;
   onPressChange: (pressed: boolean) => void;
 }) {
@@ -272,34 +301,12 @@ function GroupItemCard(props: {
     </MenuItem>,
   );
 
-  let dockStyle: { transform?: string; zIndex?: number } | undefined;
-  const mag = props.magnitude;
-  if (mag > 0.005) {
-    const baseScale = 1 + (DOCK_PEAK_SCALE - 1) * mag;
-    const scale = props.pressed ? baseScale * 0.93 : baseScale;
-    const lift = DOCK_PEAK_LIFT * mag;
-    dockStyle = {
-      transform: `translateY(${lift}px) scale(${scale})`,
-      zIndex: Math.round(1 + mag * 30),
-    };
-  } else if (props.pressed) {
-    dockStyle = {
-      transform: "scale(0.94)",
-      zIndex: 2,
-    };
-  }
-
   return (
     <>
       <button
         type="button"
         data-node={item.tag}
-        className={cx(
-          styles.groupItem,
-          props.selected && styles.selected,
-          props.pressed && styles.pressed,
-        )}
-        style={dockStyle}
+        className={cx(styles.groupItem, props.selected && styles.selected)}
         onClick={props.onSelect}
         {...menu.triggerProps}
         onPointerDown={(event) => {

@@ -114,26 +114,30 @@ function OverviewCards(props: { config: DashboardCardsConfig; host: DesktopHost 
     switch (card) {
       case "uploadTraffic":
         return (
-          <Card key={card} icon="upload" title={t("Upload")}>
+          <Card key={card} icon="upload" title={t("Upload")} className={styles.trafficCard}>
             <div className={styles.metric}>
               {trafficAvailable ? `${formatBytes(Number(current?.uplink ?? 0))}/s` : "..."}
             </div>
             <div className={styles.metricSub}>
               {trafficAvailable ? formatBytes(Number(current?.uplinkTotal ?? 0)) : "..."}
             </div>
-            <Sparkline data={status.data.uplinkHistory} color="var(--ios-green)" />
+            <div className={styles.sparkWrap} aria-hidden>
+              <Sparkline data={status.data.uplinkHistory} color="var(--ios-green)" height={96} />
+            </div>
           </Card>
         );
       case "downloadTraffic":
         return (
-          <Card key={card} icon="download" title={t("Download")}>
+          <Card key={card} icon="download" title={t("Download")} className={styles.trafficCard}>
             <div className={styles.metric}>
               {trafficAvailable ? `${formatBytes(Number(current?.downlink ?? 0))}/s` : "..."}
             </div>
             <div className={styles.metricSub}>
               {trafficAvailable ? formatBytes(Number(current?.downlinkTotal ?? 0)) : "..."}
             </div>
-            <Sparkline data={status.data.downlinkHistory} color="var(--ios-blue)" />
+            <div className={styles.sparkWrap} aria-hidden>
+              <Sparkline data={status.data.downlinkHistory} color="var(--ios-blue)" height={96} />
+            </div>
           </Card>
         );
       case "status":
@@ -160,7 +164,7 @@ function OverviewCards(props: { config: DashboardCardsConfig; host: DesktopHost 
           return null;
         }
         return (
-          <Card key={card} icon="route" title={t("Mode")} wide>
+          <Card key={card} icon="route" title={t("Mode")} wide className={styles.modeCard}>
             <AdaptiveSegmented
               options={modeList.map((mode) => ({ value: mode, label: mode }))}
               value={currentMode}

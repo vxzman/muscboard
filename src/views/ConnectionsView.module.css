@@ -1,29 +1,37 @@
+.connection-list {
+  max-width: 1120px;
+  overflow: hidden;
+  background: var(--glass-bg);
+  border: 0.5px solid var(--glass-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--glass-highlight), var(--glass-shadow);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+}
+
 .connection-row {
   composes: text-mono from global;
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
   width: 100%;
-  padding: var(--space-10) var(--space-14);
-  margin-bottom: var(--space-8);
+  padding: var(--space-12) var(--space-16);
   text-align: start;
   cursor: pointer;
-  background: var(--glass-bg);
-  border: 0.5px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--glass-highlight), var(--glass-shadow);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  transition:
-    background 0.22s ease,
-    transform 0.28s var(--ease-out),
-    box-shadow 0.28s var(--ease-out);
+  background: transparent;
+  border: 0;
+  border-bottom: 0.5px solid var(--border);
+  border-radius: 0;
+  box-shadow: none;
+  transition: background var(--transition-fast);
+}
+
+.connection-row:last-child {
+  border-bottom: 0;
 }
 
 .connection-row:hover {
-  background: var(--glass-bg-strong);
-  box-shadow: var(--glass-highlight), var(--glass-shadow-hover);
-  transform: translateY(-2px);
+  background: var(--fill-tertiary);
 }
 
 .head {

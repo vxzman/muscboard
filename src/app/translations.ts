@@ -118,7 +118,7 @@ export const TRANSLATIONS = {
   "Status": { "zh-Hans": "状态", "zh-Hant": "狀態", "fa": "وضعیت", "ru": "Состояние" },
   "Uptime": { "zh-Hans": "运行时间", "zh-Hant": "運行時間", "fa": "مدت اجرا", "ru": "Время работы" },
   "Memory": { "zh-Hans": "内存", "zh-Hant": "內存", "fa": "حافظه", "ru": "Память" },
-  "Goroutines": { "zh-Hans": "Goroutines", "zh-Hant": "Goroutines", "fa": "Goroutines", "ru": "Goroutines" },
+  "Goroutines": { "zh-Hans": "协程", "zh-Hant": "協程", "fa": "Goroutineها", "ru": "Горутины" },
   "Inbound": { "zh-Hans": "入站", "zh-Hant": "入站", "fa": "ورودی", "ru": "Входящий" },
   "Outbound": { "zh-Hans": "出站", "zh-Hant": "出站", "fa": "خروجی", "ru": "Исходящий" },
   "Mode": { "zh-Hans": "模式", "zh-Hant": "模式", "fa": "حالت", "ru": "Режим" },
