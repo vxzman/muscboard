@@ -136,6 +136,7 @@
   --glass-shadow-overlay: 0 16px 48px rgb(20 32 54 / 22%);
   --glass-highlight: inset 0 1px 0 rgb(255 255 255 / 78%);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-apple: cubic-bezier(0.32, 0.72, 0, 1);
 
   --scrollbar-size: 6px;
   --scrollbar-thumb: rgb(60 60 67 / 28%);
@@ -198,6 +199,9 @@
   --space-56: 56px;
   --space-64: 64px;
 
+  --z-page-leave: 1;
+  --z-page-enter: 2;
+  --z-page-leave-pop: 3;
   --z-sticky-header: 10;
   --z-hover-pop: 5;
   --z-menu: 100;
@@ -633,19 +637,19 @@ a:hover {
 @keyframes page-in {
   from {
     opacity: 0;
-    transform: translateY(12px) scale(0.992);
+    transform: translate3d(0, 10px, 0);
   }
 }
 
 @keyframes nav-pop {
   from {
-    transform: scale(0.98);
+    transform: scale(0.985);
   }
 }
 
 @keyframes icon-pop {
   from {
-    transform: scale(0.88);
+    transform: scale(0.92);
   }
 }
 

@@ -100,7 +100,7 @@
   font-weight: var(--weight-semibold);
   color: var(--text);
   background: var(--fill-tertiary);
-  animation: nav-pop 0.28s var(--ease-out);
+  animation: nav-pop 0.4s var(--ease-apple);
 }
 
 .nav-item :global(.icon) {
@@ -115,7 +115,7 @@
 }
 
 .nav-item.active :global(.icon) {
-  animation: icon-pop 0.32s var(--ease-out);
+  animation: icon-pop 0.4s var(--ease-apple);
 }
 
 .nav-item:active {
@@ -211,11 +211,11 @@
 }
 
 .content {
+  position: relative;
   flex: 1;
   min-width: 0;
-  overflow-y: auto;
-  scrollbar-gutter: stable;
-  overscroll-behavior: none;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .connecting-view {

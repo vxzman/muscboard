@@ -1,0 +1,146 @@
+.stage {
+  position: absolute;
+  inset: 0;
+}
+
+.layer {
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  overscroll-behavior: none;
+}
+
+.leave {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-page-leave);
+  pointer-events: none;
+  animation: leave-cross 0.42s var(--ease-apple) both;
+}
+
+.enter {
+  position: relative;
+  z-index: var(--z-page-enter);
+  animation: enter-cross 0.52s var(--ease-apple) both;
+}
+
+.leave.push {
+  animation-name: leave-push;
+}
+
+.enter.push {
+  animation-name: enter-push;
+}
+
+.leave.pop {
+  z-index: var(--z-page-leave-pop);
+  animation-name: leave-pop;
+}
+
+.enter.pop {
+  animation-name: enter-pop;
+}
+
+:global([dir="rtl"]) .leave.push {
+  animation-name: leave-push-rtl;
+}
+
+:global([dir="rtl"]) .enter.push {
+  animation-name: enter-push-rtl;
+}
+
+:global([dir="rtl"]) .leave.pop {
+  animation-name: leave-pop-rtl;
+}
+
+:global([dir="rtl"]) .enter.pop {
+  animation-name: enter-pop-rtl;
+}
+
+@keyframes enter-cross {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+}
+
+@keyframes leave-cross {
+  to {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes enter-push {
+  from {
+    opacity: 0;
+    transform: translate3d(40px, 0, 0);
+  }
+}
+
+@keyframes leave-push {
+  to {
+    opacity: 0;
+    transform: translate3d(-16px, 0, 0);
+  }
+}
+
+@keyframes enter-pop {
+  from {
+    opacity: 0;
+    transform: translate3d(-16px, 0, 0);
+  }
+}
+
+@keyframes leave-pop {
+  to {
+    opacity: 0;
+    transform: translate3d(40px, 0, 0);
+  }
+}
+
+@keyframes enter-push-rtl {
+  from {
+    opacity: 0;
+    transform: translate3d(-40px, 0, 0);
+  }
+}
+
+@keyframes leave-push-rtl {
+  to {
+    opacity: 0;
+    transform: translate3d(16px, 0, 0);
+  }
+}
+
+@keyframes enter-pop-rtl {
+  from {
+    opacity: 0;
+    transform: translate3d(16px, 0, 0);
+  }
+}
+
+@keyframes leave-pop-rtl {
+  to {
+    opacity: 0;
+    transform: translate3d(-40px, 0, 0);
+  }
+}
+
+@keyframes fade-swap {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enter,
+  .leave {
+    animation: fade-swap 0.2s ease both;
+  }
+
+  .leave {
+    animation-direction: reverse;
+  }
+}

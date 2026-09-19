@@ -28,6 +28,7 @@ import {
   type ThemePreference,
 } from "./app/context";
 import { BoxLogo } from "./components/BoxLogo";
+import { PageTransition } from "./components/PageTransition";
 import {
   DesktopHostContext,
   DesktopLocalContext,
@@ -868,6 +869,7 @@ function ShellContent(props: ShellProps & { onRetry: () => void }) {
 
   const mainContent = (
     <main className={styles.content}>
+      <PageTransition routeKey={JSON.stringify(route)} depth={route.page.split("/").length}>
       {route.page === "overview" && <OverviewView />}
       {route.page === "groups" && <GroupsView />}
       {route.page === "connections" && <ConnectionsView />}
@@ -929,6 +931,7 @@ function ShellContent(props: ShellProps & { onRetry: () => void }) {
       {route.page === "settings/servers" && (
         <ServersView serversState={props.serversState} onServersChange={props.onServersChange} />
       )}
+      </PageTransition>
     </main>
   );
 

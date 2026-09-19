@@ -45,9 +45,8 @@
 
 ### 2.3 页面切换动画
 
-- `src/styles/globals.css` 的 `@keyframes page-in`：上移 16px + `scale(0.985)` + 两段式回弹
-- `src/styles/shared.css` 的 `.page` / `.page-full`：`0.36s cubic-bezier(0.22, 1, 0.36, 1)`
-- **注意：page-in 里不要加 `filter: blur()`**（见坑 4）
+- `PageTransition`：进出成对。侧栏平级用上移交叉淡入；进入子页 push、返回 pop（横向）。
+- 曲线 `--ease-apple: cubic-bezier(0.32, 0.72, 0, 1)`，进入 0.52s，离开 0.42s。不要加 `filter: blur()`。
 
 ### 2.4 节点页（GroupsView）
 
