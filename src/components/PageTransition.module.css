@@ -16,13 +16,13 @@
   inset: 0;
   z-index: var(--z-page-leave);
   pointer-events: none;
-  animation: leave-cross 0.42s var(--ease-apple) both;
+  animation: leave-cross var(--duration-page-leave) var(--ease-in) both;
 }
 
 .enter {
   position: relative;
   z-index: var(--z-page-enter);
-  animation: enter-cross 0.52s var(--ease-apple) both;
+  animation: enter-cross var(--duration-page) var(--ease-apple) both;
 }
 
 .leave.push {
@@ -59,85 +59,139 @@
 }
 
 @keyframes enter-cross {
-  from {
+  0% {
     opacity: 0;
-    transform: translate3d(0, 18px, 0);
+    transform: translate3d(0, 12px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes leave-cross {
-  to {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
     opacity: 0;
-    transform: translate3d(0, -10px, 0);
+    transform: translate3d(0, -8px, 0);
   }
 }
 
 @keyframes enter-push {
-  from {
+  0% {
     opacity: 0;
-    transform: translate3d(40px, 0, 0);
+    transform: translate3d(28px, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes leave-push {
-  to {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
     opacity: 0;
-    transform: translate3d(-16px, 0, 0);
+    transform: translate3d(-12px, 0, 0);
   }
 }
 
 @keyframes enter-pop {
-  from {
+  0% {
     opacity: 0;
-    transform: translate3d(-16px, 0, 0);
+    transform: translate3d(-12px, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes leave-pop {
-  to {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
     opacity: 0;
-    transform: translate3d(40px, 0, 0);
+    transform: translate3d(28px, 0, 0);
   }
 }
 
 @keyframes enter-push-rtl {
-  from {
+  0% {
     opacity: 0;
-    transform: translate3d(-40px, 0, 0);
+    transform: translate3d(-28px, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes leave-push-rtl {
-  to {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
     opacity: 0;
-    transform: translate3d(16px, 0, 0);
+    transform: translate3d(12px, 0, 0);
   }
 }
 
 @keyframes enter-pop-rtl {
-  from {
+  0% {
     opacity: 0;
-    transform: translate3d(16px, 0, 0);
+    transform: translate3d(12px, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes leave-pop-rtl {
-  to {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
     opacity: 0;
-    transform: translate3d(-40px, 0, 0);
+    transform: translate3d(-28px, 0, 0);
   }
 }
 
 @keyframes fade-swap {
-  from {
+  0% {
     opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .enter,
   .leave {
-    animation: fade-swap 0.2s ease both;
+    animation: fade-swap var(--duration-fast) var(--ease-apple) both;
   }
 
   .leave {

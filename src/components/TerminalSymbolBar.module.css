@@ -12,10 +12,11 @@
   padding-left: max(var(--space-10), env(safe-area-inset-left, 0px));
   overflow: auto hidden;
   scrollbar-width: none;
-  background: var(--glass-bg-strong);
+  background-color: var(--glass-bg-strong);
+  background-image: var(--glass-sheen);
   border-top: 1px solid var(--border);
-  -webkit-backdrop-filter: blur(28px) saturate(190%);
-  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: var(--glass-filter);
+  backdrop-filter: var(--glass-filter);
   -webkit-overflow-scrolling: touch;
 }
 
@@ -23,8 +24,8 @@
   position: fixed;
   right: 0;
   left: 0;
-  -webkit-backdrop-filter: blur(28px);
-  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: var(--glass-filter);
+  backdrop-filter: var(--glass-filter);
 }
 
 .terminal-symbol-bar::-webkit-scrollbar {

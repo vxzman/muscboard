@@ -1,11 +1,11 @@
 .file-list {
   overflow: hidden;
-  background: var(--glass-bg);
-  border: 0.5px solid var(--glass-border);
+  background-color: var(--material-bg);
+  border: 0.5px solid var(--material-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--glass-highlight), var(--glass-shadow);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  box-shadow: var(--material-highlight), var(--material-shadow);
+  -webkit-backdrop-filter: var(--material-filter);
+  backdrop-filter: var(--material-filter);
 }
 
 .file-item {

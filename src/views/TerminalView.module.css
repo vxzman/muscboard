@@ -62,10 +62,11 @@
   min-height: calc(var(--control-height) + 12px);
   padding: var(--space-6) var(--space-10);
   margin-bottom: 0;
-  background: var(--glass-bg-strong);
+  background-color: var(--glass-bg-strong);
+  background-image: var(--glass-sheen);
   border-bottom: 1px solid var(--glass-border);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: var(--glass-filter);
+  backdrop-filter: var(--glass-filter);
 }
 
 :global(.terminal-page .page-title) {

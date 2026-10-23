@@ -63,12 +63,12 @@
   --md-tertiary-container: #e6e6ff;
   --md-on-tertiary-container: #1c1c4d;
 
-  --md-surface: #e8edf5;
-  --md-surface-container-lowest: rgb(255 255 255 / 78%);
-  --md-surface-container-low: rgb(255 255 255 / 62%);
-  --md-surface-container: #e8edf5;
-  --md-surface-container-high: #e5e5ea;
-  --md-surface-container-highest: #d1d1d6;
+  --md-surface: #f5f5f7;
+  --md-surface-container-lowest: rgb(255 255 255 / 86%);
+  --md-surface-container-low: rgb(255 255 255 / 72%);
+  --md-surface-container: #f5f5f7;
+  --md-surface-container-high: #ebebed;
+  --md-surface-container-highest: #d2d2d7;
   --md-on-surface: #000;
   --md-on-surface-variant: rgb(60 60 67 / 68%);
   --md-outline: rgb(60 60 67 / 30%);
@@ -80,14 +80,14 @@
   --md-on-error-container: #5c0000;
 
   /* ---------- App semantic tokens ---------- */
-  --bg: #e8edf5;
-  --surface: rgb(255 255 255 / 72%);
-  --card: rgb(255 255 255 / 56%);
-  --inset: #dfe5ee;
-  --canvas-a: rgb(120 176 255 / 42%);
-  --canvas-b: rgb(186 160 255 / 30%);
-  --canvas-c: rgb(120 210 190 / 26%);
-  --noise-opacity: 0.045;
+  --bg: #f5f5f7;
+  --surface: rgb(255 255 255 / 78%);
+  --card: rgb(255 255 255 / 70%);
+  --inset: #ebebed;
+  --canvas-a: rgb(176 208 255 / 18%);
+  --canvas-b: rgb(214 196 255 / 12%);
+  --canvas-c: rgb(186 228 218 / 10%);
+  --noise-opacity: 0.02;
   --text: #000;
   --text-secondary: rgb(60 60 67 / 68%);
   --text-faint: rgb(60 60 67 / 36%);
@@ -123,20 +123,38 @@
   --bright: #fff;
   --terminal-bg: #1c1c1e;
 
-  /* Glass — used on both chrome and content; atmosphere behind it does the work */
-  --glass-bg: rgb(255 255 255 / 52%);
-  --glass-bg-strong: rgb(255 255 255 / 74%);
-  --glass-bg-soft: rgb(255 255 255 / 36%);
-  --glass-border: rgb(255 255 255 / 70%);
-  --glass-border-strong: rgb(255 255 255 / 88%);
-  --glass-blur: 28px;
-  --glass-saturate: 165%;
-  --glass-shadow: 0 1px 2px rgb(30 50 80 / 5%), 0 10px 28px rgb(30 50 80 / 10%);
-  --glass-shadow-hover: 0 4px 8px rgb(30 50 80 / 7%), 0 18px 40px rgb(30 50 80 / 14%);
-  --glass-shadow-overlay: 0 16px 48px rgb(20 32 54 / 22%);
-  --glass-highlight: inset 0 1px 0 rgb(255 255 255 / 78%);
+  /* Liquid Glass — chrome only (sidebar, menus, overlays). Thin lens, not frosted milk. */
+  --glass-bg: rgb(255 255 255 / 38%);
+  --glass-bg-strong: rgb(255 255 255 / 54%);
+  --glass-bg-soft: rgb(255 255 255 / 22%);
+  --glass-border: rgb(255 255 255 / 50%);
+  --glass-border-strong: rgb(255 255 255 / 68%);
+  --glass-blur: 16px;
+  --glass-saturate: 120%;
+  --glass-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  --glass-sheen: linear-gradient(165deg, rgb(255 255 255 / 42%) 0%, rgb(255 255 255 / 8%) 34%, transparent 68%);
+  --glass-highlight: inset 0 1px 0 rgb(255 255 255 / 72%), inset 0 -0.5px 0 rgb(255 255 255 / 14%);
+  --glass-shadow: 0 0 0 0.5px rgb(0 0 0 / 5%), 0 1px 2px rgb(0 0 0 / 4%), 0 10px 28px rgb(0 0 0 / 6%);
+  --glass-shadow-hover: 0 0 0 0.5px rgb(0 0 0 / 6%), 0 4px 12px rgb(0 0 0 / 6%), 0 16px 36px rgb(0 0 0 / 8%);
+  --glass-shadow-overlay: 0 0 0 0.5px rgb(0 0 0 / 8%), 0 18px 48px rgb(0 0 0 / 14%);
+
+  /* Standard material — content layer (cards, lists, logs). Quiet, readable. */
+  --material-bg: rgb(255 255 255 / 74%);
+  --material-bg-strong: rgb(255 255 255 / 88%);
+  --material-border: rgb(0 0 0 / 6%);
+  --material-blur: 10px;
+  --material-saturate: 108%;
+  --material-filter: blur(var(--material-blur)) saturate(var(--material-saturate));
+  --material-highlight: inset 0 1px 0 rgb(255 255 255 / 82%);
+  --material-shadow: 0 1px 2px rgb(0 0 0 / 3%), 0 6px 20px rgb(0 0 0 / 4%);
+
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-apple: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-in: cubic-bezier(0.32, 0, 0.67, 0);
+  --duration-fast: 0.18s;
+  --duration-medium: 0.28s;
+  --duration-page: 0.44s;
+  --duration-page-leave: 0.34s;
 
   --scrollbar-size: 6px;
   --scrollbar-thumb: rgb(60 60 67 / 28%);
@@ -147,21 +165,21 @@
   --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23757a82' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 
   /* ---------- Elevation & shape ---------- */
-  --shadow-card: var(--glass-shadow);
+  --shadow-card: var(--material-shadow);
   --shadow-control: 0 1px 2px rgb(30 50 80 / 6%);
   --shadow-overlay: var(--glass-shadow-overlay);
   --radius-xs: 6px;
   --radius-sm: 8px;
   --radius-md: 10px;
   --radius-control: 999px;
-  --radius-lg: 12px;
-  --radius-card: 16px;
-  --radius-xl: 22px;
+  --radius-lg: 14px;
+  --radius-card: 20px;
+  --radius-xl: 26px;
   --radius-pill: 999px;
   --control-height: 34px;
-  --sidebar-width: 220px;
-  --transition-fast: 0.15s ease;
-  --transition-medium: 0.22s ease;
+  --sidebar-width: 232px;
+  --transition-fast: var(--duration-fast) var(--ease-apple);
+  --transition-medium: var(--duration-medium) var(--ease-apple);
 
   --text-2xs: 11px;
   --text-xs: 12px;
@@ -170,9 +188,9 @@
   --text-md: 15px;
   --text-lg: 17px;
   --text-15: 15px;
-  --text-xl: 20px;
+  --text-xl: 21px;
   --text-2xl: 28px;
-  --text-3xl: 34px;
+  --text-3xl: 40px;
 
   --weight-normal: 400;
   --weight-medium: 510;
@@ -253,12 +271,12 @@
   --md-tertiary-container: #2c2c4d;
   --md-on-tertiary-container: #e6e6ff;
 
-  --md-surface: #0b0d12;
-  --md-surface-container-lowest: rgb(28 32 42 / 78%);
-  --md-surface-container-low: rgb(28 32 42 / 62%);
-  --md-surface-container: #141820;
-  --md-surface-container-high: #3a3a3c;
-  --md-surface-container-highest: #48484a;
+  --md-surface: #000;
+  --md-surface-container-lowest: rgb(28 28 30 / 86%);
+  --md-surface-container-low: rgb(28 28 30 / 72%);
+  --md-surface-container: #1d1d1f;
+  --md-surface-container-high: #2c2c2e;
+  --md-surface-container-highest: #3a3a3c;
   --md-on-surface: #fff;
   --md-on-surface-variant: rgb(235 235 245 / 60%);
   --md-outline: rgb(235 235 245 / 30%);
@@ -269,14 +287,14 @@
   --md-error-container: #5c0000;
   --md-on-error-container: #ffd4d1;
 
-  --bg: #0b0d12;
-  --surface: rgb(32 36 46 / 70%);
-  --card: rgb(32 36 46 / 52%);
-  --inset: #1c222c;
-  --canvas-a: rgb(50 120 255 / 28%);
-  --canvas-b: rgb(140 90 255 / 20%);
-  --canvas-c: rgb(40 180 160 / 16%);
-  --noise-opacity: 0.07;
+  --bg: #000;
+  --surface: rgb(28 28 30 / 78%);
+  --card: rgb(28 28 30 / 68%);
+  --inset: #1d1d1f;
+  --canvas-a: rgb(80 140 255 / 14%);
+  --canvas-b: rgb(150 110 255 / 10%);
+  --canvas-c: rgb(70 180 160 / 8%);
+  --noise-opacity: 0.035;
   --text: #fff;
   --text-secondary: rgb(235 235 245 / 60%);
   --text-faint: rgb(235 235 245 / 30%);
@@ -308,19 +326,26 @@
   --highlight: rgb(10 132 255 / 28%);
   --scrim: rgb(0 0 0 / 52%);
 
-  --glass-bg: rgb(28 32 42 / 52%);
-  --glass-bg-strong: rgb(40 46 58 / 72%);
+  --glass-bg: rgb(22 22 24 / 44%);
+  --glass-bg-strong: rgb(36 36 38 / 58%);
   --glass-bg-soft: rgb(255 255 255 / 6%);
-  --glass-border: rgb(255 255 255 / 12%);
-  --glass-border-strong: rgb(255 255 255 / 20%);
-  --glass-shadow: 0 1px 2px rgb(0 0 0 / 28%), 0 12px 32px rgb(0 0 0 / 36%);
-  --glass-shadow-hover: 0 6px 16px rgb(0 0 0 / 32%), 0 22px 48px rgb(0 0 0 / 44%);
-  --glass-shadow-overlay: 0 16px 48px rgb(0 0 0 / 55%);
-  --glass-highlight: inset 0 1px 0 rgb(255 255 255 / 14%);
+  --glass-border: rgb(255 255 255 / 14%);
+  --glass-border-strong: rgb(255 255 255 / 22%);
+  --glass-sheen: linear-gradient(165deg, rgb(255 255 255 / 14%) 0%, rgb(255 255 255 / 3%) 36%, transparent 70%);
+  --glass-highlight: inset 0 1px 0 rgb(255 255 255 / 16%), inset 0 -0.5px 0 rgb(255 255 255 / 4%);
+  --glass-shadow: 0 0 0 0.5px rgb(255 255 255 / 6%), 0 1px 2px rgb(0 0 0 / 40%), 0 12px 32px rgb(0 0 0 / 32%);
+  --glass-shadow-hover: 0 0 0 0.5px rgb(255 255 255 / 8%), 0 6px 16px rgb(0 0 0 / 36%), 0 20px 44px rgb(0 0 0 / 40%);
+  --glass-shadow-overlay: 0 0 0 0.5px rgb(255 255 255 / 8%), 0 18px 48px rgb(0 0 0 / 50%);
+
+  --material-bg: rgb(28 28 30 / 74%);
+  --material-bg-strong: rgb(44 44 46 / 86%);
+  --material-border: rgb(255 255 255 / 8%);
+  --material-highlight: inset 0 1px 0 rgb(255 255 255 / 10%);
+  --material-shadow: 0 1px 2px rgb(0 0 0 / 36%), 0 8px 24px rgb(0 0 0 / 24%);
 
   --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23838991' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 
-  --shadow-card: var(--glass-shadow);
+  --shadow-card: var(--material-shadow);
   --shadow-control: 0 1px 2px rgb(0 0 0 / 40%);
 
   --scrollbar-thumb: var(--scrollbar-thumb-on-dark);
@@ -330,19 +355,25 @@
 /* Backdrop-filter fallback: keep surfaces readable without blur support. */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   :root {
-    --glass-bg: rgb(255 255 255 / 96%);
+    --glass-bg: rgb(255 255 255 / 92%);
     --glass-bg-strong: #fff;
     --glass-bg-soft: rgb(255 255 255 / 86%);
     --glass-border: rgb(60 60 67 / 12%);
     --glass-border-strong: rgb(60 60 67 / 20%);
+    --material-bg: #fff;
+    --material-bg-strong: #fff;
+    --material-border: rgb(60 60 67 / 10%);
   }
 
   [data-theme="dark"] {
-    --glass-bg: rgb(28 28 30 / 97%);
+    --glass-bg: rgb(28 28 30 / 96%);
     --glass-bg-strong: #1c1c1e;
     --glass-bg-soft: rgb(44 44 46 / 92%);
     --glass-border: rgb(255 255 255 / 10%);
     --glass-border-strong: rgb(255 255 255 / 16%);
+    --material-bg: #1c1c1e;
+    --material-bg-strong: #2c2c2e;
+    --material-border: rgb(255 255 255 / 8%);
   }
 }
 
@@ -549,12 +580,12 @@ body {
   font-size: var(--text-md);
   line-height: 1.47;
   color: var(--text);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.022em;
   background-color: var(--bg);
   background-image:
-    radial-gradient(980px 720px at 0% -8%, var(--canvas-a) 0%, transparent 58%),
-    radial-gradient(860px 640px at 108% 4%, var(--canvas-b) 0%, transparent 54%),
-    radial-gradient(780px 600px at 48% 112%, var(--canvas-c) 0%, transparent 56%);
+    radial-gradient(1200px 860px at 6% -12%, var(--canvas-a) 0%, transparent 64%),
+    radial-gradient(1080px 780px at 104% -4%, var(--canvas-b) 0%, transparent 60%),
+    radial-gradient(960px 720px at 48% 114%, var(--canvas-c) 0%, transparent 62%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
 }
@@ -621,62 +652,84 @@ a:hover {
 }
 
 @keyframes menu-in {
-  from {
+  0% {
     opacity: 0;
-    transform: translateY(-3px);
+    transform: translate3d(0, -6px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes menu-in-up {
-  from {
+  0% {
     opacity: 0;
-    transform: translateY(3px);
+    transform: translate3d(0, 6px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes page-in {
-  from {
+  0% {
     opacity: 0;
-    transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 8px, 0);
   }
-}
 
-@keyframes nav-pop {
-  from {
-    transform: scale(0.985);
-  }
-}
-
-@keyframes icon-pop {
-  from {
-    transform: scale(0.92);
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes fade-in {
-  from {
+  0% {
     opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
 
 @keyframes slide-in {
-  from {
+  0% {
     opacity: 0;
-    transform: translateX(24px);
+    transform: translate3d(18px, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes slide-in-rtl {
-  from {
+  0% {
     opacity: 0;
-    transform: translateX(-24px);
+    transform: translate3d(-18px, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes dialog-in {
-  from {
+  0% {
     opacity: 0;
-    transform: scale(0.97);
+    transform: translate3d(0, 8px, 0) scale(0.98);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 

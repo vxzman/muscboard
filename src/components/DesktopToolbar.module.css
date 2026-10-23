@@ -6,10 +6,11 @@
   justify-content: space-between;
   height: 52px;
   padding: 0 var(--space-12);
-  background: var(--glass-bg-strong);
+  background-color: var(--glass-bg-strong);
+  background-image: var(--glass-sheen);
   border-bottom: 1px solid var(--glass-border);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: var(--glass-filter);
+  backdrop-filter: var(--glass-filter);
   -webkit-app-region: drag;
 }
 

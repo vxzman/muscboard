@@ -19,16 +19,15 @@ by the original authors.
 
 ## Customizations
 
-- Frosted-glass dashboard on a quiet atmospheric canvas: sidebar and
-  content cards share the same material, with page-in and hover lift
-  (no Dock magnification, no candy gradients).
-- System Blue as the default accent; Settings-style solid icon tiles
-  (upload green, download blue, speed-test orange) instead of candy
-  gradients. Switches, segmented controls and capsules follow iOS.
+- Liquid Glass chrome (sidebar, menus, overlays) on an apple.com canvas
+  (`#f5f5f7` / `#000`), with quieter content materials for cards and lists.
+- System Blue as the default accent; solid system-color icon tiles
+  (upload green, download blue, speed-test orange). Switches, segmented
+  controls and capsules follow iOS.
 - A pure-CSS isometric cardboard-box logo replaces the original "S" mark
   in the sidebar, mobile top bar and setup screen.
-- Floating inset sidebar with a single fill for the selected row; server
-  picker is a quiet account-style cell rather than a gradient CTA.
+- Floating inset sidebar with a fill for the selected row; server picker
+  is a glass cell. Groups nodes use Dock-style magnification.
 - Large-title metrics on Overview; proxy "Groups" renamed to
   "节点 / 節點" in Simplified/Traditional Chinese.
 

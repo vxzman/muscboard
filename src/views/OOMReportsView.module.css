@@ -1,10 +1,10 @@
 .settings-list {
-  background: var(--glass-bg-strong);
-  border: 0.5px solid var(--glass-border);
+  background-color: var(--material-bg-strong);
+  border: 0.5px solid var(--material-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--glass-highlight), var(--glass-shadow);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  box-shadow: var(--material-highlight), var(--material-shadow);
+  -webkit-backdrop-filter: var(--material-filter);
+  backdrop-filter: var(--material-filter);
 }
 
 .settings-list > :global(.settings-row) {

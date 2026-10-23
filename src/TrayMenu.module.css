@@ -58,12 +58,13 @@
 .panel {
   width: 260px;
   padding: var(--space-6);
-  background: var(--glass-bg-strong);
-  border: 1px solid var(--glass-border);
+  background-color: var(--glass-bg-strong);
+  background-image: var(--glass-sheen);
+  border: 0.5px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-overlay);
-  -webkit-backdrop-filter: blur(32px) saturate(200%);
-  backdrop-filter: blur(32px) saturate(200%);
+  box-shadow: var(--glass-highlight), var(--shadow-overlay);
+  -webkit-backdrop-filter: var(--glass-filter);
+  backdrop-filter: var(--glass-filter);
 }
 
 .submenu {
@@ -71,12 +72,13 @@
   max-height: 400px;
   padding: var(--space-6);
   overflow-y: auto;
-  background: var(--glass-bg-strong);
-  border: 1px solid var(--glass-border);
+  background-color: var(--glass-bg-strong);
+  background-image: var(--glass-sheen);
+  border: 0.5px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-overlay);
-  -webkit-backdrop-filter: blur(32px) saturate(200%);
-  backdrop-filter: blur(32px) saturate(200%);
+  box-shadow: var(--glass-highlight), var(--shadow-overlay);
+  -webkit-backdrop-filter: var(--glass-filter);
+  backdrop-filter: var(--glass-filter);
 }
 
 .cascade {

@@ -41,7 +41,7 @@ export function PageTransition(props: PageTransitionProps) {
     if (leave === null) {
       return;
     }
-    const id = window.setTimeout(() => setLeave(null), 560);
+    const id = window.setTimeout(() => setLeave(null), 480);
     return () => window.clearTimeout(id);
   }, [leave]);
 

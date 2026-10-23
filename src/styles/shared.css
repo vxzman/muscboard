@@ -1,5 +1,5 @@
 /* ============================================================
-   Material You x Glassmorphism — shared component system
+   Liquid Glass chrome + content materials — shared components
    ============================================================ */
 
 /* ---------- Type scale ---------- */
@@ -9,14 +9,14 @@
   font-family: var(--font-sans);
   font-size: var(--text-3xl);
   font-weight: var(--weight-bold);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 .text-title {
   font-family: var(--font-sans);
   font-size: var(--text-2xl);
   font-weight: var(--weight-semibold);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.028em;
 }
 
 .text-title-3,
@@ -100,32 +100,35 @@
 
 .card,
 .nav-list,
-.detail-card,
+.detail-card {
+  background-color: var(--material-bg);
+}
+
 .menu,
 .drawer,
 .dialog,
 .setup-panel {
-  background: var(--glass-bg);
+  background-color: var(--glass-bg-strong);
+  background-image: var(--glass-sheen);
 }
 
 @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
   .card,
   .nav-list,
-  .detail-card,
-  .menu,
-  .drawer,
-  .dialog,
-  .setup-panel {
-    background: var(--glass-bg);
-    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  .detail-card {
+    background-color: var(--material-bg);
+    -webkit-backdrop-filter: var(--material-filter);
+    backdrop-filter: var(--material-filter);
   }
 
   .menu,
   .drawer,
   .dialog,
   .setup-panel {
-    background: var(--glass-bg-strong);
+    background-color: var(--glass-bg-strong);
+    background-image: var(--glass-sheen);
+    -webkit-backdrop-filter: var(--glass-filter);
+    backdrop-filter: var(--glass-filter);
   }
 }
 
@@ -141,13 +144,13 @@
   border: 0.5px solid var(--glass-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--glass-highlight), var(--glass-shadow);
-  animation: menu-in 0.18s ease;
+  animation: menu-in var(--duration-medium) var(--ease-apple);
 }
 
 .menu.open-up {
   top: auto;
   bottom: calc(100% + 6px);
-  animation: menu-in-up 0.14s ease;
+  animation: menu-in-up var(--duration-medium) var(--ease-apple);
 }
 
 .menu-item {
@@ -267,7 +270,7 @@ a.menu-item {
 .page {
   position: relative;
   min-height: 100%;
-  padding: var(--space-28) var(--space-32) var(--space-48);
+  padding: var(--space-36) var(--space-40) var(--space-56);
 }
 
 .page-full {
@@ -283,7 +286,7 @@ a.menu-item {
   flex-shrink: 0;
   gap: var(--space-12);
   align-items: center;
-  margin-bottom: var(--space-24);
+  margin-bottom: var(--space-28);
 }
 
 .page-title {
@@ -305,21 +308,21 @@ a.menu-item {
   height: 32px;
   color: var(--accent);
   cursor: pointer;
-  background: var(--glass-bg-strong);
+  background-color: var(--glass-bg-strong);
+  background-image: var(--glass-sheen);
   border: 0.5px solid var(--glass-border);
   border-radius: 50%;
-  box-shadow: var(--glass-highlight);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  box-shadow: var(--glass-highlight), var(--glass-shadow);
+  -webkit-backdrop-filter: var(--glass-filter);
+  backdrop-filter: var(--glass-filter);
   transition:
-    background var(--transition-fast),
+    background-color var(--transition-fast),
     transform var(--transition-fast),
     box-shadow var(--transition-fast);
 }
 
 .back-button:hover {
-  background: var(--glass-bg);
-  transform: translateY(-1px);
+  background-color: var(--glass-bg);
 }
 
 .back-button:active {
@@ -332,22 +335,20 @@ a.menu-item {
   position: relative;
   padding: var(--space-20);
   overflow: hidden;
-  background: var(--glass-bg);
-  border: 0.5px solid var(--glass-border);
+  background-color: var(--material-bg);
+  border: 0.5px solid var(--material-border);
   border-radius: var(--radius-card);
-  box-shadow: var(--glass-highlight), var(--glass-shadow);
+  box-shadow: var(--material-highlight), var(--material-shadow);
   transition:
-    transform 0.32s var(--ease-out),
-    box-shadow 0.32s var(--ease-out),
-    background 0.32s ease,
-    border-color 0.32s ease;
+    box-shadow var(--transition-medium),
+    background-color var(--transition-medium),
+    border-color var(--transition-medium);
 }
 
 .card:hover {
-  background: var(--glass-bg-strong);
-  border-color: var(--glass-border-strong);
-  box-shadow: var(--glass-highlight), var(--glass-shadow-hover);
-  transform: translateY(-3px);
+  background-color: var(--material-bg-strong);
+  border-color: color-mix(in srgb, var(--material-border), var(--text) 18%);
+  box-shadow: var(--material-highlight), var(--material-shadow);
 }
 
 .card-header {
@@ -410,10 +411,10 @@ a.menu-item {
 
 .nav-list {
   overflow: hidden;
-  background: var(--glass-bg);
-  border: 0.5px solid var(--glass-border);
+  background-color: var(--material-bg);
+  border: 0.5px solid var(--material-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--glass-highlight), var(--glass-shadow);
+  box-shadow: var(--material-highlight), var(--material-shadow);
 }
 
 .nav-row {
@@ -712,7 +713,7 @@ a.nav-line {
   border: 0;
   border-radius: var(--radius-pill);
   box-shadow: none;
-  transition: background var(--transition-fast), opacity var(--transition-fast);
+  transition: background var(--transition-fast), opacity var(--transition-fast), transform var(--transition-fast);
 }
 
 .button:hover {
@@ -790,7 +791,6 @@ a.nav-line {
 .icon-button:hover {
   color: var(--text);
   background: var(--fill-tertiary);
-  transform: translateY(-1px);
 }
 
 .icon-button.active {
@@ -1048,7 +1048,7 @@ button.select:disabled {
   border: 0;
   border-radius: var(--radius-pill);
   box-shadow: none;
-  transition: background 0.2s ease;
+  transition: background var(--transition-fast);
 }
 
 .switch::after {
@@ -1061,7 +1061,7 @@ button.select:disabled {
   background: var(--bright);
   border-radius: 50%;
   box-shadow: 0 3px 8px rgb(0 0 0 / 15%), 0 0 0 0.5px rgb(0 0 0 / 4%);
-  transition: transform 0.22s cubic-bezier(0.32, 0.72, 0, 1);
+  transition: transform var(--transition-medium);
 }
 
 .switch.on {
@@ -1100,11 +1100,11 @@ button.select:disabled {
 
 .search-input input {
   padding-inline-start: var(--space-32);
-  background: var(--glass-bg);
-  border: 0.5px solid var(--glass-border);
-  box-shadow: var(--glass-highlight);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  background-color: var(--material-bg);
+  border: 0.5px solid var(--material-border);
+  box-shadow: var(--material-highlight);
+  -webkit-backdrop-filter: var(--material-filter);
+  backdrop-filter: var(--material-filter);
 }
 
 .secret-input {
@@ -1345,7 +1345,7 @@ button.settings-row:focus-visible {
   border: 0.5px solid var(--glass-border);
   border-radius: var(--radius-xl);
   box-shadow: var(--glass-highlight), var(--glass-shadow);
-  animation: page-in 0.32s ease;
+  animation: page-in var(--duration-page) var(--ease-apple);
 }
 
 .setup-brand {
@@ -1377,7 +1377,7 @@ button.settings-row:focus-visible {
   border: 0;
   border-inline-start: 0.5px solid var(--glass-border);
   box-shadow: var(--glass-highlight), var(--glass-shadow-overlay);
-  animation: slide-in 0.22s ease;
+  animation: slide-in var(--duration-medium) var(--ease-apple);
 }
 
 .drawer::backdrop {
@@ -1429,7 +1429,7 @@ button.settings-row:focus-visible {
   border: 0.5px solid var(--glass-border);
   border-radius: var(--radius-xl);
   box-shadow: var(--glass-highlight), var(--glass-shadow-overlay);
-  animation: dialog-in 0.22s ease;
+  animation: dialog-in var(--duration-medium) var(--ease-apple);
 }
 
 .dialog::backdrop {

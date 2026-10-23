@@ -1,30 +1,39 @@
 # UI 重绘改造笔记（muscboard）
 
-> 用途：记录本次 UI 深度定制（Material You 毛玻璃 + Apple Flat 多彩）中**改过什么**、
+> 用途：记录 Liquid Glass + apple.com 风格中**改过什么**、
 > **踩过什么坑**、**下次怎么改不用反复试**。改 UI 前先读这一份。
 
 ---
 
 ## 1. 设计语言与设计令牌
 
-风格定位：**宽屏磨砂玻璃仪表盘**（系统色 + 景深，不是 iOS 设置页克隆）。
-画布有克制的氛围光和噪点；侧栏和内容卡都是玻璃。切页/悬停有位移，不做 Dock 放大。
+风格定位：**Apple Liquid Glass chrome + apple.com 内容层**。
+不是 iOS 设置页克隆，也不是把 28px 油腻高斯糊满全站。
+
+两层材料，不要混用：
+
+- **Chrome（侧栏、菜单、抽屉、对话框、工具栏、悬浮胶囊）**：Liquid Glass。薄透镜：16px blur、120% saturate、高光 rim、顶部 sheen。颜色从画布透过来，边缘有折射，不是磨砂牛奶。
+- **Content（卡片、列表、日志、节点块）**：标准 material。10px blur、108% saturate、更高不透明度，保证可读。HIG：Don’t use Liquid Glass in the content layer。
+
+画布是 apple.com 的 `#f5f5f7` / `#000`，氛围光斑低饱和、大范围、低透明度。标题字距收紧（约 -0.03em），页面留白偏大。
 
 | 令牌 | 值 | 用途 |
 | --- | --- | --- |
-| `--bg` / `--canvas-a/b/c` | 浅冷灰 + 蓝/紫/薄荷光斑 | 大面积留白的空气，让 blur 能看见 |
-| `--glass-bg` | 半透明白 / 深色 | 卡片和 chrome 的玻璃底 |
-| `--glass-blur` | 28px | 侧栏、卡片、菜单共用 |
+| `--bg` / `--canvas-a/b/c` | `#f5f5f7` + 淡蓝/紫/薄荷光 | 空气，让玻璃能看见层次 |
+| `--glass-*` / `--glass-filter` / `--glass-sheen` | 16px / 120% | chrome 液态玻璃 |
+| `--material-*` / `--material-filter` | 10px / 108% | 内容层 |
 | `--accent` | 系统蓝 `#007AFF` / `#0A84FF` | 唯一强调色（可换预设） |
 | `--ios-blue/green/orange/...` | iOS 系统色 | 语义色与图标砖 |
 | `--ios-grad-*` | **纯色**（不是渐变） | 图标砖 |
-| `--ease-out` | `cubic-bezier(0.22, 1, 0.36, 1)` | 切页、悬停上浮 |
+| `--ease-apple` | `cubic-bezier(0.32, 0.72, 0, 1)` | 进入、悬停、控件 |
+| `--ease-in` | `cubic-bezier(0.32, 0, 0.67, 0)` | 离开 |
+| `--duration-page` / `--duration-page-leave` | 0.44s / 0.34s | 切页 |
 
 **配色约定**：
 
 - 一个强调色管按钮/选中/链接；图标砖可以按功能着色（上传绿、下载蓝、测速橙）
 - 测速按钮=系统橙实心胶囊；展开=灰色 fill；徽章=tertiary fill + secondary 字
-- 不要把 Liquid Glass 铺到卡片上（HIG：Don’t use Liquid Glass in the content layer）
+- 内容卡不要再用 `--glass-blur`；卡片悬停不要 `translateY` 上浮；不要 overshoot 弹性曲线
 
 ---
 
@@ -39,14 +48,14 @@
 
 ### 2.2 侧栏导航项（`src/App.module.css`）
 
-- `.nav-item`：`padding: var(--space-10) var(--space-14)`、字号 `--text-md`、图标方块 32px
+- `.nav-item`：字号 `--text-md`、图标方块 30px
 - 每个页面颜色由 `[data-page="..."]` 指定 `--nav-color` / `--nav-grad`
-- 动画：激活时 `nav-pop`（菜单项弹一下）、`icon-pop`（图标旋转弹入）
+- 激活态用 fill 胶囊，不要 `nav-pop` / `icon-pop`
 
 ### 2.3 页面切换动画
 
 - `PageTransition`：进出成对。侧栏平级用上移交叉淡入；进入子页 push、返回 pop（横向）。
-- 曲线 `--ease-apple: cubic-bezier(0.32, 0.72, 0, 1)`，进入 0.52s，离开 0.42s。不要加 `filter: blur()`。
+- 进入 `--duration-page` + `--ease-apple`，离开 `--duration-page-leave` + `--ease-in`。位移约 12px / 8px。不要加 `filter: blur()`。
 
 ### 2.4 节点页（GroupsView）
 
@@ -56,13 +65,13 @@
 | 展开按钮 | `.expand-button` | 靛渐变胶囊（与测速成对） |
 | 数字徽章 | `shared.css` `.badge`（全局） | 蓝渐变白字 + 柔光 |
 | 节点卡片网格 | `.group-items` | `repeat(auto-fit, minmax(min(220px,100%),1fr))`，**不是 auto-fill** |
-| 节点卡片悬停 | `.group-item:hover` | `scale(1.05) translateY(-3px)` + `z-index: var(--z-hover-pop)` |
+| 节点卡片悬停 | `.group-item:hover` | Dock 放大走 DOM transform；CSS 只用 `--ease-apple` / `--ease-out`，不要 overshoot |
 
 ### 2.5 概述页（OverviewView）
 
 - 左上角仪表按钮：`.dashboard-items-button`（tune 图标）→ 蓝渐变圆形
-- `.card-grid .card`：按 `data-icon` 加角落淡彩 `radial-gradient`，悬停 `scale(1.025)` 上浮
-- 卡片头部图标：30px 渐变块（26px→30px）
+- `.card-grid .card`：内容 material，悬停不加位移
+- 卡片头部图标：28px 系统色方块
 
 ### 2.6 三点菜单（连接/日志页共用）
 
@@ -75,7 +84,7 @@
   share=青、delete=红、open_in_new=蓝、more_horiz=灰……）
 - `.empty-state .icon`：空状态图标升级为 56px 渐变圆角块（hub=青、usb=紫、route=靛、
   folder/dashboard=蓝、text_snippet=灰、warning=橙）
-- `.back-button`（二级页返回）：毛玻璃圆钮，悬停弹性放大 + 蓝描边
+- `.back-button`（二级页返回）：液态玻璃圆钮，悬停只换底色
 - **改图标配色时，映射要同时覆盖三处选择器**：`.card-header > .icon[data-icon="..."]`、
   `.nav-row > .icon:first-child[data-icon="..."]`、`.nav-line > .icon:first-child[data-icon="..."]`
 
@@ -91,8 +100,7 @@
 
 ### 2.9 服务器选择按钮（侧栏底部，`App.module.css`）
 
-- `.server-picker-button`：实色蓝→靛渐变胶囊 + 白字，悬停弹性放大
-- 副文本（uptime）与箭头用半透明白，别用 `--text-faint`（会看不清）
+- `.server-picker-button`：液态玻璃胶囊，悬停只加高光/阴影，不上浮
 
 ---
 
@@ -265,7 +273,7 @@ gh release create "$DATE" /tmp/muscboard.zip /tmp/muscboard.tar.gz \
   `computer`=蓝、`share`=青、`delete`=红、`open_in_new`=蓝、`more_horiz`=灰
 - `.empty-state .icon`：空状态图标升级为 56px 渐变圆角块；
   **width/height 必须带 `!important`**（否则盖不过 Icon 组件的内联 style）
-- `.back-button`（二级页返回）：毛玻璃 + 悬停弹性放大 + 蓝描边
+- `.back-button`（二级页返回）：液态玻璃圆钮，悬停只换底色
 
 ### 6.3 环境与流程坑（本轮实际踩到）
 
@@ -355,23 +363,21 @@ gh release create "$DATE" /tmp/muscboard.zip /tmp/muscboard.tar.gz \
 
 ### 7.3 动画怎么保持一致
 
-**缓动曲线只有两套，别发明第三种：**
+**缓动只走令牌，不要第三种曲线，不要 overshoot：**
 
-| 场景 | 曲线 | 时长 |
+| 场景 | 令牌 | 时长 |
 | --- | --- | --- |
-| 悬停放大 / 按钮弹跳 | `cubic-bezier(0.34, 1.56, 0.64, 1)`（带回弹） | 0.22–0.3s |
-| 页面切换 | `cubic-bezier(0.22, 1, 0.36, 1)`（先快后慢） | 0.36s |
-| 普通颜色过渡 | `var(--transition-fast)` = 0.12s ease | — |
+| 进入 / 悬停 / 控件 | `--ease-apple` | `--duration-fast` 0.18s / `--duration-medium` 0.28s |
+| 离开 | `--ease-in` | `--duration-page-leave` 0.34s |
+| 切页进入 | `--ease-apple` | `--duration-page` 0.44s |
+| Dock 跟随指针 | `--ease-out` | 约 0.06s |
 
-**放大程度（克制）**：按钮 1.06–1.08、节点卡片 1.05、概述卡片 1.025、整卡 1.012；
-按下统一 0.93–0.97。超过 1.1 就太浮夸。
+卡片和按钮悬停**不要** `translateY` 上浮。节点 Dock 放大走 DOM transform，CSS 不要再加弹跳。按下最多 `scale(0.96–0.98)`。
 
 **一致性检查清单**：
 - 动效只动 `transform` / `opacity`，**别动布局属性**（margin/width/top）
-- 悬停放大的元素记得加 `z-index: var(--z-hover-pop)`（=5，低于 sticky 头部 10），
-  并给上方/头部留足间距，否则会被盖住
-- keyframe 统一放 `src/styles/globals.css`（`page-in` / `nav-pop` / `icon-pop` /
-  `url-test-pulse` / `menu-in` / `fade-in`…），新动画也加这里
-- 页面动画里**禁止 `filter: blur()`**（会破坏毛玻璃），只用 transform/opacity
-- 尊重 `prefers-reduced-motion`：`shared.css` 已有 reduce 分支，新控件沿用
-- 组件级 hover 用 `transition`，切换型动画（激活/进页）用 `animation` + keyframes
+- 悬停放大的节点记得加 `z-index: var(--z-hover-pop)`（=5，低于 sticky 头部 10）
+- keyframe 用 `0%` / `100%`，放 `globals.css` 或模块自己的文件
+- 页面动画里**禁止 `filter: blur()`**（会让 backdrop-filter 失效）
+- 尊重 `prefers-reduced-motion`
+- 组件级 hover 用 `transition`，切页用 `PageTransition` 进出成对

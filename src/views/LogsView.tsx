@@ -38,7 +38,7 @@ function useLogBackground(): Rgb {
 }
 
 function resolveBackground(): Rgb {
-  const value = getComputedStyle(document.documentElement).getPropertyValue("--glass-bg-strong");
+  const value = getComputedStyle(document.documentElement).getPropertyValue("--material-bg");
   return parseCssColor(value) ?? [255, 255, 255];
 }
 
