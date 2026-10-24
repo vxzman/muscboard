@@ -1,16 +1,26 @@
+# dependencies & build
 node_modules/
 dist/
-/ignore/
-/dash.tar.gz
-*.zip
+*.tsbuildinfo
+
+# generated
 src/gen/
 src/lib/terminalThemes.generated.ts
+
+# packaged dist (never commit)
+/*.zip
+/*.tar.gz
+/dash.tar.gz
+
+# local scratch / agent
 *.local
-*.tsbuildinfo
 .DS_Store
 /CLAUDE.md
 /.claude/
+/grok.txt
+claude-resume.txt
+/ignore/
+
+# mock runtime
 run/*.log
 run/*.pid
-claude-resume.txt
-grok.txt

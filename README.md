@@ -23,6 +23,8 @@ Same files via the `latest` tag:
 
 Dated snapshots (`YYYYMMDD`) stay on the [Releases](https://github.com/vxzman/muscboard/releases) page.
 
+Project brief (purpose, aesthetic, code style, release, pitfalls): [docs/ENGINEERING.md](docs/ENGINEERING.md).
+
 ## Screenshots
 
 ![Overview](docs/screenshots/overview.png)
@@ -33,17 +35,22 @@ Dated snapshots (`YYYYMMDD`) stay on the [Releases](https://github.com/vxzman/mu
 
 ## Customizations
 
-- Liquid Glass chrome and cards over a CFNext-style atmosphere
-  (slate canvas, moving color blobs, ~54% fill, 22–30px blur).
+- Crystal liquid glass over a moving color-pool canvas (thin 14% fill,
+  32 / 22 / 12 px blur stack, specular sheen — not milky white cards).
 - System Blue as the default accent; solid system-color icon tiles
-  (upload green, download blue, speed-test orange). Switches, segmented
-  controls and capsules follow iOS.
-- A pure-CSS isometric cardboard-box logo replaces the original "S" mark
-  in the sidebar, mobile top bar and setup screen.
-- Floating inset sidebar with a fill for the selected row; server picker
-  is a glass cell. Groups nodes use Dock-style magnification.
-- Large-title metrics on Overview; proxy "Groups" renamed to
-  "节点 / 節點" in Simplified/Traditional Chinese.
+  (upload green, download blue, speed-test orange).
+- Pure-CSS isometric cardboard-box logo in the sidebar, mobile top bar
+  and setup screen.
+- Inset glass sidebar; Groups nodes use Dock-style magnification.
+- Large-title metrics on Overview; proxy "Groups" is 「节点 / 節點」.
+
+## Local run
+
+```sh
+./run/start.sh    # mock daemon :8090 + Vite :5173
+```
+
+In the setup form, URL is `http://127.0.0.1:8090` (secret optional).
 
 ## Keeping in sync with upstream
 
@@ -58,10 +65,10 @@ git merge origin/main
 
 Resolve any conflicts (customization work is concentrated in
 `src/styles/globals.css`, `src/styles/shared.css` and the view CSS modules),
-then commit and push:
+then commit and push the fork remote only:
 
 ```sh
-git push
+git push muboard
 ```
 
 Tip: if upstream rewrites a lot, keep your customizations in dedicated

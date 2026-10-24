@@ -1,13 +1,7 @@
-# 项目指令与记忆规则 (Memory & Rules)
+# Agent brief
 
-## 1. Git 提交规范（重要记忆）
-- **自动本地提交**：每次完成项目代码、样式、文档等修改后，自动执行 `git add` 并提交到本地 Git（`git commit`）。
-- **严禁推送到远程仓库**：**切勿执行 `git push` 推送到 GitHub** 或其他远程仓库。所有改动仅保存在本地 Git 历史中。
-- **提交信息格式**：保持简明扼要，遵循 Conventional Commits 风格（如 `fix: ...`, `feat: ...`, `style: ...`）。
+项目约定以 [docs/ENGINEERING.md](docs/ENGINEERING.md) 为准。
 
-## 2. 质量与验证规范
-- 任何 UI 或功能调整后，务必运行：
-  ```sh
-  pnpm lint:css && pnpm lint && pnpm build
-  ```
-  确保零 stylelint 错误、零 eslint 错误，且生产打包顺利通过。
+- 改完代码、样式、文档后做**本地 git commit**。
+- **用户没明确说推送，就不要 `git push`。** 需要推时只推远端 `muboard`，不要推 `origin`。
+- UI / 功能改完跑：`corepack pnpm lint:css && corepack pnpm lint && corepack pnpm exec tsc -b`。涉及界面时还要在浏览器里看浅色、深色和主路径。
