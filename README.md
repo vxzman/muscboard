@@ -20,7 +20,7 @@ by the original authors.
 ## Customizations
 
 - Liquid Glass chrome and cards over a CFNext-style atmosphere
-  (moving color blobs, ~50% fill, 22–30px blur) so the frost reads as glass.
+  (slate canvas, moving color blobs, ~54% fill, 22–30px blur).
 - System Blue as the default accent; solid system-color icon tiles
   (upload green, download blue, speed-test orange). Switches, segmented
   controls and capsules follow iOS.

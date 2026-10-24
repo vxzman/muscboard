@@ -63,14 +63,14 @@
   --md-tertiary-container: #e6e6ff;
   --md-on-tertiary-container: #1c1c4d;
 
-  --md-surface: #f5f5f7;
-  --md-surface-container-lowest: rgb(255 255 255 / 86%);
-  --md-surface-container-low: rgb(255 255 255 / 72%);
-  --md-surface-container: #f5f5f7;
-  --md-surface-container-high: #ebebed;
-  --md-surface-container-highest: #d2d2d7;
-  --md-on-surface: #000;
-  --md-on-surface-variant: rgb(60 60 67 / 68%);
+  --md-surface: #d0dae8;
+  --md-surface-container-lowest: rgb(236 242 250 / 86%);
+  --md-surface-container-low: rgb(236 242 250 / 72%);
+  --md-surface-container: #d0dae8;
+  --md-surface-container-high: #c4cfde;
+  --md-surface-container-highest: #b3c0d2;
+  --md-on-surface: #16202e;
+  --md-on-surface-variant: rgb(50 64 84 / 78%);
   --md-outline: rgb(60 60 67 / 30%);
   --md-outline-variant: rgb(60 60 67 / 16%);
 
@@ -80,20 +80,20 @@
   --md-on-error-container: #5c0000;
 
   /* ---------- App semantic tokens ---------- */
-  --bg: #f4f6fb;
-  --surface: rgb(255 255 255 / 62%);
-  --card: rgb(255 255 255 / 50%);
-  --inset: #eaeef6;
+  --bg: #d0dae8;
+  --surface: rgb(236 242 250 / 64%);
+  --card: rgb(236 242 250 / 54%);
+  --inset: #c4cfde;
   --canvas-a: var(--accent);
   --canvas-b: var(--ios-teal);
   --canvas-c: var(--ios-pink);
   --blob-d: #38bdf8;
-  --blob-o: 0.42;
+  --blob-o: 0.4;
   --blob-blur: 74px;
-  --noise-opacity: 0.03;
-  --text: #000;
-  --text-secondary: rgb(60 60 67 / 68%);
-  --text-faint: rgb(60 60 67 / 36%);
+  --noise-opacity: 0.035;
+  --text: #16202e;
+  --text-secondary: rgb(50 64 84 / 82%);
+  --text-faint: rgb(50 64 84 / 52%);
   --border: rgb(60 60 67 / 12%);
   --border-strong: rgb(60 60 67 / 24%);
   --hover: rgb(120 120 128 / 10%);
@@ -126,10 +126,10 @@
   --bright: #fff;
   --terminal-bg: #1c1c1e;
 
-  /* Liquid Glass — fill stays ~50% so the atmosphere blobs can be seen through it. */
-  --glass-bg: rgb(255 255 255 / 50%);
-  --glass-bg-strong: rgb(255 255 255 / 60%);
-  --glass-bg-soft: rgb(255 255 255 / 36%);
+  /* Cool mist over a deeper slate canvas. 54% keeps type readable on the blobs. */
+  --glass-bg: rgb(236 242 250 / 54%);
+  --glass-bg-strong: rgb(236 242 250 / 64%);
+  --glass-bg-soft: rgb(236 242 250 / 38%);
   --glass-border: rgb(20 40 70 / 10%);
   --glass-border-strong: rgb(20 40 70 / 16%);
   --glass-blur: 22px;
@@ -278,13 +278,13 @@
   --md-tertiary-container: #2c2c4d;
   --md-on-tertiary-container: #e6e6ff;
 
-  --md-surface: #000;
-  --md-surface-container-lowest: rgb(28 28 30 / 86%);
-  --md-surface-container-low: rgb(28 28 30 / 72%);
-  --md-surface-container: #1d1d1f;
-  --md-surface-container-high: #2c2c2e;
-  --md-surface-container-highest: #3a3a3c;
-  --md-on-surface: #fff;
+  --md-surface: #04060b;
+  --md-surface-container-lowest: rgb(16 24 36 / 86%);
+  --md-surface-container-low: rgb(16 24 36 / 72%);
+  --md-surface-container: #0c1119;
+  --md-surface-container-high: #121826;
+  --md-surface-container-highest: #1a2331;
+  --md-on-surface: #e9eef7;
   --md-on-surface-variant: rgb(235 235 245 / 60%);
   --md-outline: rgb(235 235 245 / 30%);
   --md-outline-variant: rgb(84 84 88 / 65%);
@@ -294,19 +294,19 @@
   --md-error-container: #5c0000;
   --md-on-error-container: #ffd4d1;
 
-  --bg: #06080d;
-  --surface: rgb(23 32 45 / 62%);
-  --card: rgb(23 32 45 / 54%);
-  --inset: #090d14;
+  --bg: #04060b;
+  --surface: rgb(16 24 36 / 64%);
+  --card: rgb(16 24 36 / 56%);
+  --inset: #070a10;
   --canvas-a: var(--accent);
   --canvas-b: var(--ios-teal);
   --canvas-c: var(--ios-pink);
   --blob-d: #38bdf8;
   --blob-o: 0.44;
   --noise-opacity: 0.05;
-  --text: #fff;
-  --text-secondary: rgb(235 235 245 / 60%);
-  --text-faint: rgb(235 235 245 / 30%);
+  --text: #e9eef7;
+  --text-secondary: rgb(233 238 247 / 78%);
+  --text-faint: rgb(233 238 247 / 46%);
   --border: rgb(84 84 88 / 65%);
   --border-strong: rgb(255 255 255 / 22%);
   --hover: rgb(118 118 128 / 24%);
@@ -335,9 +335,9 @@
   --highlight: rgb(10 132 255 / 28%);
   --scrim: rgb(0 0 0 / 52%);
 
-  --glass-bg: rgb(23 32 45 / 54%);
-  --glass-bg-strong: rgb(19 27 39 / 62%);
-  --glass-bg-soft: rgb(255 255 255 / 6%);
+  --glass-bg: rgb(16 24 36 / 58%);
+  --glass-bg-strong: rgb(14 21 32 / 68%);
+  --glass-bg-soft: rgb(255 255 255 / 7%);
   --glass-border: rgb(255 255 255 / 10%);
   --glass-border-strong: rgb(255 255 255 / 16%);
   --glass-sheen: linear-gradient(180deg, rgb(255 255 255 / 11%) 0%, transparent 32%, transparent 60%, rgb(0 0 0 / 20%) 100%);
