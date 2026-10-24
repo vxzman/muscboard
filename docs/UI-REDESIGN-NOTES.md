@@ -228,6 +228,13 @@ localStorage.setItem("sing-box-dashboard.theme", "dark"); // 或 "light"
 
 标签是 `YYYYMMDD`，同一天再发就加序号：`20260919`、`202609192`、`202609193`。附件始终叫 `muscboard.zip` / `muscboard.tar.gz`。
 
+推送到远端 `muboard`（`https://github.com/vxzman/muscboard.git`），不要推 `origin`（上游 SagerNet）。每次发布同时把 `latest` 标签挪到这次提交，这样下面两个地址永远指向最新 dist：
+
+- https://github.com/vxzman/muscboard/releases/latest/download/muscboard.zip
+- https://github.com/vxzman/muscboard/releases/latest/download/muscboard.tar.gz
+- https://github.com/vxzman/muscboard/releases/download/latest/muscboard.zip
+- https://github.com/vxzman/muscboard/releases/download/latest/muscboard.tar.gz
+
 ```sh
 DATE=$(date +%Y%m%d)
 if git rev-parse -q --verify "refs/tags/$DATE" >/dev/null; then
@@ -239,11 +246,19 @@ corepack pnpm build
 (cd dist && zip -qr /tmp/muscboard.zip .)
 tar -czf /tmp/muscboard.tar.gz -C dist .
 git tag -a "$DATE" -m "muscboard $DATE"
-git push https://github.com/vxzman/muscboard.git HEAD:main
-git push https://github.com/vxzman/muscboard.git "$DATE"
+git tag -f -a latest -m "muscboard latest ($DATE)"
+git push muboard HEAD:main
+git push muboard "$DATE"
+git push -f muboard latest
 gh release create "$DATE" /tmp/muscboard.zip /tmp/muscboard.tar.gz \
   --title "muscboard $DATE" \
   --notes "Frontend build for muscboard $DATE." \
+  --repo vxzman/muscboard
+gh release delete latest --yes --repo vxzman/muscboard || true
+gh release create latest /tmp/muscboard.zip /tmp/muscboard.tar.gz \
+  --title "muscboard latest" \
+  --notes "Always the newest frontend build (currently $DATE)." \
+  --latest \
   --repo vxzman/muscboard
 ```
 
@@ -253,7 +268,7 @@ gh release create "$DATE" /tmp/muscboard.zip /tmp/muscboard.tar.gz \
 
 - 文案改 `src/app/translations.ts`（例：`Groups` zh-Hans 已改为“节点”）
 - 仓库是 GPL-3.0-or-later fork，README 保留原作者版权与“非官方”声明，LICENSE 别动
-- `origin` 是上游（gh-proxy 镜像），`github` 是 muscboard（SSH 443）；上游大改时
+- `origin` 是上游（gh-proxy 镜像），`muboard` 是 muscboard 的 GitHub 远端（HTTPS）；上游大改时
   `git fetch origin && git merge origin/main`，定制集中在少数 CSS 文件，冲突好定位
 - `ignore/` 文件夹已加入 `.gitignore`，**永远不会被推送**；它是上游最新版的对照参考
 

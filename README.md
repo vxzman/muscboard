@@ -9,6 +9,20 @@ All credit for the original project goes to its author
 This project is a derivative work and is **not** affiliated with or endorsed
 by the original authors.
 
+## Download
+
+Always the newest frontend build (`latest` tag, updated on every release):
+
+- Zip: https://github.com/vxzman/muscboard/releases/latest/download/muscboard.zip
+- tar.gz: https://github.com/vxzman/muscboard/releases/latest/download/muscboard.tar.gz
+
+Same files via the `latest` tag:
+
+- https://github.com/vxzman/muscboard/releases/download/latest/muscboard.zip
+- https://github.com/vxzman/muscboard/releases/download/latest/muscboard.tar.gz
+
+Dated snapshots stay on the [Releases](https://github.com/vxzman/muscboard/releases) page (`YYYYMMDD`).
+
 ## Screenshots
 
 ![Overview](docs/screenshots/overview.png)
