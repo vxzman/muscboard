@@ -1,7 +1,6 @@
 .group-card {
   margin-bottom: var(--space-24);
   contain: layout style;
-  isolation: isolate;
 }
 
 .group-card :global(.card) {
@@ -9,14 +8,12 @@
   background-color: var(--material-bg);
   border: 0.5px solid var(--material-border);
   box-shadow: var(--material-highlight), var(--material-shadow);
-  transform: translateZ(0);
 }
 
 .group-card :global(.card:hover) {
   background-color: var(--material-bg);
   border-color: var(--material-border);
   box-shadow: var(--material-highlight), var(--material-shadow);
-  transform: translateZ(0);
 }
 
 .group-card :global(.card-header) {
@@ -118,6 +115,8 @@
   border: 0.5px solid var(--material-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--material-highlight), var(--material-shadow);
+  -webkit-backdrop-filter: var(--material-filter);
+  backdrop-filter: var(--material-filter);
   transform-origin: center center;
   transition:
     background-color var(--transition-fast),

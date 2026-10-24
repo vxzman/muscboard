@@ -63,8 +63,8 @@
   border: 0.5px solid var(--glass-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--glass-highlight), var(--shadow-overlay);
-  -webkit-backdrop-filter: var(--glass-filter);
-  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--chrome-filter);
+  backdrop-filter: var(--chrome-filter);
 }
 
 .submenu {
@@ -77,8 +77,8 @@
   border: 0.5px solid var(--glass-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--glass-highlight), var(--shadow-overlay);
-  -webkit-backdrop-filter: var(--glass-filter);
-  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--chrome-filter);
+  backdrop-filter: var(--chrome-filter);
 }
 
 .cascade {

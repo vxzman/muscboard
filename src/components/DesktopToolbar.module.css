@@ -9,8 +9,8 @@
   background-color: var(--glass-bg-strong);
   background-image: var(--glass-sheen);
   border-bottom: 1px solid var(--glass-border);
-  -webkit-backdrop-filter: var(--glass-filter);
-  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--chrome-filter);
+  backdrop-filter: var(--chrome-filter);
   -webkit-app-region: drag;
 }
 

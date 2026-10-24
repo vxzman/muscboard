@@ -21,7 +21,9 @@ interface LeaveLayer {
 export function PageTransition(props: PageTransitionProps) {
   const prev = useRef({ key: props.routeKey, depth: props.depth, node: props.children });
   const [leave, setLeave] = useState<LeaveLayer | null>(null);
+  const [settledKey, setSettledKey] = useState<string | null>(null);
   const motionRef = useRef<Motion>("cross");
+  const entering = settledKey !== props.routeKey;
 
   if (prev.current.key !== props.routeKey) {
     motionRef.current =
@@ -36,6 +38,11 @@ export function PageTransition(props: PageTransitionProps) {
     prev.current.node = props.children;
     prev.current.depth = props.depth;
   }
+
+  useEffect(() => {
+    const id = window.setTimeout(() => setSettledKey(props.routeKey), 480);
+    return () => window.clearTimeout(id);
+  }, [props.routeKey]);
 
   useEffect(() => {
     if (leave === null) {
@@ -58,7 +65,11 @@ export function PageTransition(props: PageTransitionProps) {
       )}
       <div
         key={props.routeKey}
-        className={cx(styles.layer, styles.enter, styles[motionRef.current])}
+        className={cx(
+          styles.layer,
+          entering && styles.enter,
+          entering && styles[motionRef.current],
+        )}
       >
         {props.children}
       </div>

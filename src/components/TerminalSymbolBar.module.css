@@ -15,8 +15,8 @@
   background-color: var(--glass-bg-strong);
   background-image: var(--glass-sheen);
   border-top: 1px solid var(--border);
-  -webkit-backdrop-filter: var(--glass-filter);
-  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--chrome-filter);
+  backdrop-filter: var(--chrome-filter);
   -webkit-overflow-scrolling: touch;
 }
 
@@ -24,8 +24,8 @@
   position: fixed;
   right: 0;
   left: 0;
-  -webkit-backdrop-filter: var(--glass-filter);
-  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--chrome-filter);
+  backdrop-filter: var(--chrome-filter);
 }
 
 .terminal-symbol-bar::-webkit-scrollbar {

@@ -7,21 +7,22 @@
 
 ## 1. 设计语言与设计令牌
 
-风格定位：**Apple Liquid Glass chrome + apple.com 内容层**。
-不是 iOS 设置页克隆，也不是把 28px 油腻高斯糊满全站。
+风格定位：**CFNext 式液态玻璃叠在会动的色块画布上**。
+不是 iOS 设置页克隆。模糊要能看见底下的色，不是一层实心白/灰。
 
-两层材料，不要混用：
+两层材料共用同一套半透明填充，只是模糊半径不同：
 
-- **Chrome（侧栏、菜单、抽屉、对话框、工具栏、悬浮胶囊）**：Liquid Glass。薄透镜：16px blur、120% saturate、高光 rim、顶部 sheen。颜色从画布透过来，边缘有折射，不是磨砂牛奶。
-- **Content（卡片、列表、日志、节点块）**：标准 material。10px blur、108% saturate、更高不透明度，保证可读。HIG：Don’t use Liquid Glass in the content layer。
+- **Chrome（侧栏、菜单、抽屉、对话框、工具栏、悬浮胶囊）**：`--chrome-filter` = 30px blur / 190% saturate，填充约 50–62%。
+- **Content（卡片、列表、日志、节点块）**：`--glass-filter` = 22px / 170%，填充约 50%。`--material-*` 是这套令牌的别名。
+- 填充必须留在 ~50%。74% 白底叠 `#f5f5f7` 会看起来像实心塑料，玻璃感消失。
 
-画布是 apple.com 的 `#f5f5f7` / `#000`，氛围光斑低饱和、大范围、低透明度。标题字距收紧（约 -0.03em），页面留白偏大。
+画布：浅色 `#f4f6fb` / 深色 `#06080d`。四个 `.atmosphere i` 色块（预模糊 74px、透明度 ~0.42），玻璃才能“看见”颜色。标题字距收紧（约 -0.03em），页面留白偏大。
 
 | 令牌 | 值 | 用途 |
 | --- | --- | --- |
-| `--bg` / `--canvas-a/b/c` | `#f5f5f7` + 淡蓝/紫/薄荷光 | 空气，让玻璃能看见层次 |
-| `--glass-*` / `--glass-filter` / `--glass-sheen` | 16px / 120% | chrome 液态玻璃 |
-| `--material-*` / `--material-filter` | 10px / 108% | 内容层 |
+| `--bg` / `--canvas-a/b/c` / `--blob-*` | `#f4f6fb` + 蓝/薄荷/粉/青 blobs | 空气，让玻璃能看见层次 |
+| `--chrome-filter` | 30px / 190% | chrome 液态玻璃 |
+| `--glass-*` / `--material-*` | 22px / 170%，填充 50% | 内容层与 chrome 同材质 |
 | `--accent` | 系统蓝 `#007AFF` / `#0A84FF` | 唯一强调色（可换预设） |
 | `--ios-blue/green/orange/...` | iOS 系统色 | 语义色与图标砖 |
 | `--ios-grad-*` | **纯色**（不是渐变） | 图标砖 |
@@ -33,7 +34,8 @@
 
 - 一个强调色管按钮/选中/链接；图标砖可以按功能着色（上传绿、下载蓝、测速橙）
 - 测速按钮=系统橙实心胶囊；展开=灰色 fill；徽章=tertiary fill + secondary 字
-- 内容卡不要再用 `--glass-blur`；卡片悬停不要 `translateY` 上浮；不要 overshoot 弹性曲线
+- 卡片悬停不要 `translateY` 上浮；不要 overshoot 弹性曲线
+- 页面进入动画禁止 `filter: blur()`；切页结束后必须卸掉祖先 `transform`，否则卡片采不到氛围层
 
 ---
 
@@ -141,10 +143,22 @@ document.querySelector('[class*="group-item"]:not([class*="group-items"])')
 :global(.icon-button).pause-button { ... }
 ```
 
-### 坑 4：动画里加 `filter: blur()` 会破坏毛玻璃
+### 坑 4：祖先 `filter` / `transform` / `isolation` 会吃掉毛玻璃
 
-祖先元素的 `filter` 会让后代 `backdrop-filter` 短暂失效（玻璃变实心）。`page-in`
-最初加了 `blur(2px)` 后来删掉，**只保留 transform/opacity**。
+`backdrop-filter` 只采样到最近的 backdrop root。这些会变成 root：
+
+- 祖先 `filter`（包括页面进入时的 `blur()`）
+- 祖先 `transform` 不是 `none`。`translate3d(0, 0, 0)` 也算。切页 `animation-fill-mode: both` 若把 100% 停在 `translate3d(0,0,0)`，卡片会一直采不到 `.atmosphere`
+- 祖先 `isolation: isolate`（玻璃元素自己可以 isolate，父级不行）
+
+解法：
+
+1. 切页只动 transform/opacity，不加 `filter: blur()`
+2. 进入动画 100% 写成 `transform: none`；`PageTransition` 在 480ms 后去掉 `.enter`，卸掉 z-index 和 transform
+3. Dock 的 `isolation` 放在 `.group-items`，不要放在包着整张组卡片的父级
+4. `.atmosphere` 是 `#root` 的兄弟（和 CFNext `.bgfx` 一样），`#root` 不要 `isolation`
+
+模糊看不见时先查这几条，再调 blur 半径。
 
 ### 坑 5：Dock 放大被 sticky 头部遮住
 

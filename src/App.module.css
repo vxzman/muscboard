@@ -9,6 +9,7 @@
 }
 
 .sidebar {
+  position: relative;
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
@@ -21,8 +22,28 @@
   border: 0.5px solid var(--glass-border);
   border-radius: var(--radius-xl);
   box-shadow: var(--glass-highlight), var(--glass-shadow);
-  -webkit-backdrop-filter: var(--glass-filter);
-  backdrop-filter: var(--glass-filter);
+  isolation: isolate;
+  -webkit-backdrop-filter: var(--chrome-filter);
+  backdrop-filter: var(--chrome-filter);
+}
+
+.sidebar::after {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-page-enter);
+  padding: var(--space-px);
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(150deg, var(--glass-rim) 0%, transparent 34%, transparent 66%, var(--glass-rim) 100%);
+  border-radius: inherit;
+  -webkit-mask:
+    linear-gradient(rgb(0 0 0) 0 0) content-box,
+    linear-gradient(rgb(0 0 0) 0 0);
+  mask:
+    linear-gradient(rgb(0 0 0) 0 0) content-box,
+    linear-gradient(rgb(0 0 0) 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
 }
 
 .sidebar-brand {
@@ -297,8 +318,8 @@
   border: 0.5px solid var(--glass-border);
   border-radius: var(--radius-pill);
   box-shadow: var(--glass-highlight), var(--glass-shadow);
-  -webkit-backdrop-filter: var(--glass-filter);
-  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--chrome-filter);
+  backdrop-filter: var(--chrome-filter);
   transform: translateX(-50%);
   animation: fade-in var(--transition-medium) both;
   animation-delay: 0.9s;
@@ -326,8 +347,8 @@
       background-color: var(--glass-bg-strong);
       background-image: var(--glass-sheen);
       border-bottom: 1px solid var(--glass-border);
-      -webkit-backdrop-filter: var(--glass-filter);
-      backdrop-filter: var(--glass-filter);
+      -webkit-backdrop-filter: var(--chrome-filter);
+      backdrop-filter: var(--chrome-filter);
     }
 
   .mobile-topbar-brand {

@@ -187,8 +187,8 @@
   background-color: var(--glass-bg-strong);
   background-image: var(--glass-sheen);
   border-top: 1px solid var(--border);
-  -webkit-backdrop-filter: var(--glass-filter);
-  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--chrome-filter);
+  backdrop-filter: var(--chrome-filter);
 }
 
 .editor-toolbar::-webkit-scrollbar {

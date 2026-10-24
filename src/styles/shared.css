@@ -127,8 +127,8 @@
   .setup-panel {
     background-color: var(--glass-bg-strong);
     background-image: var(--glass-sheen);
-    -webkit-backdrop-filter: var(--glass-filter);
-    backdrop-filter: var(--glass-filter);
+    -webkit-backdrop-filter: var(--chrome-filter);
+    backdrop-filter: var(--chrome-filter);
   }
 }
 
@@ -313,8 +313,8 @@ a.menu-item {
   border: 0.5px solid var(--glass-border);
   border-radius: 50%;
   box-shadow: var(--glass-highlight), var(--glass-shadow);
-  -webkit-backdrop-filter: var(--glass-filter);
-  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--chrome-filter);
+  backdrop-filter: var(--chrome-filter);
   transition:
     background-color var(--transition-fast),
     transform var(--transition-fast),
@@ -339,10 +339,30 @@ a.menu-item {
   border: 0.5px solid var(--material-border);
   border-radius: var(--radius-card);
   box-shadow: var(--material-highlight), var(--material-shadow);
+  isolation: isolate;
   transition:
     box-shadow var(--transition-medium),
     background-color var(--transition-medium),
     border-color var(--transition-medium);
+}
+
+.card::after {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-page-enter);
+  padding: var(--space-px);
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(150deg, var(--glass-rim) 0%, transparent 34%, transparent 66%, var(--glass-rim) 100%);
+  border-radius: inherit;
+  -webkit-mask:
+    linear-gradient(rgb(0 0 0) 0 0) content-box,
+    linear-gradient(rgb(0 0 0) 0 0);
+  mask:
+    linear-gradient(rgb(0 0 0) 0 0) content-box,
+    linear-gradient(rgb(0 0 0) 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
 }
 
 .card:hover {

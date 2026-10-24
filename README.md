@@ -19,8 +19,8 @@ by the original authors.
 
 ## Customizations
 
-- Liquid Glass chrome (sidebar, menus, overlays) on an apple.com canvas
-  (`#f5f5f7` / `#000`), with quieter content materials for cards and lists.
+- Liquid Glass chrome and cards over a CFNext-style atmosphere
+  (moving color blobs, ~50% fill, 22–30px blur) so the frost reads as glass.
 - System Blue as the default accent; solid system-color icon tiles
   (upload green, download blue, speed-test orange). Switches, segmented
   controls and capsules follow iOS.
