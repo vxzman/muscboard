@@ -11,17 +11,17 @@ by the original authors.
 
 ## Download
 
-Always the newest frontend build (`latest` tag, updated on every release):
+Newest frontend build. The `latest` tag is moved on every release, so these URLs always fetch the current dist:
 
-- Zip: https://github.com/vxzman/muscboard/releases/latest/download/muscboard.zip
-- tar.gz: https://github.com/vxzman/muscboard/releases/latest/download/muscboard.tar.gz
+- [muboard.zip](https://github.com/vxzman/muscboard/releases/latest/download/muboard.zip)
+- [muboard.tar.gz](https://github.com/vxzman/muscboard/releases/latest/download/muboard.tar.gz)
 
 Same files via the `latest` tag:
 
-- https://github.com/vxzman/muscboard/releases/download/latest/muscboard.zip
-- https://github.com/vxzman/muscboard/releases/download/latest/muscboard.tar.gz
+- https://github.com/vxzman/muscboard/releases/download/latest/muboard.zip
+- https://github.com/vxzman/muscboard/releases/download/latest/muboard.tar.gz
 
-Dated snapshots stay on the [Releases](https://github.com/vxzman/muscboard/releases) page (`YYYYMMDD`).
+Dated snapshots (`YYYYMMDD`) stay on the [Releases](https://github.com/vxzman/muscboard/releases) page.
 
 ## Screenshots
 

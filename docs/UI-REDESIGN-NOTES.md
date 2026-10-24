@@ -226,14 +226,14 @@ localStorage.setItem("sing-box-dashboard.theme", "dark"); // 或 "light"
 
 ### 4.4 发布（标签用日期，资源不带版本号）
 
-标签是 `YYYYMMDD`，同一天再发就加序号：`20260919`、`202609192`、`202609193`。附件始终叫 `muscboard.zip` / `muscboard.tar.gz`。
+标签是 `YYYYMMDD`，同一天再发就加序号：`20260919`、`202609192`、`202609193`。附件始终叫 `muboard.zip` / `muboard.tar.gz`。
 
 推送到远端 `muboard`（`https://github.com/vxzman/muscboard.git`），不要推 `origin`（上游 SagerNet）。每次发布同时把 `latest` 标签挪到这次提交，这样下面两个地址永远指向最新 dist：
 
-- https://github.com/vxzman/muscboard/releases/latest/download/muscboard.zip
-- https://github.com/vxzman/muscboard/releases/latest/download/muscboard.tar.gz
-- https://github.com/vxzman/muscboard/releases/download/latest/muscboard.zip
-- https://github.com/vxzman/muscboard/releases/download/latest/muscboard.tar.gz
+- https://github.com/vxzman/muscboard/releases/latest/download/muboard.zip
+- https://github.com/vxzman/muscboard/releases/latest/download/muboard.tar.gz
+- https://github.com/vxzman/muscboard/releases/download/latest/muboard.zip
+- https://github.com/vxzman/muscboard/releases/download/latest/muboard.tar.gz
 
 ```sh
 DATE=$(date +%Y%m%d)
@@ -243,19 +243,19 @@ if git rev-parse -q --verify "refs/tags/$DATE" >/dev/null; then
   DATE="${DATE}$n"
 fi
 corepack pnpm build
-(cd dist && zip -qr /tmp/muscboard.zip .)
-tar -czf /tmp/muscboard.tar.gz -C dist .
+(cd dist && zip -qr /tmp/muboard.zip .)
+tar -czf /tmp/muboard.tar.gz -C dist .
 git tag -a "$DATE" -m "muscboard $DATE"
 git tag -f -a latest -m "muscboard latest ($DATE)"
 git push muboard HEAD:main
 git push muboard "$DATE"
 git push -f muboard latest
-gh release create "$DATE" /tmp/muscboard.zip /tmp/muscboard.tar.gz \
+gh release create "$DATE" /tmp/muboard.zip /tmp/muboard.tar.gz \
   --title "muscboard $DATE" \
   --notes "Frontend build for muscboard $DATE." \
   --repo vxzman/muscboard
 gh release delete latest --yes --repo vxzman/muscboard || true
-gh release create latest /tmp/muscboard.zip /tmp/muscboard.tar.gz \
+gh release create latest /tmp/muboard.zip /tmp/muboard.tar.gz \
   --title "muscboard latest" \
   --notes "Always the newest frontend build (currently $DATE)." \
   --latest \
