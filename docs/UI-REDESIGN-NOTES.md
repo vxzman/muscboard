@@ -7,22 +7,24 @@
 
 ## 1. 设计语言与设计令牌
 
-风格定位：**CFNext 式液态玻璃叠在会动的色块画布上**。
-不是 iOS 设置页克隆。模糊要能看见底下的色，不是一层实心白/灰。
+风格定位：**CFNext 画布 + tomnest 三层玻璃**。
+不是 iOS 设置页克隆。模糊要能看见底下有形的色池，不是一层实心白/灰，也不是糊成一片的油膜。
 
-两层材料共用同一套半透明填充，只是模糊半径不同：
+分层（参考 tomnest，不抄它的 MD3 色板、卡片上浮、切页 blur）：
 
-- **Chrome（侧栏、菜单、抽屉、对话框、工具栏、悬浮胶囊）**：`--chrome-filter` = 30px blur / 190% saturate，填充约 54–64%。
-- **Content（卡片、列表、日志、节点块）**：`--glass-filter` = 22px / 170%，填充约 54%。`--material-*` 是这套令牌的别名。
-- 填充约 54–64%。画布要比玻璃深一档，霜才看得出；字落在玻璃上，用实色 `#16202e` / `#e9eef7`，不要半透明灰去抢对比。
+- **氛围层**：四个 `.atmosphere i` 用径向渐变色池 + `--blob-blur` 48px（色池有形可辨，卡片才有东西可雾化）；五个 `.atmosphere b` 小 bokeh 只 `blur(2px)`，玻璃滑过时霜立刻可见；`body::before` 颗粒 `noise-shift`。
+- **Chrome（侧栏、菜单、抽屉、对话框、工具栏）**：`--chrome-filter` = 32px / 180%。
+- **Content（卡片、列表、日志）**：`--glass-filter` = 22px / 175%，填充用 155° `--glass-sheen`（左上 74% → 右下 42%），不是平涂。`--material-*` 是别名。
+- **内嵌（节点块、搜索框）**：`--glass-inner-filter` = 12px / 160%，填充 `--glass-bg-soft` 28% + `--glass-sheen-soft`（34% → 8% accent），比卡片 sheen 更透，托盘的霜才能透出来。
 
-画布：浅色 `#d0dae8` / 深色 `#04060b`。四个 `.atmosphere i` 色块（预模糊 74px、透明度 ~0.4），玻璃才能“看见”颜色。标题字距收紧（约 -0.03em），页面留白偏大。
+画布要比玻璃深一档：浅色 `#d0dae8` / 深色 `#04060b`。字落在玻璃上，用实色 `#16202e` / `#e9eef7`。标题字距收紧（约 -0.03em），页面留白偏大。
 
 | 令牌 | 值 | 用途 |
 | --- | --- | --- |
-| `--bg` / `--canvas-a/b/c` / `--blob-*` | `#d0dae8` / `#04060b` + 蓝/薄荷/粉/青 blobs | 更深的底，让霜有东西可透 |
-| `--chrome-filter` | 30px / 190% | chrome 液态玻璃 |
-| `--glass-*` / `--material-*` | 22px / 170%，填充 54% | 内容层与 chrome 同材质 |
+| `--bg` / `--canvas-a/b/c` / `--blob-*` | `#d0dae8` / `#04060b` + 径向色池 48px + 2px bokeh | 有形色池，霜才雾得出来 |
+| `--chrome-filter` | 32px / 180% | chrome 液态玻璃 |
+| `--glass-*` / `--material-*` | 22px / 175%，155° sheen，填充 42% | 内容层 |
+| `--glass-inner-filter` | 12px / 160%，填充 28% | 嵌套节点块 / 搜索框 |
 | `--accent` | 系统蓝 `#007AFF` / `#0A84FF` | 唯一强调色（可换预设） |
 | `--ios-blue/green/orange/...` | iOS 系统色 | 语义色与图标砖 |
 | `--ios-grad-*` | **纯色**（不是渐变） | 图标砖 |

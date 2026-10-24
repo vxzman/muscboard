@@ -6,12 +6,14 @@
 .group-card :global(.card) {
   overflow: visible;
   background-color: var(--material-bg);
+  background-image: var(--glass-sheen);
   border: 0.5px solid var(--material-border);
   box-shadow: var(--material-highlight), var(--material-shadow);
 }
 
 .group-card :global(.card:hover) {
   background-color: var(--material-bg);
+  background-image: var(--glass-sheen);
   border-color: var(--material-border);
   box-shadow: var(--material-highlight), var(--material-shadow);
 }
@@ -20,6 +22,7 @@
   padding: var(--space-16) var(--space-20) var(--space-12);
   margin: calc(-1 * var(--space-20)) calc(-1 * var(--space-20)) 0;
   background-color: var(--material-bg-strong);
+  background-image: var(--glass-sheen-strong);
   border-bottom: 0.5px solid var(--material-border);
   border-radius: var(--radius-card) var(--radius-card) 0 0;
 }
@@ -111,12 +114,13 @@
   text-align: start;
   cursor: pointer;
   user-select: none;
-  background-color: var(--material-bg-strong);
+  background-color: var(--glass-bg-soft);
+  background-image: var(--glass-sheen-soft);
   border: 0.5px solid var(--material-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--material-highlight), var(--material-shadow);
-  -webkit-backdrop-filter: var(--material-filter);
-  backdrop-filter: var(--material-filter);
+  -webkit-backdrop-filter: var(--glass-inner-filter);
+  backdrop-filter: var(--glass-inner-filter);
   transform-origin: center center;
   transition:
     background-color var(--transition-fast),

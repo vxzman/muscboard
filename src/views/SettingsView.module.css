@@ -1,5 +1,6 @@
 .settings-list {
-  background-color: var(--material-bg-strong);
+  background-color: var(--material-bg);
+  background-image: var(--glass-sheen);
   border: 0.5px solid var(--material-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--material-highlight), var(--material-shadow);

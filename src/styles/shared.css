@@ -102,6 +102,7 @@
 .nav-list,
 .detail-card {
   background-color: var(--material-bg);
+  background-image: var(--glass-sheen);
 }
 
 .menu,
@@ -117,6 +118,7 @@
   .nav-list,
   .detail-card {
     background-color: var(--material-bg);
+    background-image: var(--glass-sheen);
     -webkit-backdrop-filter: var(--material-filter);
     backdrop-filter: var(--material-filter);
   }
@@ -336,6 +338,7 @@ a.menu-item {
   padding: var(--space-20);
   overflow: hidden;
   background-color: var(--material-bg);
+  background-image: var(--glass-sheen);
   border: 0.5px solid var(--material-border);
   border-radius: var(--radius-card);
   box-shadow: var(--material-highlight), var(--material-shadow);
@@ -343,6 +346,7 @@ a.menu-item {
   transition:
     box-shadow var(--transition-medium),
     background-color var(--transition-medium),
+    background-image var(--transition-medium),
     border-color var(--transition-medium);
 }
 
@@ -367,8 +371,9 @@ a.menu-item {
 
 .card:hover {
   background-color: var(--material-bg-strong);
+  background-image: var(--glass-sheen-strong);
   border-color: color-mix(in srgb, var(--material-border), var(--text) 18%);
-  box-shadow: var(--material-highlight), var(--material-shadow);
+  box-shadow: var(--material-highlight), var(--material-shadow-hover);
 }
 
 .card-header {
@@ -1120,11 +1125,12 @@ button.select:disabled {
 
 .search-input input {
   padding-inline-start: var(--space-32);
-  background-color: var(--material-bg);
+  background-color: var(--glass-bg-soft);
+  background-image: var(--glass-sheen-soft);
   border: 0.5px solid var(--material-border);
   box-shadow: var(--material-highlight);
-  -webkit-backdrop-filter: var(--material-filter);
-  backdrop-filter: var(--material-filter);
+  -webkit-backdrop-filter: var(--glass-inner-filter);
+  backdrop-filter: var(--glass-inner-filter);
 }
 
 .secret-input {

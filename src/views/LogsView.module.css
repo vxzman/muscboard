@@ -10,6 +10,7 @@
   overflow-wrap: anywhere;
   white-space: pre-wrap;
   background-color: var(--material-bg);
+  background-image: var(--glass-sheen);
   border: 0.5px solid var(--material-border);
   border-radius: var(--radius-card);
   box-shadow: var(--material-highlight), var(--material-shadow);
