@@ -14,17 +14,17 @@
 
 - **氛围层**：四个 `.atmosphere i` 用径向渐变色池 + `--blob-blur` 48px（色池有形可辨，卡片才有东西可雾化）；五个 `.atmosphere b` 小 bokeh 只 `blur(2px)`，玻璃滑过时霜立刻可见；`body::before` 颗粒 `noise-shift`。
 - **Chrome（侧栏、菜单、抽屉、对话框、工具栏）**：`--chrome-filter` = 32px / 180%。
-- **Content（卡片、列表、日志）**：`--glass-filter` = 22px / 175%，填充用 155° `--glass-sheen`（左上 74% → 右下 42%），不是平涂。`--material-*` 是别名。
-- **内嵌（节点块、搜索框）**：`--glass-inner-filter` = 12px / 160%，填充 `--glass-bg-soft` 28% + `--glass-sheen-soft`（34% → 8% accent），比卡片 sheen 更透，托盘的霜才能透出来。
+- **Content（卡片、列表、日志）**：`--glass-filter` = 22px / 190% saturate + 6% brightness。填充只有 14% 白；`--glass-sheen` 是 28% 高光 → 10% accent 的镜面，不是 74% 白膜。`--material-*` 是别名。
+- **内嵌（节点块、搜索框）**：`--glass-inner-filter` = 12px / 170%，填充 8% + 更透的 `--glass-sheen-soft`。
 
 画布要比玻璃深一档：浅色 `#d0dae8` / 深色 `#04060b`。字落在玻璃上，用实色 `#16202e` / `#e9eef7`。标题字距收紧（约 -0.03em），页面留白偏大。
 
 | 令牌 | 值 | 用途 |
 | --- | --- | --- |
 | `--bg` / `--canvas-a/b/c` / `--blob-*` | `#d0dae8` / `#04060b` + 径向色池 48px + 2px bokeh | 有形色池，霜才雾得出来 |
-| `--chrome-filter` | 32px / 180% | chrome 液态玻璃 |
-| `--glass-*` / `--material-*` | 22px / 175%，155° sheen，填充 42% | 内容层 |
-| `--glass-inner-filter` | 12px / 160%，填充 28% | 嵌套节点块 / 搜索框 |
+| `--chrome-filter` | 32px / 200% + brightness 1.05 | chrome 晶莹玻璃 |
+| `--glass-*` / `--material-*` | 22px / 190% + brightness 1.06，填充 14%，sheen 28%→accent | 内容层 |
+| `--glass-inner-filter` | 12px / 170%，填充 8% | 嵌套节点块 / 搜索框 |
 | `--accent` | 系统蓝 `#007AFF` / `#0A84FF` | 唯一强调色（可换预设） |
 | `--ios-blue/green/orange/...` | iOS 系统色 | 语义色与图标砖 |
 | `--ios-grad-*` | **纯色**（不是渐变） | 图标砖 |
